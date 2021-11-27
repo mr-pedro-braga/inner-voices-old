@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/images/test_images [ignore_on_release]/cellular_automata.png" type="Texture" id=1]
+
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+export(NodePath) var tex
+
+var t = 0.0
+
+func _process(delta):
+	t += delta
+	if t > 0.5:
+		t = 0.0
+		print(\"Swapping\")
+		var tex:Texture = $ViewportContainer/Viewport.get_texture()
+		var s:ShaderMaterial = $ViewportContainer/Viewport/Texture.material
+		s.set_shader_param(\"previous\", tex)
+		$Texture2.texture = tex
+"
+__meta__ = {
+"Scene_Path": "res://assets/images/test/Cellular Automata.tscn"
+}
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform sampler2D previous;
+
+int aliveAt (vec2 d, vec2 uv, vec2 pxs) {
+	return texture(previous, uv + d * pxs).r > 0.5 ? 1 : 0;
+}
+
+void fragment() {
+	vec4 full = vec4(1.0, 1.0, 1.0, 1.0);
+	vec4 empty = vec4(0.0, 0.0, 0.0, 0.0);
+	
+	vec4 result;
+	int neighbours = 0;
+	neighbours += aliveAt(vec2(+1.0, +0.0), UV, TEXTURE_PIXEL_SIZE);
+	neighbours += aliveAt(vec2(-1.0, +0.0), UV, TEXTURE_PIXEL_SIZE);
+	neighbours += aliveAt(vec2(+0.0, +1.0), UV, TEXTURE_PIXEL_SIZE);
+	neighbours += aliveAt(vec2(+0.0, -1.0), UV, TEXTURE_PIXEL_SIZE);
+	neighbours += aliveAt(vec2(-1.0, -1.0), UV, TEXTURE_PIXEL_SIZE);
+	neighbours += aliveAt(vec2(-1.0, +1.0), UV, TEXTURE_PIXEL_SIZE);
+	neighbours += aliveAt(vec2(+1.0, -1.0), UV, TEXTURE_PIXEL_SIZE);
+	neighbours += aliveAt(vec2(+1.0, +1.0), UV, TEXTURE_PIXEL_SIZE);
+	
+	if ( aliveAt(vec2(0.0, 0.0), UV, TEXTURE_PIXEL_SIZE) > 1 ) {
+		result = neighbours < 2 || neighbours > 3? empty : full;
+	} else {
+		result = neighbours == 3 ? full : empty;
+	}
+	
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/previous = ExtResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texture2" type="TextureRect" parent="."]
+material = SubResource( 3 )
+margin_left = 10.9602
+margin_top = 21.5668
+margin_right = 74.9602
+margin_bottom = 85.5668
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_left = -20.8116
+margin_top = -20.3943
+margin_right = 19.1884
+margin_bottom = 19.6057
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 64, 64 )
+own_world = true
+
+[node name="Texture" type="TextureRect" parent="ViewportContainer/Viewport"]
+material = SubResource( 3 )
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )

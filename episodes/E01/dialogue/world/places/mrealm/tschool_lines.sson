@@ -1,0 +1,103 @@
+--out_of_order
+	* Doesn't seem to be working.
+
+--tap
+	* (You drink some water to stay calm.)
+	* (...)
+	* (You're still not calm.)
+
+--exh_banner
+	* A banner for some event.
+	* Maybe you can go there...
+	* When you're not trapped in a school\nfull of monsters.
+
+--exh_board
+	* A blackboard with notes of some sort.
+
+--void_window
+	* Looking trough the window...\n an absolute black void.
+
+--empty_bottle_fill
+	* (You fill your bottle with water.)
+	* (Portable water!)
+
+--wouldnteat
+	* But if I were you,\nI wouldn't eat that.
+
+--trashcan
+	* Just a trash can.
+
+--found%
+	* You found... %item_name%!
+
+
+--ashley_comment_0
+	* Ashley swipes in! 
+--ashley_comment_1
+	* Ashley is taking selfies. 
+--ashley_comment_2
+	* Ashley seems focused. 
+--ashley_comment_3
+	* Ashley is texting you instead\nof talking out loud. 
+
+--ashley_convo_0
+	Ashley (twisted): oh my, you have STYLE! 
+--ashley_convo_1
+	Ashley (twisted): girl¢¢ that golden key fits u like a charm. 
+--ashley_convo_2
+	Ashley (twisted): come lets take some pics 4 ur SB. 
+--ashley_convo_3
+	Ashley (twisted): rlx babe.\n- u're gonna be gour¢¢geous. 
+--ashley_convo_4
+	Ashley (twisted): just don't mention Bruno near me. 
+--ashley_convo_5
+	Ashley (twisted): im not talking to him... 
+--ashley_convo_6
+	Ashley (twisted): can you believe he said to my face- 
+--ashley_convo_7
+	Ashley (twisted): "why u bring a hoodie\nif you aint gonna use it"
+--ashley_convo_8
+	Ashley (twisted): boy,¢¢¢ that's classical style skskskskks. 
+--ashley_convo_9
+	Ashley (twisted): something he doesn't have, BOOM. 
+--ashley_convo_10
+	Ashley (twisted): kasdkads\n- no, he has a little. 
+--ashley_convo_11
+	Ashley (twisted): u should meet him. 
+--ashley_convo_12
+	Ashley (twisted): u would be great friends 
+--ashley_convo_13
+	* She sends several emojis.\n* But this font doesn't support any. 
+--ashley_convo_13
+	* (She got distracted by her pictures gallery). 
+
+--ashley_dislike
+	Ashley (twisted): ;-;
+	
+--ashley_flirt_0"
+	* You consider giving her a compliment...
+	* ...it'll take some time to think of one.
+--ashley_flirt_1"
+	* You think of something pretty on her.
+	* ...but isn't that too shallow?
+--ashley_flirt_2"
+	* You think of one!
+	* ...,
+	* But,¢¢ oh boy,¢¢ let's keep it\nfamily-friendly.
+--ashley_flirt_3"
+	* You get embarassed by\nyour own embarassment...
+	Claire (): (That's why I don't ACT...)
+--ashley_flirt_no"
+	Claire (): (no)
+--ashley_comment
+	Ashley (twisted): kajsdkajsknasd. 
+--ashley_nospare
+	* Seems like she won't take her eyes out of the screen.
+	* If only you were on her screen...
+--ashley_spare"
+	Ashley (twisted): c u l8r.
+	Ashley (twisted): i just need to take a nap ASAP.
+--ashley_pose"
+	* You make a dramatic pose\nto get her attention!
+	Ashley (twisted): Woah, that's a great one!
+	Ashley (twisted): I need to capture this magnificence.

@@ -1,0 +1,473 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://assets/scene_components/DefaultScene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/sunglow1.res" type="Environment" id=2]
+[ext_resource path="res://assets/building_places/Buildings/Claire-Inside-1.png" type="Texture" id=3]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated3.png" type="Texture" id=4]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated1.png" type="Texture" id=5]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated5.png" type="Texture" id=6]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated2.png" type="Texture" id=7]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission.png" type="Texture" id=8]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated6.png" type="Texture" id=9]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated4.png" type="Texture" id=10]
+[ext_resource path="res://assets/characters/_character_scenes/Claire.res" type="PackedScene" id=11]
+[ext_resource path="res://addons/SmartRichTextLabel/SmartRichTextLabel.gd" type="Script" id=12]
+[ext_resource path="res://assets/music/mus_good_morning.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sounds/SFX_Alarm.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sounds/voices/voice_typewriter.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/fonts/PixeloidSans-Bold.tres" type="DynamicFont" id=16]
+[ext_resource path="res://assets/fonts/PixeloidSans.tres" type="DynamicFont" id=17]
+[ext_resource path="res://assets/images/sprites_dialogs/continue.png" type="Texture" id=18]
+[ext_resource path="res://assets/images/sprites_vfx/red-vignette.png" type="Texture" id=19]
+[ext_resource path="res://assets/sounds/Ominous Opening.wav" type="AudioStream" id=20]
+[ext_resource path="res://addons/BottomTextEditor/text_editor_font.tres" type="DynamicFont" id=21]
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends DefaultScene
+
+func alarm_start():
+	$\"AnimationPlayer\".play(\"alarmstart\")
+	$\"AnimationPlayer2\".play(\"red\")
+func white_grow():
+	$\"AnimationPlayer3\".play(\"whitening\")
+
+func scene_ready():
+	var bkpd = DCCore.dialog_box
+	DCCore.dialog_box = $\"Overlay/Black/Dialog Label\"
+	yield(get_tree().create_timer(3.0), \"timeout\")
+	
+	DCCore.dialog_box.write( \"...\" )
+	yield(DCCore.dialog_box, \"resumed\")
+	DCCore.dialog_box.write( \"Finally.\" )
+	yield(DCCore.dialog_box, \"resumed\")
+	DCCore.dialog_box.write( \"Here you are.\" )
+	yield(DCCore.dialog_box, \"resumed\")
+	DCCore.dialog_box.write( \"In your peaceful slumber.\" )
+	yield(DCCore.dialog_box, \"resumed\")
+	DCCore.dialog_box.write( \"How blissful.¢¢ How peaceful.\" )
+	yield(DCCore.dialog_box, \"resumed\")
+	$\"AnimationPlayer\".play(\"alarmstart\")
+	$\"AnimationPlayer2\".play(\"red\")
+	DCCore.dialog_box.write( \"It's nice.\" )
+	yield(DCCore.dialog_box, \"resumed\")
+	DCCore.dialog_box.write( \"However,¢¢ it must come to an end.\" )
+	yield(DCCore.dialog_box, \"resumed\")
+	DCCore.dialog_box.write( \"Now.\" )
+	yield(DCCore.dialog_box, \"resumed\")
+	DCCore.dialog_box.write( \"Claire.\" )
+	yield(DCCore.dialog_box, \"resumed\")
+	$\"AnimationPlayer3\".play(\"whitening\")
+	DCCore.dialog_box.write( \"It's time¢¢ for ¢y¢o¢u ¢t¢o\" )
+	yield(DCCore.dialog_box, \"paused\")
+	
+	DCCore.dialog_box = bkpd
+	$WeirdSound.stop()
+	$WeirdSound.queue_free()
+	$\"Alarm\".bus = \"SFX\"
+	$\"Overlay/Black/Dialog Label\".queue_free()
+	$Overlay/Black.visible=false
+	
+	yield(get_tree().create_timer(4.0), \"timeout\")
+	
+	$Alarm.stop()
+	
+	yield(get_tree().create_timer(4.0), \"timeout\")
+	
+	$Music.play()
+	
+	#Characters.set_playable_character(\"claire\")
+
+func _process(delta):
+	if Input.is_action_just_pressed(\"cheat\"):
+		DCCore.choice(
+			\"* Escolha um cartucho:\",
+			[\"Coloured Blocks\", \"Alien Invasion\", \"Paku-paku\", \"Super Maria Sisters\", \"Underneath\", \"Are you sure this is a NESX game?\", \"Begginings\", \"Ping\", \"Outside Combatents\", \"The Legend\", \"Voices from within\"],
+			[\"cart_blocks\", \"cart_aliens\", \"cart_paku\", \"cart_stomp\", \"cart_blast\", \"cart_flappy\", \"cart_mother\", \"cart_ping\", \"cart_fight\", \"cart_legend\", \"cart_meta\"],
+			0, DCCore.dialog_box, 1
+		)
+
+
+func _on_Dialog_Label_paused():
+	$Overlay/Black/continue.visible = true
+
+
+func _on_Dialog_Label_resumed():
+	$Overlay/Black/continue.visible = false
+"
+__meta__ = {
+"Scene_Path": "res://episodes/E01/scenes/prologue/StartDream.tscn"
+}
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+//Emission texture
+uniform sampler2D emission;
+uniform float emission_strength = 1.0;
+
+void fragment() {
+	vec4 col = texture(TEXTURE, UV);
+	vec4 emcol = texture(emission, UV) * emission_strength;
+	if (emcol.a > 0.0 && emcol.r > 0.0)
+		col += abs(emcol);
+	COLOR = col;
+}"
+
+[sub_resource type="AnimatedTexture" id=3]
+frames = 7
+frame_0/texture = ExtResource( 5 )
+frame_1/texture = ExtResource( 7 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 4 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 10 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 6 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 9 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 8 )
+frame_6/delay_sec = 0.0
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+render_priority = 1
+shader = SubResource( 1 )
+shader_param/emission_strength = 1.0
+shader_param/emission = SubResource( 3 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 18 )
+region = Rect2( 8, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=29]
+animations = [ {
+"frames": [ SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "continue",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=30]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Alarm:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Alarm:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -5.777 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Overlay/Black/Red:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "alarmstart"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Alarm:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Alarm:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -20.0, -5.777 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Overlay/Black/Red:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=32]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Overlay/Black/Red:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "red"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Overlay/Black/Red:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.741176 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=34]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../../WeirdSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "whitening"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../../WeirdSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="Scene" instance=ExtResource( 1 )]
+script = SubResource( 4 )
+scene_name = "Scene 1"
+scene_initial_zoom = 1.0
+
+[node name="World" type="Node2D" parent="." index="2"]
+
+[node name="House" type="Sprite" parent="World" index="0"]
+material = SubResource( 2 )
+position = Vector2( 120, 67.5 )
+texture = ExtResource( 3 )
+
+[node name="claire" parent="3DObjects" index="0" instance=ExtResource( 11 )]
+position = Vector2( 165.463, 66.8215 )
+
+[node name="AnimationHandler" parent="3DObjects/claire" index="1"]
+enabled = false
+
+[node name="Sprite" parent="3DObjects/claire/AnimationHandler" index="1"]
+flip_h = true
+frame = 46
+
+[node name="Env" type="WorldEnvironment" parent="." index="5"]
+environment = ExtResource( 2 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="6"]
+color = Color( 0.498039, 0.423529, 0.341176, 1 )
+
+[node name="Overlay" type="CanvasLayer" parent="." index="7"]
+
+[node name="Dialog Label" type="RichTextLabel" parent="Overlay" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -118.0
+margin_top = 55.0
+margin_right = 116.0
+margin_bottom = 65.0
+rect_clip_content = false
+mouse_filter = 2
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_constants/table_hseparation = 3
+custom_constants/line_separation = 0
+custom_fonts/mono_font = ExtResource( 21 )
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 17 )
+bbcode_enabled = true
+text = "Now playing: \"Good Morning!\" by Pedro Braga"
+scroll_active = false
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+text_delay = 0.03
+text_wait_action = "ok"
+text_cancel_action = "back"
+
+[node name="Black" type="ColorRect" parent="Overlay" index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Red" type="TextureRect" parent="Overlay/Black" index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 19 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="white" type="ColorRect" parent="Overlay/Black" index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continue" type="AnimatedSprite" parent="Overlay/Black" index="2"]
+visible = false
+position = Vector2( 216.678, 75.6102 )
+frames = SubResource( 29 )
+animation = "continue"
+frame = 1
+playing = true
+
+[node name="Dialog Label" type="RichTextLabel" parent="Overlay/Black" index="3"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = -2.0
+margin_right = -16.0
+margin_bottom = -8.0
+rect_min_size = Vector2( 0, 8 )
+rect_clip_content = false
+mouse_filter = 2
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_constants/table_hseparation = 3
+custom_constants/line_separation = 0
+custom_fonts/bold_font = ExtResource( 16 )
+custom_fonts/normal_font = ExtResource( 17 )
+bbcode_enabled = true
+scroll_active = false
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+text_delay = 0.1
+text_wait_action = "ok"
+text_cancel_action = "back"
+
+[node name="beep" type="AudioStreamPlayer" parent="Overlay/Black/Dialog Label" index="1"]
+stream = ExtResource( 15 )
+volume_db = -7.222
+bus = "SFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="." index="8"]
+stream = ExtResource( 13 )
+bus = "Music"
+
+[node name="Alarm" type="AudioStreamPlayer" parent="." index="9"]
+stream = ExtResource( 14 )
+volume_db = -5.777
+bus = "Underwater"
+
+[node name="WeirdSound" type="AudioStreamPlayer" parent="." index="10"]
+stream = ExtResource( 20 )
+volume_db = -7.312
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+anims/RESET = SubResource( 30 )
+anims/alarmstart = SubResource( 31 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="12"]
+anims/RESET = SubResource( 32 )
+anims/red = SubResource( 33 )
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="." index="13"]
+root_node = NodePath("../Overlay/Black/white")
+anims/RESET = SubResource( 34 )
+anims/whitening = SubResource( 35 )
+
+[connection signal="paused" from="Overlay/Black/Dialog Label" to="." method="_on_Dialog_Label_paused"]
+[connection signal="resumed" from="Overlay/Black/Dialog Label" to="." method="_on_Dialog_Label_resumed"]
+
+[editable path="3DObjects/claire"]

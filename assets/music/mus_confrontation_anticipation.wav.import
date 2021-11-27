@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mus_confrontation_anticipation.wav-17e57b016e399c351da1c71fddaf6b55.sample"
+
+[deps]
+
+source_file="res://assets/music/mus_confrontation_anticipation.wav"
+dest_files=[ "res://.import/mus_confrontation_anticipation.wav-17e57b016e399c351da1c71fddaf6b55.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0

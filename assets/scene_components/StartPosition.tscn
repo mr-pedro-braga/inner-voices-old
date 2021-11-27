@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/scene_components/StartPosition.res" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/characters/shadow.png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+export var id = \"default\"
+
+func _ready():
+	if Gameplay.LOADING:
+		yield(Gameplay, \"LOADING_FINISHED\")
+	if Characters.map_characters.has(id):
+		Characters.set_playable_character(id)
+		ScreenCore.attach_camera()
+"
+__meta__ = {
+"Scene_Path": "res://assets/scene_components/StartPosition.tscn"
+}
+
+[node name="StartPosition" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( -0.5, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 1, 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -24 )
+frames = ExtResource( 1 )
+animation = "Claire"
+frame = 1
+playing = true

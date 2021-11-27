@@ -1,0 +1,140 @@
+--mirror
+	* The room was constructed smaller here, to give a feeling of perspective.
+	* Also, the mirror doesn't work.
+--mirror2
+	* It's you-¢¢ NOT!
+--boombox
+	* It's a boom... paralelepiped?
+--spilled_coffee
+	* CAUTION. The floor is coffee'd.
+--spilled_coffee2
+	* There's no use crying over spilled coffee.
+--rack
+	* Several black suits with red-blue ties.
+	* Amongst them, you can see a red one.
+--rack2
+	* It's not yet time for you to use a suit.
+--vhs
+	* A stack of cassetes.
+	* It seems like it's made of sitcoms,
+	* but it was spliced to contain only the laugh tracks.
+--garbage
+	* Ew,¢¢ it's trash.
+--papers
+	* It's several pages of paper written with glitter pens.
+	* In it, alternate scripts for this very encounter.
+	* ...and a bunch of scribbles of various people in glitter suits.
+--papers2
+	* One of them has a marking in red saying
+	* "Rude! Stop looking at other people's stuff."
+--papers3
+	* You feel bad by doing this.
+
+--conversation
+	bgm load mus_introduction.wav Introduction
+	speech_delay 0.1
+	Claire (): ...
+	speech_delay 0.07
+	* Poor girl...
+	* Lost, and confused...
+	* But, I must say...
+	* You¢¢ ARE a brave one.
+	* Listen carefully.
+	wait 2.0
+	bgm resume
+	* You have commited a terrible mistake.
+	* And,¢¢ now,¢¢ must pay for it.
+	speech_delay 0.15
+	* With your [wave]SOUL[/wave].
+	bgm pause
+	function summon_fires
+	speech_delay 0.1
+	* Goodbye.
+	speech_delay 0.03
+	 
+	bgm load mus_copyrighted3.mp3 Let_us_play!
+	wait 2.0
+	function reveal
+	bgm resume
+	wait 3.0
+	
+	Pierre(none): Meow!\n- (You were right, boss!)
+	Pierre(none): (That was priceless!)
+	Clio(): Well,¢¢ it was rather obvious...\n¢¢¢* But it WAS quite funny!
+	Pierre(none): It was cheesy, but.¢.¢.¢ look at her,\nshaking in her boots!
+	Claire(): aaaaaaaaaaaaa
+	Clio(): Chillax mate¢¢¢, it ain't us who's\n gonna kill ya.
+	Clio(): In fact,¢¢ we're here to help ya, darling.
+	Claire(none): Oh¢¢.¢¢.¢¢.¢¢ that's nice,¢¢ I guess!\n¢¢¢- Please don't do\nthat ever again.
+	Claire(up): You started saying all\nthose things and...
+	Clio(): Oh,¢¢ it IS all true, in a way.
+	Clio(): You must've noticed that\neverything outside is kinda...\ndifferent.
+	Clio(): It's all a horrendous shade of navy blue.
+	Clio(): Oh, and the people with their minds Twisted,¢¢ too,\npretty nasty if you ask me.
+	Claire(down): Oh... I¹
+	bgm pause
+	Clio(): That's cause of \n[color=yellow]yesterday[/color].
+	Clio(): [color=yellow]Something happened and broke the word,\nbasically.[/color]
+	Clio(): [color=yellow]Corrupted everyone's memories.\n¢¢  * It left the world...[/color]
+	bgm resume
+	speech_delay 0.08
+	function zoom
+	Clio(): [wave]Fragmented[/wave].
+	speech_delay 0.05
+	function unzoom
+	Clio(): And [color=yellow]you[/color] are gonna fix it, of course.
+	Claire(question): Wh-... I...
+	Claire(question): I am confused...
+	Clio(): Don't worry,\nit's okay to worry.
+	Clio(): But think like that...\n* You did quite good\nup to here, didn't ya?
+	Clio(): Didn't even die once!
+	Clio(): If you fix this issue with the fabric of reality now...
+	Clio(): You're gonna be home\nquite soon,¢¢ eh?
+	Clio(): So what do you say?
+		"I can try" (spare):
+			Clio(): You can try?
+			Clio(): There is absolutely no room for failure here.
+			Clio(): We're talking big stakes, Claire.
+		"what do I even have to fix" (talk_eerie):
+			Clio(): There's no time to explain it now.
+			Clio(): We're in a hurry.
+			Clio(): I am a busy person, Claire.
+		"I'm not gonna do this" (talk_bad):
+			Clio(): You do realize you have no choice whatsoever,¢¢ right?
+			Clio(): It's not like you have somewhere to go.
+			Claire(down): I don't even know you!
+			Claire(): What if you're are a bad person.
+			Claire(): For all I know you could be a zombie.
+			Clio(): ...¢¢¢what
+	Claire(): Okay, I'm gonna do it.¢¢ I guess.
+	Clio(): Brilliant!
+	function zoom
+	Clio(): That's the [color=yellow]SPIRIT[/color],\ngirl!
+	function unzoom
+	#pose claire look_up 2
+	Claire(none): (Where's that laughter even coming from...)
+	#pose claire idle 2
+	#pose claire idle 6
+	Clio(): Worry not, Claire.
+	Clio(): You're the perfect person\nfor this job.
+	Clio(): Saving the world,¢¢ that's what teenagers do best, right?
+	Clio(): And Pierre, the cat, will help you with incidental support.
+	Clio(): He'll be the perfect companion in these trying times.
+	Pierre(none): Meow!\n- (Wait,¢¢ did you not mean...\n¢¢¢- [wave]Purr[/wave]fect?)
+	function menace
+	bgm pause
+	wait 2.0
+	function zoom_cut
+	wait 2.0
+	Clio(): ¢¢n¢o¢.
+	bgm resume
+	function unmenace
+	Clio(): Where were we, luv?\n¢¢* Oh, yeah!
+	Clio(): So, while we were talking I rode the lift up to here...
+	Clio(): It's time for you to visit the other side.
+	Clio(): Might be dangerous, and a bit... chilly, but...¢¢ eh...
+	Clio(): You're a tremendous fighter, sweetie, just keep up the good work,
+	Clio(): and you'll end up alright.
+	Clio(): Remember, we're all counting on ya.
+	Clio(): Cheerios!
+	bgm pause

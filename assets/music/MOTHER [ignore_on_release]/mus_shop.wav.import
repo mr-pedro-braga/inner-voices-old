@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mus_shop.wav-526275ed6c700d2f6c72557f6ab31342.sample"
+
+[deps]
+
+source_file="res://assets/music/MOTHER [ignore_on_release]/mus_shop.wav"
+dest_files=[ "res://.import/mus_shop.wav-526275ed6c700d2f6c72557f6ab31342.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

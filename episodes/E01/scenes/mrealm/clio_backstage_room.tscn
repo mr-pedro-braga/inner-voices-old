@@ -1,0 +1,613 @@
+[gd_scene load_steps=46 format=2]
+
+[ext_resource path="res://assets/scene_components/DefaultScene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/map_making/special_scenes/clio_room/room.png" type="Texture" id=2]
+[ext_resource path="res://assets/map_making/special_scenes/clio_room/mirror.png" type="Texture" id=3]
+[ext_resource path="res://assets/map_making/special_scenes/clio_room/mirror_emission.png" type="Texture" id=4]
+[ext_resource path="res://assets/shaders/Emission.shader" type="Shader" id=5]
+[ext_resource path="res://assets/map_making/special_scenes/clio_room/clio-boy-sheet.png" type="Texture" id=6]
+[ext_resource path="res://assets/sounds/SFX_ClioLeave.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/images/sprites_onomatopoeia/lots-of-laughter.png" type="Texture" id=8]
+[ext_resource path="res://assets/characters/_character_scenes/Claire.res" type="PackedScene" id=9]
+[ext_resource path="res://assets/sounds/SFX_Sitcom.wav" type="AudioStream" id=11]
+
+[sub_resource type="GDScript" id=35]
+script/source = "extends DefaultScene
+
+var revealed = false
+onready var aplayer = get_node(\"3DObjects/Table/AnimationPlayer\")
+onready var clio_sprite = get_node(\"3DObjects/Table/ClioSprite\")
+
+func _ready():
+	aplayer.play(\"RESET\")
+	revealed = false
+	Characters.set_playable_character(\"claire\")
+	DCCore.dialog(\"places/mrealm/clio_lines\", \"conversation\")
+	yield(DCCore, \"dialog_finished\")
+	revealed = false
+	aplayer.play(\"ClioLeave\")
+
+func summon_fires():
+	print(\"FIRES WERE SUMMONED!\")
+
+func reveal():
+	aplayer.play(\"Laugh\")
+	yield(aplayer, \"animation_finished\")
+	revealed = true
+
+func zoom():
+	ScreenCore.zoom *= 0.6
+	revealed = false
+	clio_sprite.play(\"wink\")
+	$\"3DObjects/Table/SitcomLaugh\".play()
+	print(\"lol\")
+
+func unzoom():
+	ScreenCore.zoom /= 0.6
+	revealed = true
+	clio_sprite.play(\"normal\")
+
+func menace():
+	revealed = false
+	clio_sprite.play(\"look\")
+	clio_sprite.playing = false
+	clio_sprite.frame = 1
+	$\"3DObjects/Group\".visible = false
+	$\"Room\".visible = false
+
+func zoom_cut():
+	ScreenCore.zoom *= 0.6
+	ScreenCore.zoom_drag = ScreenCore.zoom
+	print(\"lol\")
+
+func unmenace():
+	ScreenCore.zoom /= 0.6
+	ScreenCore.zoom_drag = ScreenCore.zoom
+	revealed = true
+	$\"3DObjects/Group\".visible = true
+	$\"Room\".visible = true
+	clio_sprite.play(\"normal\")
+
+func _process(delta):
+	
+	if revealed:
+		if DCCore.dialog_box.is_typing:
+			match DCCore.speaking_character:
+				\"pierre\":
+					clio_sprite.play(\"pierretalk\")
+				\"clio\":
+					clio_sprite.play(\"normal\")
+				_:
+					clio_sprite.playing = false
+					clio_sprite.frame = 1
+		else:
+			clio_sprite.playing = false
+			clio_sprite.frame = 1
+"
+__meta__ = {
+"Scene_Path": "res://episodes/E01/scenes/mrealm/clio_backstage_room.tscn"
+}
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_levels/2 = true
+glow_levels/3 = false
+glow_levels/4 = true
+glow_levels/5 = false
+glow_intensity = 0.7
+glow_strength = 1.13
+glow_blend_mode = 0
+
+[sub_resource type="StreamTexture" id=6]
+load_path = "res://.import/objects.png-4b8c23aa7352958b647ee94e567556b8.stex"
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = SubResource( 6 )
+region = Rect2( 16, 32, 40, 16 )
+
+[sub_resource type="StreamTexture" id=8]
+load_path = "res://.import/objects.png-4b8c23aa7352958b647ee94e567556b8.stex"
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = SubResource( 8 )
+region = Rect2( 48, 48, 24, 32 )
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = ExtResource( 5 )
+shader_param/emission_strength = 0.06
+shader_param/emission = ExtResource( 4 )
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/objects.png-4b8c23aa7352958b647ee94e567556b8.stex"
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = SubResource( 2 )
+region = Rect2( 48, 0, 32, 32 )
+
+[sub_resource type="StreamTexture" id=11]
+load_path = "res://.import/objects.png-4b8c23aa7352958b647ee94e567556b8.stex"
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = SubResource( 11 )
+region = Rect2( 32, 48, 16, 16 )
+
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/objects.png-4b8c23aa7352958b647ee94e567556b8.stex"
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = SubResource( 4 )
+region = Rect2( 80, 0, 32, 32 )
+
+[sub_resource type="StreamTexture" id=13]
+load_path = "res://.import/objects.png-4b8c23aa7352958b647ee94e567556b8.stex"
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = SubResource( 13 )
+region = Rect2( 16, 48, 16, 32 )
+
+[sub_resource type="StreamTexture" id=15]
+load_path = "res://.import/objects.png-4b8c23aa7352958b647ee94e567556b8.stex"
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = SubResource( 15 )
+region = Rect2( 0, 32, 16, 48 )
+
+[sub_resource type="StreamTexture" id=17]
+load_path = "res://.import/objects.png-4b8c23aa7352958b647ee94e567556b8.stex"
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = SubResource( 17 )
+region = Rect2( 0, 0, 48, 32 )
+
+[sub_resource type="Animation" id=26]
+resource_name = "ClioLeave"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Leave:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ClioSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "bye" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 121, 65 ), Vector2( 121, -60 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ClioSprite:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "Laugh"
+length = 6.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("SitcomLaugh:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Group:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../TextureRect:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 400, 44 ), Vector2( -200, 44 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../TextureRect:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.8, 2.6, 3.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ClioSprite:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "laugh" ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ClioSprite:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 5.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../../Room:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath(".:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 121, 65 ) ]
+}
+
+[sub_resource type="Animation" id=28]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SitcomLaugh:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Group:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../TextureRect:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 400, 44 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../TextureRect:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ClioSprite:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "hidden" ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ClioSprite:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../../Room:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Leave:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath(".:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 121, 65 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 6 )
+region = Rect2( 90, 45, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 6 )
+region = Rect2( 90, 0, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 45, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 6 )
+region = Rect2( 135, 45, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 6 )
+region = Rect2( 135, 0, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 6 )
+region = Rect2( 45, 0, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 6 )
+region = Rect2( 45, 45, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 6 )
+region = Rect2( 225, 0, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 6 )
+region = Rect2( 225, 45, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 6 )
+region = Rect2( 180, 0, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 6 )
+region = Rect2( 270, 0, 45, 45 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 6 )
+region = Rect2( 270, 45, 45, 45 )
+
+[sub_resource type="SpriteFrames" id=25]
+animations = [ {
+"frames": [ SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "normal",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 29 ) ],
+"loop": true,
+"name": "hidden",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "pierretalk",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ) ],
+"loop": true,
+"name": "laugh",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "look",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 32 ) ],
+"loop": true,
+"name": "wink",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 30 ), SubResource( 31 ) ],
+"loop": true,
+"name": "bye",
+"speed": 8.0
+} ]
+
+[node name="Scene" instance=ExtResource( 1 )]
+script = SubResource( 35 )
+scene_name = "Scene 1"
+scene_initial_zoom = 1.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource( 1 )
+
+[node name="Room" type="Sprite" parent="." index="1"]
+visible = false
+position = Vector2( 121, 67 )
+texture = ExtResource( 2 )
+
+[node name="Mattress" type="Sprite" parent="Room" index="0"]
+position = Vector2( -3, 22 )
+texture = SubResource( 7 )
+
+[node name="Paper" type="Sprite" parent="Room" index="1"]
+position = Vector2( 33, -10 )
+texture = SubResource( 9 )
+
+[node name="Mirror" type="Sprite" parent="Room" index="2"]
+material = SubResource( 10 )
+texture = ExtResource( 3 )
+
+[node name="Group" type="YSort" parent="3DObjects" index="0"]
+visible = false
+
+[node name="Rack" type="Sprite" parent="3DObjects/Group" index="0"]
+position = Vector2( 90.75, 62 )
+texture = SubResource( 3 )
+
+[node name="Garbage" type="Sprite" parent="3DObjects/Group" index="1"]
+position = Vector2( 161, 70 )
+texture = SubResource( 12 )
+
+[node name="WetFloor" type="Sprite" parent="3DObjects/Group" index="2"]
+position = Vector2( 153, 82 )
+texture = SubResource( 5 )
+
+[node name="VHS_Pile" type="Sprite" parent="3DObjects/Group" index="3"]
+position = Vector2( 87, 75 )
+texture = SubResource( 14 )
+
+[node name="Boombox" type="Sprite" parent="3DObjects/Group" index="4"]
+position = Vector2( 80, 85 )
+texture = SubResource( 16 )
+
+[node name="TextureRect" type="Sprite" parent="3DObjects" index="1"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 400, 44 )
+texture = ExtResource( 8 )
+
+[node name="Table" type="Sprite" parent="3DObjects" index="2"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 121, 65 )
+texture = SubResource( 18 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="3DObjects/Table" index="0"]
+anims/ClioLeave = SubResource( 26 )
+anims/Laugh = SubResource( 27 )
+anims/RESET = SubResource( 28 )
+
+[node name="ClioSprite" type="AnimatedSprite" parent="3DObjects/Table" index="1"]
+position = Vector2( 0, -7 )
+frames = SubResource( 25 )
+animation = "hidden"
+
+[node name="Leave" type="AudioStreamPlayer" parent="3DObjects/Table" index="2"]
+stream = ExtResource( 7 )
+bus = "SFX"
+
+[node name="SitcomLaugh" type="AudioStreamPlayer" parent="3DObjects/Table" index="3"]
+stream = ExtResource( 11 )
+bus = "SFX"
+
+[node name="claire" parent="3DObjects" index="3" instance=ExtResource( 9 )]
+position = Vector2( 120, 97 )

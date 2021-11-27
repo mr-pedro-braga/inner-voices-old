@@ -1,0 +1,69 @@
+--the-call
+	- ...
+	- Finally.
+	- Here you are.
+	- In your quiet slumber.
+	- How blissful.¢¢ How peaceful.
+	function alarm_start
+	- It's nice.
+	- However,¢¢ it must come to an end.
+	- Now.
+	- Claire.
+	function white_grow
+	- It's time¢¢ for ¢y¢o¢u ¢t¢o¹
+
+--jim-1
+	Claire(): 'morninggggggg
+	Jim(): Claire, how many times will I have to say.
+	Jim(): You're going to fall face down someday, I'm telling you.
+	Claire(): Daaaad, don't be boooring.
+	Jim(): I made toast, want any?
+	Claire(down): ...no...
+	Jim(): ...no?
+	Claire(down): ¢.¢.¢.
+	Jim(): ...what's wrong, sweetie?
+	Claire(down): Nothing... I... just...
+
+--jim-2
+	Jim(): What's the matter.
+	Claire(down): Can I...¢¢ not...¢¢ go to school today?
+	Jim(): *sigh* again?¢¢ why?
+	Claire(down): I'm just... a bit tired.
+	Jim(): You say that,¢ and then later you're doing backflips in the backyard.
+	Claire(): I-¹
+	Jim(): I know when something's wrong with you.
+	Jim(): Tell me.
+	Claire(down): I¢¢ just¢¢...¢¢ Have a presentation.
+	Claire(down): What if I... let [color=yellow]it[/color] out...
+	Jim(): ah¹
+	Claire(): And then they'll be scared... and be angry with me...
+	Claire(): And they won't wanna be friends.
+	wait 1.0
+	Jim(): Oh Claire,
+	Jim(): Who wouldn't wanna be friends with you?
+	Jim(): You're so nice, pretty, and cool.
+	Claire(down): You say that to make me feel better.
+	Jim(): D-does it work?
+	Claire(up): Hmmm...
+	Claire(): A teeny-tiny bit.
+	Jim(): Will you go to school now?
+	Claire(): ...
+	Claire(): *sigh* fiiiine.
+	Jim(): Idea: I'm going to order a pizza...
+	Jim(): for us to watch a movie when you come back,
+	Jim(): Me, you and your father if he comes early.
+	move claire
+		mvadd 0 16
+	Claire(smile): YEP YEP, OKAY. BYE DAD, I LOVE YOU.
+	Jim(): Woah! Excited now?
+	pose claire idle 6
+	Claire(): Not for school.
+	Jim(): Do I get a kiss for my effort?
+	Claire(): Hmmmmmmmmmm... Yeah.
+	move claire
+		mvadd 0 -16
+		turn 4
+
+--jim-3
+	Jim(): Nice! Now go conquer the world, my princess!
+	Claire(): Ay Ay, Captain!

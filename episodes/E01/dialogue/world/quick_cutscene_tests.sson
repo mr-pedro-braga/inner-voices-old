@@ -1,0 +1,21 @@
+--test1
+	bgm load mus_battle_against_an_undescribably_strange_opponent.wav New_Horizon
+	bgm restart
+	* This music slaps harder than my abusive alcoholic father!
+	* Hello!¢ My name is Ninten!
+	* I'm not sure why,¢¢ but these people built their houses on only one side of the road...
+	* Strange...
+	Claire(up): Hmmm¢.¢.¢.
+	Claire(): It can be just to¢ avoid feeling claustrophobic.
+	Claire(down): like¢.¢.¢.
+	Claire(): They can easily look into the other side¢ and not see any houses¢ for once!
+	* Uh,¢¢ that makes sense,¢¢ I guess?
+
+--pizza_door
+	sfx SFX_KnockKnock
+	wait 1.0
+	* Is this the pizza delivery?
+		"Yes" (flirt):
+			* Weird,¢¢ I didn't order any pizza.
+		"No" (talk_eerie):
+			* Damn it,¢¢ I am really craving some pizza right now...

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/scripts/Construction/Event.gd" type="Script" id=1]
+
+[node name="Event" type="Area2D"]
+collision_mask = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+trigger_area = Vector2( 0, 0 )

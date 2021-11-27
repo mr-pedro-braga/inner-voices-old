@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/battle/battle_screen_backgrounds/FancyFood.res" type="PackedScene" id=8]
+
+[node name="BattleBG" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mint" parent="." instance_placeholder="res://assets/battle/battle_screen_backgrounds/Mint.res"]
+visible = false
+
+[node name="Citrus" parent="." instance_placeholder="res://assets/battle/battle_screen_backgrounds/Citrus.res"]
+visible = false
+
+[node name="FancyFood" parent="." instance=ExtResource( 8 )]
+
+[node name="Delta" parent="." instance_placeholder="res://assets/battle/battle_screen_backgrounds/Delta.res"]
+visible = false
+
+[node name="Alpha" parent="." instance_placeholder="res://assets/battle/battle_screen_backgrounds/Alpha.res"]
+visible = false
+
+[node name="Drama" parent="." instance_placeholder="res://assets/battle/battle_screen_backgrounds/Drama.res"]
+visible = false
+frame = 2
+
+[node name="Omega" parent="." instance_placeholder="res://assets/battle/battle_screen_backgrounds/Omega.res"]
+visible = false
+
+[node name="Soul" parent="." instance_placeholder="res://assets/battle/battle_screen_backgrounds/Soul.res"]
+visible = false

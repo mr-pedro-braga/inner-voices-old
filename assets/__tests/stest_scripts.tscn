@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/scene_components/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/battle/BattleBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/scripts/Game Architecture/Camera.gd" type="Script" id=3]
+[ext_resource path="res://assets/battle/battle_screen_backgrounds/BattleBG.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/music/mus_hearts_in_kitchen_sink.wav" type="AudioStream" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+
+export(String, \"tintin\", \"ollie\", \"claire\", \"rodrick\", \"andy\", \"bruno\", \"trevor\", \"lily\", \"sam\", \"heart\") var ch = \"tintin\"
+
+func _ready():
+	Gameplay.is_playing_story = false
+	Gameplay.GAMEMODE = Gameplay.GM.BATTLE
+	
+	BattleCore.battle = $Battle
+	Utils.make_current_camera($Camera2D)
+	
+	#get_node(\"/root/GameRoot/HUD/black_bars\").play(\"battle_slide_in\")
+	#get_node(\"/root/GameRoot/HUD/black_bars_top\").play(\"menu_in\")
+	
+	Characters.party = [ch]
+	Utils.load_stats(ch, \"andy.chstats\", \"ALLY\")
+	
+	Utils.update_soul_meters()
+	
+	while true:
+		Utils.attack(\"lily\", ch, \"twistedhallways\", \"like\", true)
+		yield(Utils, \"attack_finished\")
+"
+__meta__ = {
+"Scene_Path": "res://assets/__tests/stest_scripts.tscn"
+}
+
+[node name="ScriptTest" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ch = "andy"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BattleBG" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Battle" parent="." instance=ExtResource( 2 )]
+visible = false
+damage = {
+"amount": 2.0,
+"element": "fire",
+"type": "normal"
+}
+
+[node name="Character" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( -67.1751, 0 )
+animation_state = {
+"battle_action": "idle",
+"battle_facing": "left",
+"lock_animation": false,
+"lock_animation_name": "",
+"ovw_action": "idle",
+"ovw_action_lock": false,
+"ovw_angle": 2,
+"ovw_angle_lock": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[editable path="Battle"]

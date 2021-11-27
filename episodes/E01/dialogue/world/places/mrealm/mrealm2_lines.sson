@@ -1,0 +1,167 @@
+--house_4
+	PizzaMan (): Hm?\n- Is it the pizza guy?
+		Yes (talk_good):
+			PizzaMan (): Weird, I didn't order any pizza...
+		No (talk_bad):
+			PizzaMan (): I could use some pizza right now...
+
+--charlie_door
+	shake
+	Charlie (): Aaaaaa!¢¢- One minute!
+
+--charlie_enc
+	Charlie (): Aaaaand... Perfect.
+	Charlie (): That's enough water for today.
+	Charlie (): Bye bye, my children.
+	move charlie
+		pose charlie idle 2
+		mvadd 0 32
+		mvadd -32 0 
+		wait
+	Charlie (): ¢.¢.¢.
+	Charlie (): Hm¢.¢.¢. This¢¢ feeling,¢¢ once again¢.¢.¢.
+	pose charlie idle 0
+	pose charlie scared_down 2
+	shake
+	bgm resume
+	Charlie (aaa): ¬SAaaaaaaaaaa¬N
+	Charlie (aaa): ¬SMy word, oh my¬N
+	wait 1.0
+	pose charlie scared_oh 2
+	Charlie (): One second...
+	pose charlie scared_look 2
+	Charlie (): What ARE you¢.¢.¢.\n- You're a human,¢ right?
+		Yes (talk_good):
+			pose charlie scared_down 2
+			shake
+			Charlie (aaa): ¬SAaaaaaaaaaaaa¢¢\n- A human person!
+		No (talk_bad):
+			pose charlie scared_down 2
+			shake
+			Charlie (aaa): ¬SAaaaaaaaaaaaa¢¢\n- What the heck ARE you then?!?!
+	Charlie (aaa): ¬SI'm gonna bloody die...¬N
+	wait 1.0
+	pose charlie scared_oh 2
+	Charlie (): A-¢¢another second...
+	pose charlie scared_look 2
+	Charlie (): Are you like...¢¢\n- Are you real?
+		Yes (talk_good):
+			pose charlie scared_down 2
+			shake
+			Charlie (aaa): ¬SAaaaaaaaaaaaa¢¢\n- I'm gonna die,¢¢ and for real!
+		No (talk_bad):
+			pose charlie scared_down 2
+			shake
+			Charlie (aaa): ¬SAaaaaaaaaaaaa¢¢\n- Am I getting MAD???"
+			Charlie (aaa): ¬SIs this what isolation does?
+	Charlie (aaa): ¬SAaaaaaa¬N
+	move claire
+		mvto -114 256
+	Claire (): I'm not gona... hurt you...
+	Claire (): I'm just lost.
+	pose charlie scared_look 2
+	Charlie (): Really...?
+	Claire (): Yes...
+	wait 1.0
+	pose charlie scared_oh 2
+	wait 1.0
+	pose charlie scared_look 2 
+	wait 1.0
+	pose charlie scared_oh 2 
+	wait 1.0
+	pose charlie idle 2
+	Charlie (): Ok, bye then.
+	move charlie
+		mvadd -128 0
+		destroy
+		wait
+
+--hcclio
+	* Ayup, Claire.
+	* Just checking on ya, luv.
+	* See, haven't died yet, have you?
+	* By the way, experiment pressing\n%KEY_OK% while dodging.
+	* Don't ask why, just do it.
+	* Something, um, real nice\nmight happen.
+	* And if you are ever lost, don't hesitate to ask for help.
+	* I'll be eager to help you.
+	* Not like you'll need any help, huh?
+	* You got it all figured out, huh?
+	* Cya later..."
+
+--hatcat
+	HatCat (): Nya ha ha!
+	HatCat (): Wanna bet with moi?
+	HatCat (): To the item get, three times you\nmust find the right hat!
+
+--hatcatgotit
+	HatCat (): Nyaa, ha ha!
+	HatCat (): There it is, you did great!
+	HatCat (): Let's play again, mate!
+
+--hatcatgotit2
+HatCat (): Nyaa, ha ha!
+HatCat (): Fantastic!
+HatCat (): You really are quite¢.¢.¢. Fantastic...
+
+--hatcatlostit
+	HatCat (): Nyaa, ha ha...
+	HatCat (): In 'nother hat the crystal stays!
+	HatCat (): Let's try again,¢¢ okay?
+
+--hatcatbet_1
+	HatCat (): Here's the rarest shiny stone.
+	HatCat (): I will shuffle, now it's gone.
+
+--hatcatbet_2
+	HatCat (): Find where it is at,\n and your prize you will get!
+
+--hatcatbet_3
+	HatCat (): Oh...
+	HatCat (): I don't even wanna rhyme anymore.
+	HatCat (): You won, goodbye.
+
+--hatcatback
+	HatCat (): Nyaa, ha ha!
+	HatCat (): The shop is closed.
+
+--sign1
+	* (Something written in an odd language)."
+	text_mode kuroi
+	* lito lit' deriako,\n   merune dare ko vei."
+	text_mode latin
+
+--hallwayknight
+	ChaosKnight (): Yo,¢¢ mind me not,\nI'm just chilling.
+
+--spri_1
+	* By second nature, you reach to it...
+	Spri (): Wassup Claire, ma boss!
+	Spri (): Yooo!!!! so much time passed!
+	Spri (): Hm?¢¢ What's with your face?
+	Spri (): Were you expecting ¬C01something else¬C00?
+	Spri (): I am not shocked.\n- Noone never expects me, huh.
+	Spri (): I don't even care anymore.
+
+--spri_2
+	* This lonely city amidst the void\nfills you with...¢¢ something,¢¢ I guess???
+
+--bonsy_1
+	VoiceLight (): Hm?
+	VoiceLight (): Oh my,¢¢ it's the hero of SPIRIT!
+	VoiceLight (): You know,¢¢ with all that is\nhappening, it's hard to stay happy...
+	VoiceLight (): I feel so.¢.¢.¢ so hollow.
+	VoiceLight (): That's why I bought this girl-shaped balloon.
+	VoiceLight (): To keep me company.
+	VoiceLight (): Until I realized...
+	VoiceLight (): That inside, she is hollow,¢¢ too.
+
+--bonsy_2
+	* Her lifeless eyes stare at the undending black void.
+
+--statue
+	* Must be someone important.
+
+--bush
+	* A lush bush.
+
