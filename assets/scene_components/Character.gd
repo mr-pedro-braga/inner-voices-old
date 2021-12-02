@@ -46,7 +46,7 @@ var animation_state := {
 	"battle_action": "idle",
 	"battle_facing": "left",
 	
-	"using_angle": false,
+	"using_angle": true,
 	"prefix": ""
 }
 
@@ -62,8 +62,12 @@ var velocity := Vector2.ZERO
 var input_vector := Vector2.ZERO
 var last_input_vector := Vector2.DOWN
 var mv_target := Vector2.ZERO
-export var angle := 2
+export var angle := 2 setget set_angle
 export var Z := 0
+
+func set_angle(value):
+	angle = value
+	animation_state.ovw_angle = value
 
 # The current movement route
 var mv_route: Array = []
@@ -116,10 +120,10 @@ func set_animation(anim:String):
 		$AnimatedSprite.play(anim)
 
 func set_animation_property(property:String, value):
-	$AnimationHandler.set_property(property, value)
+	animation_state[property] = value
 
 func get_animation_property(property:String):
-	return $AnimationHandler.get_property(property)
+	return animation_state[property]
 
 func update_animation():
 	$AnimationHandler._animate()
@@ -168,8 +172,8 @@ func _physics_process(delta):
 		return # FROM HERE, CODE ONLY RUNS IN RUNTIME
 	
 	# If this character is moving, and the angle isn't locked, set it to face the current velocity.
-	if not animation_state.ovw_action_lock and input_vector != Vector2.ZERO:
-		animation_state.ovw_angle = round((Vector2.RIGHT.angle_to(velocity) / (2*PI)) * 8)
+	if not animation_state.ovw_angle_lock and input_vector:
+		animation_state.ovw_angle = round(fposmod(last_input_vector.angle() * 8/TAU, 8))
 	
 	#---------------#
 	#  Input
@@ -257,10 +261,9 @@ func _physics_process(delta):
 				# If this character is the main character, update its position and all in Gameplay.
 				if character_id == Characters.playable_character:
 					Characters.mainchar_moving = velocity != Vector2.ZERO
-					position = get_position()
 				
 				# Update actions between running, walking, charging the run.
-				if velocity != Vector2.ZERO or in_path:
+				if velocity or in_path:
 					# Set the action to "run" if this character is running, otherwise just walk.
 					animation_state.ovw_action = "run" if is_running else "walk"
 				elif animation_state.ovw_action in ["run_charge", "idle", "run", "walk"]:
@@ -343,11 +346,11 @@ func process_route(delta):
 			emit_signal("route_line_finished")
 		"lock_angle":
 			# Lock the angle.
-			animation_state.ovw_action = true
+			animation_state.ovw_angle_lock = true
 			emit_signal("route_line_finished")
 		"unlock_angle":
 			# Unlock the angle.
-			animation_state.ovw_action_lock = false
+			animation_state.ovw_angle_lock = false
 			emit_signal("route_line_finished")
 		"append_path":
 			# Move the start of a path towards this character.
@@ -434,7 +437,7 @@ func process_route(delta):
 			emit_signal("route_line_finished")
 		"face_position":
 			# Face a certain target position
-			var _tp = current_mv_instruction[position]
+			var _tp = current_mv_instruction["position"]
 			
 			animation_state.ovw_angle = fposmod(int(position.angle_to(_tp) / 8), 8)
 			

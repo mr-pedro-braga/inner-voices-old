@@ -1,7 +1,8 @@
 --safe_room_wake_up
-	pose claire sit2 3
+	pose claire sit_down 3
+	wait 2.0
 	move bruno
-		mvspeed 32
+		mvspeed 16
 		mvadd -24 24
 		mvspeed 64
 	wait 2.0
@@ -10,7 +11,7 @@
 	Claire (down): ...
 	pose bruno idle 2
 	pose bruno idle -1
-	Bruno (scared): Oh,¢¢ you're finally awake.
+	Bruno (scared): Oh,¢¢ you're awake.
 	Claire (down): It looks like so...
 	pose bruno idle 3
 	wait 1.0
@@ -20,10 +21,10 @@
 	pose bruno idle 3
 	Bruno (): Well... I'm not sure.
 	Bruno (): I woke up dizzy and found you on the grass.
-	Bruno (): Out there, it's,¢¢ like,¢¢ full of [color=yellow]those things[/color].
+	Bruno (scared): Out there, it's,¢¢ like,¢¢ full of [color=yellow]those things[/color].
 	pose bruno idle -1
 	Bruno (): So I ran here inside with you.
-	Claire (): *ugh*.
+	Claire (down): *ugh*.
 	Bruno (): Uh...¢¢ take your time¢¢ there.
 	pose bruno idle 2
 	move bruno
@@ -35,14 +36,14 @@
 
 --safe_room_bruno_talk
 	* ← → CHOOSE\n* %KEY_OK% SELECT.
-		"What are the things..." (check):
-			Bruno (): I'm not sure... It looked like people.
-			Bruno (): They were walking around all suspicious.
+		"What are 'the things...'" (check):
+			Bruno (check): I'm not sure... It looked like people.
+			Bruno (check): They were walking around all suspicious.
 		"What are you doing" (game):
-			Bruno (): I'm trying to look for help.
-			Bruno (): Shoot. I'm outta data.
+			Bruno (check): I'm trying to look for help.
+			Bruno (bored): Shoot. I'm outta data.
 		"Who are you" (ch_bruno):
-			Bruno (): I'm Bruno.
+			Bruno (check): I'm Bruno.
 			Claire (): cool.
 
 --safe_room_bigboard1
@@ -53,7 +54,7 @@
 	* Why are they teaching calculus in high school...?
 
 --safe_room_door1
-	* It's a door, better leave it closed.
+	* It's the exit from this room; better leave it closed.
 
 --safe_room_door2
 	* You don't want to party with zombies.
@@ -69,6 +70,27 @@
 		angle lock
 		mvadd 4 -4
 		angle unlock
+
+--safe_room_backstage_back
+	move bruno
+		turn 1
+	move claire
+		turn 5
+	Bruno(): D-¢¢did you¢ hear that?
+	Claire(): what?
+	Bruno(): Like, a loud thud.
+	Claire(): I... closed the door.
+	Bruno(): ?????????
+	move claire
+		turn lock
+		mvadd 8 0
+		turn unlock
+
+	Claire(): Don't look at me like this I'm not crazy
+	Bruno(): I didn't say anything-
+	move bruno
+		turn 2
+	Bruno(): Forget I said anything.
 
 --cheat
 	* Cheat Menu
@@ -96,11 +118,12 @@
 	* No, that's not going to happen.
 
 --cutscene_2_1
+	bgm load mus_earthbound2.wav FRIENDSHIP!!!
 	Bruno (): *huff¢ huff*
 	Claire (): Ok,¢ got it.
 	bgm restart
-	Bruno (): ¬SHoly sh-¢ damn,¢¢ did you see THAT?
-	Bruno (): ¬SIt was full of 'em!!
+	Bruno (): [shake]Holy sh-¢ damn,¢¢ did you see THAT?[/shake]
+	Bruno (): [shake]It was full of 'em!![/shake]
 	Claire (): ah...
 	Claire (): so.¢.¢.¢¢ are we going to stay in this dark room?
 	Bruno (): Any better idea?
@@ -114,28 +137,29 @@
 
 --cutscene_2_3
 	bgm restart
-	Bruno (): ¬SAAAaaaAAaaAa Wha-¢¢¬N\n-¬S Dude!
+	Bruno (scared): [shake]AAAaaaAAaaAa Wha-¢¢[/shake]\n-[shake] Dude![/shake]
 	Andy(mild_mad): Don't scream at me.
 	Andy(mild_mad): If anyone should be screaming, it is me.
-	Bruno (): You almost gave me a heart attack!
-	Andy(mild_mad): You were the ones who jumped into the room.
+	Bruno (scared): You almost gave me a heart attack!
+	Andy(mild_mad): You were the ones who ¢[wave]jumped[/wave]¢ into the room uninvited.
 	Bruno (smile): Hmmm...¢¢¢ You're right.
 	Bruno (): Where was I...¢¢ Oh yeah.
 	move bruno
+		mvspeed 96
 		mvadd 0 -16
 		mvto 97 90
 		mvto 161 90
-		goto 1
+		goto 2
 	move andy
 		action sit
-	Bruno(worried): Oh my...
-	Bruno(worried): What am I gonna do...
-	Bruno(worried): Is it...
+	Bruno(scared): Oh my...
+	Bruno(scared): What am I gonna do...
+	Bruno(scared): Is it...
 	Bruno(theheckup): A zombie apocalypse?
-	Bruno(worried): Dang it!¢¢¢¢\n- I left my apocalypse stuff at home.
+	Bruno(scared): Dang it!¢¢¢¢\n- I left my apocalypse stuff at home.
 	move claire
 		mvspeed 32
-		mvto 173 100
+		mvto 178 104
 		wait 0.1
 		turn 1
 		wait 0.1
@@ -149,11 +173,11 @@
 		action sit_look
 	Andy(mild_mad): A zombie apocalypse...
 	Bruno(frisk): Cut me some slack, Andy,\n I'm tryna think, k?
-	Bruno(worried): Is it all right at home...\n- My mum, my sisters..
+	Bruno(scared): Is it all right at home...\n- My mum, my sisters..
 	Andy(sad): Hey,¢¢ walking in circles\nisn't gonna help.
-	Bruno(worried): It's more like a straight line, really¹
+	Bruno(scared): It's more like a straight line, really.¹
 	Andy(cool): Let's use our heads!
-	Bruno(worried): what
+	Bruno(scared): what
 	Bruno(frisk): How are you so calm?
 	move andy
 		action sit
@@ -194,7 +218,7 @@
 	Andy(smile): You can sit here with me if you want.
 	Andy(): Or just... enjoy the floor I guess.
 
---cutscene_2_4
+--library_talk_andy
 	Andy(): Heyyy,¢¢ think us two could run straight for the gate?
 	Andy(): Like,¢¢ if we just¢¢ ran real fast.
 	Claire(): I don't know...
@@ -213,7 +237,7 @@
 	pose claire idle 6
 	Andy(confident): We'll be back to get you, Bruno.
 
---cutscene_2_5
+--library_talk_bruno
 	Bruno(): I'll see if I can hack some\nWiFi and call help.
 	Claire(): With a videogame?
 	Bruno(): Videogame?
@@ -234,7 +258,7 @@
 			speech_delay 0.03
 			Claire(): oh¢¢.¢¢.¢¢. cool!
 			Bruno(): Ain' it?
---cutscene_2_6
+--library_talk_bruno2
 	* The face of a true hacker.
 
 --library_poster
@@ -254,9 +278,28 @@
 	bgm pause
 	Claire(): One...¢¢\n- Two...
 --library_leave_attack_2
-	Andy(attack): ¬SHUYAAAAA!!!!!¬N
+	Andy(attack): [shake]HUYAAAAA!!!!![/shake]
 	Andy(): .¢¢.¢¢.¢¢
 	Andy(smile): They must be taking a nap.
+
+--locked_door
+	* The door is locked.
+--locked_door2
+	* The door is still locked.
+
+--locked_door_art
+	* "ART CLASS"
+	* Locked.
+--locked_door_aura
+	* "AURA LABORATORY"
+	* Locked,¢ also.
+--mark_the_only_plant
+	* Here is Mark, the only plant on this side of the school.
+	* He's lonely.
+--mark_the_only_plant2
+	Mark(): Hi!
+--mark_the_only_plant3
+	* It's a plant.
 
 --pride_parade_poster
 	* Nothing interesting.
@@ -270,17 +313,27 @@
 	Andy(smile): There it is!
 	Andy(smile): Do you have any money on you?
 	pose claire idle 0
-	Claire(): no...
-	Andy(): welp, at least we tried.
-	Andy(): Although...
+	Claire(): uh...¢ no...
+	Andy(): welp,¢ at least we tried.
+	Andy(): Although.¢.¢.¢
 	pose andy idle 5
-	Andy(): We could try to just break it open.
+	Andy(): We ¢¢could try to just break it open.
 	pose andy idle 4
 	Claire(): No!
-	Andy(): Why not?\n- If we ARE in a¢¢ ¬Wzombie apocalypse¬N, it's better we do!
+	Andy(): Why not?\n_- If we ARE in a¢¢ [wave]zombie apocalypse[/wave],¢¢ it's better we do!
 	Andy(): Before a rival scavenging team gets all the food.
-	Claire(smile): No, even if these tough moments...
+	Claire(smile): No,¢ even if these tough moments...
 	pose claire idle 4
-	Claire(smile): ¬WWe can't let the anarchy poison our just hearts.
-	Andy(): Well, you're the boss.
-	
+	Claire(smile): [wave]We can't let the anarchy poison our just hearts.[/wave]
+	Andy(): Well,¢¢ you're the boss.
+
+--vending_machine_interact
+	* It doesn't even has anything inside.
+	* Unless...
+	* (You put your hands inside the dispenser)
+	* .¢¢.¢¢.¢¢!
+	* 1x [Nacho Chips] found!¢ Oh yeah!
+	item give nacho_chips 1
+
+--vending_machine_interact2
+	* Strangely,¢ this machine seems to [color=yellow]not be tinted blue[/color].

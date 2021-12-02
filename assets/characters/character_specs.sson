@@ -13,7 +13,7 @@
 	voice: voice_medium
 
 --bruno:
-	portrait: young_claire
+	portrait: bruno
 	voice: voice_mediumlow
 
 --default:

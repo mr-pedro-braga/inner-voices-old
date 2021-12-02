@@ -150,7 +150,7 @@ static func parse_cutscene_entry(raw_match):
 				var choices = parse_choices(unindent(block))
 				r = {
 					"type": "dialog",
-					"character": "clio",
+					"character": "narrator",
 					"expression": "none",
 					"prefix": "* ",
 					"content": params,
@@ -256,6 +256,14 @@ static func parse_cutscene_entry(raw_match):
 			r = {
 				"type": "function",
 				"name": params
+			}
+		"item":
+			var terms = get_terms(params)
+			r = {
+				"type": "item",
+				"action": terms[0],
+				"item": terms[1],
+				"count": terms[2]
 			}
 		"menu":
 			var choices = parse_choices(unindent(block))

@@ -38,7 +38,7 @@ func _draw():
 				target_scene.split("/")[-1].replace(".tscn", ""),
 				Color.white
 			)
-			return
+			
 		var world_target_position = target_position - position
 		var wtg = world_target_position.normalized()
 		

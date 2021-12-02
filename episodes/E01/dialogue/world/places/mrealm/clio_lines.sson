@@ -33,6 +33,7 @@
 --conversation
 	bgm load mus_introduction.wav Introduction
 	speech_delay 0.1
+	pose claire idle 6
 	Claire (): ...
 	speech_delay 0.07
 	* Poor girl...
@@ -74,7 +75,7 @@
 	Claire(down): Oh... I¹
 	bgm pause
 	Clio(): That's cause of \n[color=yellow]yesterday[/color].
-	Clio(): [color=yellow]Something happened and broke the word,\nbasically.[/color]
+	Clio(): [color=yellow]Something happened and broke the world, basically.[/color]
 	Clio(): [color=yellow]Corrupted everyone's memories.\n¢¢  * It left the world...[/color]
 	bgm resume
 	speech_delay 0.08
@@ -111,10 +112,10 @@
 	function zoom
 	Clio(): That's the [color=yellow]SPIRIT[/color],\ngirl!
 	function unzoom
-	#pose claire look_up 2
+	pose claire idle 2
 	Claire(none): (Where's that laughter even coming from...)
-	#pose claire idle 2
-	#pose claire idle 6
+	pose claire idle 2
+	pose claire idle 6
 	Clio(): Worry not, Claire.
 	Clio(): You're the perfect person\nfor this job.
 	Clio(): Saving the world,¢¢ that's what teenagers do best, right?

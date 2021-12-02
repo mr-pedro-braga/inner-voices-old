@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/map_making/tilesets/General-Overworld.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/map_making/tilesets/General-Overworld-D.tres" type="TileSet" id=2]
-[ext_resource path="res://assets/characters/_character_scenes/Claire.res" type="PackedScene" id=3]
 [ext_resource path="res://assets/building_places/Simple Objects/Wet Floor.png" type="Texture" id=4]
 [ext_resource path="res://addons/folder_node/folder.gd" type="Script" id=5]
 [ext_resource path="res://assets/scripts/Construction/Pathway.gd" type="Script" id=6]
@@ -13,7 +12,9 @@
 [ext_resource path="res://assets/scripts/Construction/Event.gd" type="Script" id=11]
 [ext_resource path="res://assets/characters/_character_scenes/Bruno.res" type="PackedScene" id=12]
 [ext_resource path="res://assets/building_places/Simple Objects/Move_Board.png" type="Texture" id=13]
+[ext_resource path="res://assets/building_places/Simple Objects/QPop Machine.png" type="Texture" id=14]
 [ext_resource path="res://assets/building_places/Objects/SimpleObjects.tres" type="SpriteFrames" id=15]
+[ext_resource path="res://assets/building_places/Simple Objects/QPop Machine-Emission.png" type="Texture" id=16]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends DefaultScene
@@ -39,50 +40,105 @@ func _ready():
 			Gameplay.transition_player.play(\"set_black\" if release else \"set_clear\")
 
 		1: # If the player is in the main hallways! 
-			
-			if not Memory.sget(\"joke_1\"):
+			if not Memory.sget(\"joke_1_HUYAAAAH\"):
 				# If haven't done that yet, make the \"they must be sleeping joke.\"
 				yield(get_tree().create_timer(2.0), \"timeout\")
 				
 				DCCore.dialog(\"places/new_horizon/school_lines\", \"library_leave_attack_2\")
 				yield(DCCore, \"dialog_finished\")
 				
+				Memory.switch(Memory.EPISODE, \"joke_1_HUYAAAAH\", true)
+				
 				DCCore.leave_cutscene()
 			SoundtrackCore.load_music(\"mus_vn_tension.wav\", \"Very Necessary Tension\")
 			SoundtrackCore.bgm_restart()
 
 func evt_sroom_start(_id, _parameter, _arguments):
-	
-	if Memory.sget(\"section\"):
+	if Memory.has_switch(\"twisted_door\"):
+		_id.queue_free()
 		return
-	
 	DCCore.enter_cutscene()
-	
-	yield(get_tree().create_timer(1.0), \"timeout\")
-	Gameplay.transition_player.play(\"fade_black_out\")
 	DCCore.dialog(\"places/new_horizon/school_lines\", \"safe_room_wake_up\")
+	yield(get_tree().create_timer(1.0), \"timeout\")
+	Gameplay.transition_player.play(\"longfade_in_black\")
 	yield(DCCore, \"dialog_finished\")
-	
 	DCCore.leave_cutscene()
 	_id.free()
+	yield(get_tree().create_timer(10.0), \"timeout\")
+	get_node(\"3DObjects/BackstageDoor/AnimationPlayer\").play(\"FadeIn\")
 
 func evt_sroom_backstage_door_a(_id, _parameter, _arguments):
-	if not Memory.has_switch(\"twisted_door\"):
-		print(\"AAAAAA\")
-		var bdoor = get_node(_arguments[0])
+	var door = get_node(\"3DObjects/BackstageDoor\")
+	if not Memory.has_switch(\"twisted_door\") and door.self_modulate.a == 1:
+		AudioManager.play(\"SFX_Thud\")
 		Memory.switch(Memory.EPISODE, \"twisted_door\", false)
 
 func evt_sroom_backstage_door_b(_id, _parameter, _arguments):
 	if Memory.has_switch(\"twisted_door\"):
 		if not Memory.sget(\"twisted_door\"):
-			var bdoor = get_node(_arguments[0])
-			
-			print(\"BBBBB\")
+			DCCore.dialog(\"places/new_horizon/school_lines\", \"safe_room_backstage_back\")
+			yield(DCCore, \"dialog_finished\")
 			Memory.switch(Memory.EPISODE, \"twisted_door\", true)
+
+func evt_sroom_cant_exit(_id, _parameter, _arguments):
+	DCCore.dialog(\"places/new_horizon/school_lines\", \"safe_room_cant_exit\")
+	yield(DCCore, \"dialog_finished\")
 "
 __meta__ = {
 "Scene_Path": "res://episodes/E01/scenes/act_I/Twisted School A.tscn"
 }
+
+[sub_resource type="Animation" id=7]
+resource_name = "FadeIn"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+//Emission texture
+uniform sampler2D emission;
+uniform float emission_strength = 1.0;
+
+void fragment() {
+	vec4 col = texture(TEXTURE, UV);
+	vec4 emcol = texture(emission, UV) * emission_strength;
+	if (emcol.a > 0.0 && emcol.r > 0.0)
+		col += abs(emcol);
+	COLOR = col;
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+render_priority = 1
+shader = SubResource( 9 )
+shader_param/emission_strength = 2.0
+shader_param/emission = ExtResource( 16 )
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
@@ -109,6 +165,7 @@ b = Vector2( -24, 24 )
 [node name="Scene" type="Node2D"]
 script = SubResource( 1 )
 scene_name = "Twisted School A"
+release = false
 
 [node name="Anchors" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -179,12 +236,17 @@ cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 32
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( -2097126, 8, 1, -2097122, 8, 0, 196598, 11, 0, 327660, 11, 0, 327665, 11, 0, 393209, 9, 0, 524265, 11, 0, 524316, 11, 0, 786429, 11, 0, 720921, 11, 0, 1179661, 8, 1, 1179693, 8, 0, 1179696, 8, 1, 1310720, 11, 0, 1310727, 11, 0, 1310732, 11, 0, 1310742, 11, 0, 1310764, 10, 0, 1310766, 10, 0, 1310768, 10, 0, 1310770, 10, 0, 1376299, 10, 0, 1376301, 10, 0, 1376303, 10, 0, 1376305, 10, 0, 1441834, 10, 0, 1441836, 10, 0, 1441838, 10, 0, 1441840, 10, 0, 1572861, 11, 0, 1507347, 11, 0, 1507381, 11, 0 )
+tile_data = PoolIntArray( -2097126, 8, 1, -2097122, 8, 0, -1245133, 11, 0, 196598, 11, 0, 327660, 11, 0, 327665, 11, 0, 393209, 9, 0, 524265, 11, 0, 524316, 11, 0, 786429, 11, 0, 720921, 11, 0, 1179661, 8, 1, 1179693, 8, 0, 1179696, 8, 1, 1310720, 11, 0, 1310727, 11, 0, 1310732, 11, 0, 1310742, 11, 0, 1310764, 10, 0, 1310766, 10, 0, 1310768, 10, 0, 1310770, 10, 0, 1376299, 10, 0, 1376301, 10, 0, 1376303, 10, 0, 1376305, 10, 0, 1441834, 10, 0, 1441836, 10, 0, 1441838, 10, 0, 1441840, 10, 0, 1572861, 11, 0, 1507347, 11, 0, 1507381, 11, 0 )
 
 [node name="BackstageDoor" type="AnimatedSprite" parent="3DObjects"]
+self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 872, 296 )
 frames = ExtResource( 15 )
 animation = "backstage_door"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="3DObjects/BackstageDoor"]
+anims/FadeIn = SubResource( 7 )
+anims/RESET = SubResource( 8 )
 
 [node name="bruno" parent="3DObjects" instance=ExtResource( 12 )]
 position = Vector2( 648.5, 335.5 )
@@ -197,34 +259,83 @@ trigger_area = Vector2( 16, 16 )
 dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
 dialog_keys = [ "safe_room_bruno_talk" ]
 
-[node name="claire" parent="3DObjects" instance=ExtResource( 3 )]
-position = Vector2( 671, 324 )
-alignment = "ALLY"
-current = true
-
 [node name="Door" type="AnimatedSprite" parent="3DObjects"]
 position = Vector2( 48, 288 )
 frames = ExtResource( 15 )
 animation = "twisted_door"
 
 [node name="Locked Door 1" type="Area2D" parent="3DObjects/Door"]
-position = Vector2( -7.1407, 29.303 )
+position = Vector2( 0.200922, 31.3053 )
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true
 }
 trigger_mode = 1
+trigger_area = Vector2( 32, 16 )
 dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
-dialog_keys = [ "pride_parade_poster", "pride_parade_poster2" ]
+dialog_keys = [ "locked_door", "locked_door2" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="3DObjects/Door/Locked Door 1"]
-visible = false
-position = Vector2( 8, 0 )
-shape = ExtResource( 9 )
+[node name="Door2" type="AnimatedSprite" parent="3DObjects"]
+position = Vector2( 304, 96 )
+frames = ExtResource( 15 )
+animation = "twisted_door"
+
+[node name="Locked Door 1" type="Area2D" parent="3DObjects/Door2"]
+position = Vector2( 0.200922, 31.3053 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+trigger_mode = 1
+trigger_area = Vector2( 32, 16 )
+dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
+dialog_keys = [ "locked_door", "locked_door2" ]
+
+[node name="Door3" type="AnimatedSprite" parent="3DObjects"]
+position = Vector2( 848, -384 )
+frames = ExtResource( 15 )
+animation = "twisted_door"
+
+[node name="Locked Door 1" type="Area2D" parent="3DObjects/Door3"]
+position = Vector2( 0.200922, 31.3053 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+trigger_mode = 1
+trigger_area = Vector2( 32, 16 )
+dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
+dialog_keys = [ "locked_door_aura" ]
+
+[node name="Principal Door" type="AnimatedSprite" parent="3DObjects"]
+position = Vector2( 720, -384 )
+frames = ExtResource( 15 )
+animation = "twisted_door"
+
+[node name="Door5" type="AnimatedSprite" parent="3DObjects"]
+position = Vector2( 592, -384 )
+frames = ExtResource( 15 )
+animation = "twisted_door"
+
+[node name="Locked Door 1" type="Area2D" parent="3DObjects/Door5"]
+position = Vector2( 0.200922, 31.3053 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+trigger_mode = 1
+trigger_area = Vector2( 32, 16 )
+dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
+dialog_keys = [ "locked_door_art" ]
 
 [node name="Principal-Room" type="Node2D" parent="3DObjects"]
 visible = false
 script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="3DObjects"]
+material = SubResource( 10 )
+position = Vector2( 40, 112 )
+texture = ExtResource( 14 )
 
 [node name="Blue" type="CanvasLayer" parent="."]
 layer = 2
@@ -288,14 +399,21 @@ trigger_mode = 1
 dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
 dialog_keys = [ "safe_room_bigboard1", "safe_room_bigboard2" ]
 
-[node name="CantExitYet" type="Area2D" parent="CanvasLayer/Safe-Room/Events"]
+[node name="SceneEvent" type="Area2D" parent="CanvasLayer/Safe-Room/Events"]
 position = Vector2( 621.9, 389.262 )
-script = ExtResource( 8 )
-trigger_area = Vector2( 64, 8 )
-dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
-dialog_keys = [ "safe_room_cant_exit" ]
+script = ExtResource( 11 )
+trigger_area = Vector2( 56, 8 )
+event_name = "sroom_cant_exit"
 
-[node name="Main-Hallways" type="Node2D" parent="CanvasLayer"]
+[node name="Mark" type="Area2D" parent="CanvasLayer/Safe-Room/Events"]
+position = Vector2( 824, -296 )
+script = ExtResource( 8 )
+trigger_mode = 1
+trigger_area = Vector2( 40, 32 )
+dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
+dialog_keys = [ "mark_the_only_plant", "mark_the_only_plant2", "mark_the_only_plant3" ]
+
+[node name="Main-Hallways" type="Area2D" parent="CanvasLayer"]
 script = ExtResource( 5 )
 
 [node name="Events" type="Node2D" parent="CanvasLayer/Main-Hallways"]
@@ -373,18 +491,22 @@ position = Vector2( 8, 0 )
 shape = ExtResource( 9 )
 
 [node name="See Vending Machine" type="Area2D" parent="CanvasLayer/Main-Hallways/Events"]
-position = Vector2( 46, 158.778 )
+position = Vector2( 64, 160 )
 rotation = 1.5708
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true
 }
+trigger_area = Vector2( 72, 8 )
 dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
 dialog_keys = [ "vending_machine" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Main-Hallways/Events/See Vending Machine"]
-visible = false
-position = Vector2( 8, 0 )
-shape = ExtResource( 7 )
+[node name="VendingMachine" type="Area2D" parent="CanvasLayer/Main-Hallways/Events"]
+position = Vector2( 40, 144 )
+script = ExtResource( 8 )
+trigger_mode = 1
+trigger_area = Vector2( 32, 16 )
+dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
+dialog_keys = [ "vending_machine_interact", "vending_machine_interact2" ]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

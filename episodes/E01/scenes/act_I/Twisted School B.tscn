@@ -23,6 +23,8 @@ export var testing = true
 func scene_ready():
 	SoundtrackCore.load_music(\"mus_en_tension.wav\", \"Extremely Necessary Tension\")
 	ScreenCore.global_camera.global_position = $BetterCamera.global_position
+	Characters.map_characters[\"claire\"].set_animation_property(\"ovw_action\", \"sit\")
+	Characters.map_characters[\"claire\"].set_animation_property(\"ovw_angle\", 3)
 	ScreenCore.release_camera()
 	ScreenCore.global_camera.smoothing_enabled = false
 	$CL/AnimationPlayer.play(\"ep_start\")

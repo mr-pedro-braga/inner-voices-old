@@ -38,7 +38,7 @@ var memory = {
 	},
 	
 	EPISODE: {
-		
+		"section": 0
 	},
 	
 	SESSION: {

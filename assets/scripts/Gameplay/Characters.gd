@@ -36,6 +36,7 @@ func set_playable_character(character:String):
 	playable_character_position = playable_character_node.position
 	playable_character_node.alignment = "ALLY"
 	add_party_member(character)
+	return map_characters[character]
 
 func add_party_member(member):
 	if not party.has(member):

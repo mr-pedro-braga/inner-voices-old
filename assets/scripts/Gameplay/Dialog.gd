@@ -59,11 +59,17 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 							)
 						)
 				"move":
+					if not Characters.map_characters.has(k["character"]):
+						continue
 					last_character_mroute = k["character"]
 					Characters.map_characters[k["character"]].move_route(k["route"])
 				"await":
+					if not Characters.map_characters.has(k["character"]):
+						continue
 					yield(Characters.map_characters[last_character_mroute], "route_finished")
 				"pose":
+					if not Characters.map_characters.has(k["character"]):
+						continue
 					if k.has("angle"):
 						var old_angle = Characters.map_characters[k["character"]].get_animation_property("ovw_angle")
 						var new_angle = float(k.angle)
@@ -71,12 +77,12 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 						var pi4 = PI/4
 						for i in range(d):
 							var a = lerp_angle(old_angle*pi4, new_angle*pi4, (i+1)/d)/pi4
-							Characters.map_characters[k["character"]].set_animation_property("angle", a)
+							Characters.map_characters[k["character"]].set_animation_property("ovw_angle", a)
 							Characters.map_characters[k["character"]].update_animation()
 							yield(get_tree().create_timer(0.05), "timeout")
-						Characters.map_characters[k.character].set_animation_property("angle", int(new_angle) % 8)
+						Characters.map_characters[k.character].set_animation_property("ovw_angle", int(new_angle) % 8)
 					if k.has("action"):
-						Characters.map_characters[k["character"]].set_animation_property("action", k["action"])
+						Characters.map_characters[k["character"]].set_animation_property("ovw_action", k["action"])
 					Characters.map_characters[k["character"]].update_animation()
 				"wait":
 					dialog_box.text = ""
@@ -117,7 +123,7 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 					# Creates the face animation using the portrait at the specs, and appending the given expression
 					var face_anim = portrait_name if portrait_name == "none" or k.expression == "" else portrait_name + "_" + k.expression
 
-					if face_anim == "none":
+					if face_anim == "none" or not DCCore.use_portraits:
 						if _dialog_face_on_screen:
 							dialog_face.get_node("Anim").play("out")
 						_dialog_face_on_screen = false
@@ -182,6 +188,8 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 							t.play(k.parameter)
 						"shake":
 							ScreenCore.global_camera.shake(0.5, 15, 4)
+				"item":
+					MenuCore.inventories["claire"].give_item(k.item, k.count)
 	if is_master:
 		DCCore.on_dialog_finished()
 		if not Gameplay.GAMEMODE == Gameplay.GM.BATTLE and not DCCore.in_cutscene and not MenuCore.in_mmenu:

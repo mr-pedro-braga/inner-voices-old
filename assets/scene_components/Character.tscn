@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/characters/claire/school_sprite_sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/scene_components/Character.gd" type="Script" id=2]
 [ext_resource path="res://assets/characters/shadow.png" type="Texture" id=3]
 [ext_resource path="res://assets/battle/Kuro.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://assets/scripts/Characters/CharacterAnimationHandler.tres.gd" type="Script" id=5]
-[ext_resource path="res://assets/scripts/CustomResourceTypes/Cool Resource.tres" type="Resource" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.69167
@@ -40,7 +39,6 @@ shape = SubResource( 1 )
 
 [node name="AnimationHandler" type="Node2D" parent="."]
 script = ExtResource( 5 )
-animation_scheme = ExtResource( 6 )
 
 [node name="Shadow" type="Sprite" parent="AnimationHandler"]
 position = Vector2( -0.5, 0 )

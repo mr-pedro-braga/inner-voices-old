@@ -136,7 +136,7 @@ onready var GAMEMODE = GM.OVERWORLD
 
 ### Warp between scenes or within a scene
 func warp(scene:String, location:Vector2, transition="slide_black", angle=-1):
-	Utils.async_load("res://assets/building_places/"+scene_space+"/"+scene+".tscn")
+	Utils.async_load("res://episodes/"+scene_space+"/scenes/"+scene+".tscn")
 	warp_scene(
 		yield(Utils, "scene_loaded").loader,
 		location,
@@ -157,7 +157,6 @@ func warp_scene(scene:PackedScene, location:Vector2, transition="slide_black", a
 	LOADING = true
 	Characters.map_characters = {}
 	Characters.party_follower_path.get_curve().clear_points()
-	
 	transition_player.play(transition)
 	Characters.playable_character_node.enabled = false
 	yield(transition_player, "animation_finished")
@@ -172,7 +171,7 @@ func warp_scene(scene:PackedScene, location:Vector2, transition="slide_black", a
 	world.remove_child(get_node("/root/GameRoot/World/Scene"))
 	new_scene.name = "Scene"
 	world.add_child(new_scene)
-	var w = new_scene.get_node("/root/GameRoot/3DObjects")
+	var w = new_scene.get_node("3DObjects")
 	if w:
 		for index in range(Characters.party_character_nodes.size()):
 			var i = Characters.party_character_nodes[index]
@@ -192,10 +191,9 @@ func warp_scene(scene:PackedScene, location:Vector2, transition="slide_black", a
 		if not angle == -1:
 			Characters.playable_character_node.angle = angle
 		
-		transition_player.play(transition+"_out")
-		
 		Characters.playable_character_node.update_reference()
 		Characters.playable_character_node.enabled = true
+	transition_player.play(transition+"_out")
 	emit_signal("LOADING_FINISHED")
 	emit_signal("warp_completed")
 	LOADING = false

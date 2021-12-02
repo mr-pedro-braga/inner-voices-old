@@ -206,6 +206,9 @@ func act(actor, subject, action):
 
 #@ Attack a character using a loaded attack from a known pool!
 #@ Make sure to load these pools somewhere before the fight!
+
+var kuro_scene = preload("res://assets/battle/Kuro.tscn")
+
 signal attack_finished
 signal minigame_finished
 func attack(user, target, attack_pool, attack_id, infinite=false):
@@ -240,7 +243,7 @@ func attack(user, target, attack_pool, attack_id, infinite=false):
 			emitter.name = "AttackEmitter"
 			emitter.battle_box = BattleCore.battle
 			
-			var k = Assets.kuro_scene.instance()
+			var k = kuro_scene.instance()
 			k.name = "Kuro"
 			current_kuro = k
 			k.character = target
@@ -294,13 +297,15 @@ func heal(character, healing):
 	#TODO: Add healing VFX!
 
 onready var soul_infos_node = get_node("/root/GameRoot/HUD/SoulInfos")
+var soul_info_scene = preload("res://assets/scene_components/SoulInfo.tscn")
+
 func update_soul_meter(character):
 	if character in Characters.party:
 		soul_infos_node.get_node(character.to_lower()).self_update(character.to_lower())
 func update_soul_meters():
 	for index in range(Characters.party.size()):
 		var i = Characters.party[index]
-		var si = Assets.info_scene.instance()
+		var si = soul_info_scene.instance()
 		var st = character_stats[i].attributes
 		si.setup(i.to_lower(), st.MHP, st.HP, st.MSP, st.SP, st["hp-foreground"], st["hp-background"])
 		soul_infos_node.add_child(si)
@@ -319,9 +324,9 @@ func make_current_camera(camera):
 	camera.make_current()
 
 func play_transition(transition):
-	if not Assets.transition_player.has_animation(transition):
+	if not get_node("/root/GameRoot/Transition/TransitionPlayer").has_animation(transition):
 		throw_error("The " + transition + " animation doesn't actually exist.")
-	Assets.transition_player.play(transition)
+	get_node("/root/GameRoot/Transition/TransitionPlayer").play(transition)
 
 
 # Visual Effects for the deaf! Also adds some cartoon value.

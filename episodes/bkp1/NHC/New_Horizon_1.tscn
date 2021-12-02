@@ -279,31 +279,11 @@ position = Vector2( -952, -24 )
 [node name="Kris" parent="3DObjects" instance=ExtResource( 10 )]
 position = Vector2( 255, 58.5 )
 character_id = "kris"
-animation_state = {
-"battle_action": "idle",
-"battle_facing": "left",
-"lock_animation": false,
-"lock_animation_name": "",
-"ovw_action": "idle",
-"ovw_action_lock": false,
-"ovw_angle": 2,
-"ovw_angle_lock": false
-}
 char_stats_file = "claire.chstats"
 
 [node name="Clio" parent="3DObjects" instance=ExtResource( 10 )]
 position = Vector2( 360.887, 63.7959 )
 character_id = "clio"
-animation_state = {
-"battle_action": "idle",
-"battle_facing": "left",
-"lock_animation": false,
-"lock_animation_name": "",
-"ovw_action": "idle",
-"ovw_action_lock": false,
-"ovw_angle": 2,
-"ovw_angle_lock": false
-}
 char_stats_file = "claire.chstats"
 angle = -6
 
@@ -311,47 +291,17 @@ angle = -6
 position = Vector2( 218.197, 64 )
 character_id = "andy"
 alignment = "ALLY"
-animation_state = {
-"battle_action": "idle",
-"battle_facing": "left",
-"lock_animation": false,
-"lock_animation_name": "",
-"ovw_action": "idle",
-"ovw_action_lock": false,
-"ovw_angle": 2,
-"ovw_angle_lock": false
-}
 attacks = "lamp_battle.gd"
 char_stats_file = "andy.chstats"
 
 [node name="lily" parent="3DObjects" instance=ExtResource( 10 )]
 position = Vector2( 304.447, 96 )
 character_id = "lily"
-animation_state = {
-"battle_action": "idle",
-"battle_facing": "left",
-"lock_animation": false,
-"lock_animation_name": "",
-"ovw_action": "idle",
-"ovw_action_lock": false,
-"ovw_angle": 2,
-"ovw_angle_lock": false
-}
 attacks = "andy_battle.gd"
 char_stats_file = "andy.battle"
 
 [node name="claire" parent="3DObjects" instance=ExtResource( 3 )]
 position = Vector2( 244.5, 92.5 )
-animation_state = {
-"battle_action": "idle",
-"battle_facing": "left",
-"lock_animation": false,
-"lock_animation_name": "",
-"ovw_action": "idle",
-"ovw_action_lock": false,
-"ovw_angle": 2,
-"ovw_angle_lock": false
-}
 
 [node name="Rain" type="Control" parent="."]
 visible = false

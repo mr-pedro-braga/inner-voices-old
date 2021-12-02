@@ -21,6 +21,8 @@ var strings:Dictionary = {}
 var dialog_cache:Dictionary = {}
 ### Is currently writing some dialog
 var is_writing:bool = false setget update_speaking_character_anim
+### Is currently using portraits
+var use_portraits:bool = true
 ### If in camera_beding_cutscene
 var in_cutscene = false
 
