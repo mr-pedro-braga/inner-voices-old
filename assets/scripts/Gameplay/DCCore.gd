@@ -66,7 +66,9 @@ func load_dialog_into_cache(file):
 		return
 
 	var text = Utils.load_as_text("res://episodes/" + Memory.get_episode_name() + "/dialogue/" + lang + "/" + file + ".json")
-	#####dialog_cache[file] = parse_json(text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(text)
+	#####dialog_cache[file] = test_json_conv.get_data()
 
 ###	Loads a ScreenScript file and parses it into Chroma RPG Alpha
 #	compatible format!
@@ -86,7 +88,9 @@ func load_strings():
 	var file = File.new()
 	file.open("res://episodes/" + Memory.get_episode_name() + "/dialogue/" + lang + "/strings.json", file.READ)
 	var text = file.get_as_text()
-	#####strings = parse_json(text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(text)
+	#####strings = test_json_conv.get_data()
 	strings["item_name"] = "nothing"
 	if OS.has_environment("USER"):
 		strings["player"] = OS.get_environment("USER")

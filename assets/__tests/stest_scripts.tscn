@@ -11,7 +11,7 @@
 script/source = "extends Control
 
 
-export(String, \"tintin\", \"ollie\", \"claire\", \"rodrick\", \"andy\", \"bruno\", \"trevor\", \"lily\", \"sam\", \"heart\") var ch = \"tintin\"
+@export var ch = \"tintin\" # (String, \"tintin\", \"ollie\", \"claire\", \"rodrick\", \"andy\", \"bruno\", \"trevor\", \"lily\", \"sam\", \"heart\")
 
 var strings := {
 	\"checkpoint\": \"Checkpoint!\",
@@ -94,9 +94,9 @@ func _ready():
 		#	attacks[numbers[index]],
 		#	3
 		#)
-		yield(get_tree().create_timer(10.0), \"timeout\")
-		#$CanvasLayer/Bars/ChoiceDisplay.bbcode_text = \"[center]\"+strings[attacks[numbers[index]]]+\"[/center]\"
-		#yield(Utils, \"attack_finished\")
+		await get_tree().create_timer(10.0).timeout
+		#$CanvasLayer/Bars/ChoiceDisplay.text = \"[center]\"+strings[attacks[numbers[index]]]+\"[/center]\"
+		#await Utils.attack_finished
 		
 #		index += 1
 #		if index == attacks.size():
@@ -109,7 +109,7 @@ __meta__ = {
 
 [sub_resource type="Font" id=2]
 size = 8
-extra_spacing_bottom = 2
+spacing_bottom = 2
 font_data = ExtResource( 6 )
 
 [node name="ScriptTest" type="Control"]
@@ -135,7 +135,7 @@ visible = true
 [node name="Bars" type="ColorRect" parent="CanvasLayer"]
 anchor_right = 1.0
 offset_bottom = 16.0
-rect_min_size = Vector2(0, 16)
+minimum_size = Vector2(0, 16)
 color = Color(0, 0, 0, 1)
 __meta__ = {
 "_edit_use_anchors_": false
@@ -149,7 +149,7 @@ offset_right = -5.0
 offset_bottom = 17.0
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
-bbcode_text = "[center]This is my life![/center]"
+text = "[center]This is my life![/center]"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false

@@ -90,7 +90,7 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 							Characters.add_party_member(k.character)
 						"add":
 							Characters.add_party_member(k.character)
-						"remove":
+						"remove_at":
 							Characters.remove_party_member(k.character)
 				"wait":
 					dialog_box.text = ""

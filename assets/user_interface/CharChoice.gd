@@ -16,7 +16,7 @@ func _process(_delta):
 			Utils.selected_choice_box.text = selected_char.name
 			DCCore.dialog_box.visible_characters = -1
 		1:
-			Utils.selected_choice_box.bbcode_text = "[center]"+question+"[/center]"
+			Utils.selected_choice_box.text = "[center]"+question+"[/center]"
 			Utils.selected_choice_box.visible_characters = -1
 	
 	selected_char.set_highlited(true)

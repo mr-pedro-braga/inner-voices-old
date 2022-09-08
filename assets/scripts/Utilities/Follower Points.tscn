@@ -15,9 +15,9 @@ func _draw():
 	for i in range(Gameplay.party_follower_positions.size()):
 		var point = Gameplay.party_follower_positions[i]
 		if i%int(floor(Gameplay.slider1) ) == 0:
-			draw_circle(point - get_global_transform().origin, i*0.04, Color.aqua)
+			draw_circle(point - get_global_transform().origin, i*0.04, Color.AQUA)
 		#else:
-		#	draw_circle(point - get_global_transform().origin, i*0.02, Color.white)
+		#	draw_circle(point - get_global_transform().origin, i*0.02, Color.WHITE)
 "
 
 [node name="Follower Points" type="Node2D"]

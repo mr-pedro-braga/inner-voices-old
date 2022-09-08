@@ -14,3 +14,6 @@ dest_files=["res://.godot/imported/mus_clown.mp3-ddb2aa6ebcfde7e325dc8188cb99dc1
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

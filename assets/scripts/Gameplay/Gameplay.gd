@@ -23,7 +23,7 @@ extends Node
 
 ### Assets and references to important nodes.
 var _Assets
-@onready var world = get_node(^"/root/GameRoot/World") 				# RefCounted to the map container
+@onready var world = get_node(^"/root/GameRoot/World3D") 				# RefCounted to the map container
 @onready var transition_player = get_node(^"/root/GameRoot/Transition/TransitionPlayer") # RefCounted to the transition player
 
 var has_finished_setting_up: bool # Setup finished
@@ -74,7 +74,7 @@ func _ready():
 
 #@ Setup the is_playing_story, import the start scene and spawn the main character
 func setup_is_playing_story():
-	world.remove_child(get_node(^"/root/GameRoot/World/Scene"))
+	world.remove_child(get_node(^"/root/GameRoot/World3D/Scene"))
 	
 	LOADING = true
 	
@@ -90,7 +90,7 @@ func setup_is_playing_story():
 	
 	world.add_child(new_scene)
 	new_scene.name = "Scene"
-	if not get_node(^"/root/GameRoot/World/Scene").has_node("3DObjects"):
+	if not get_node(^"/root/GameRoot/World3D/Scene").has_node("3DObjects"):
 		print("(!) Warning; not a valid room (missing 3DObjects node)!")
 		return
 	
@@ -172,7 +172,7 @@ func warp_scene(scene:PackedScene, location:Vector2, transition="slide_black", a
 	
 	await get_tree().create_timer(0.25).timeout
 	var new_scene = scene.instantiate()
-	world.remove_child(get_node(^"/root/GameRoot/World/Scene"))
+	world.remove_child(get_node(^"/root/GameRoot/World3D/Scene"))
 	new_scene.name = "Scene"
 	world.add_child(new_scene)
 	var w = new_scene.get_node(^"3DObjects")

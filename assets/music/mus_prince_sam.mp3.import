@@ -14,3 +14,6 @@ dest_files=["res://.godot/imported/mus_prince_sam.mp3-470af86692746e017de0563b61
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

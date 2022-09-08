@@ -127,14 +127,14 @@ func request_battle(_opponents, bbg=false, surprise=false):
 		var center = 0.5 * (allycenter + opponentcenter)
 
 		inverted = allycenter.x > center.x
-		var invert = -1 if inverted else 1
+		var reverse = -1 if inverted else 1
 		for index in range(Characters.party.size()):
 			var i = Characters.party_character_nodes[index]
-			#Utils.slide_to(i, center + Vector2(-64 - 16 * index, 32 * (index-(Characters.party.size()-1)/2.0))  * Vector2(invert, 1.0), 3.0, AnimationInstance.mode.EASE_OUT)
+			#Utils.slide_to(i, center + Vector2(-64 - 16 * index, 32 * (index-(Characters.party.size()-1)/2.0))  * Vector2(reverse, 1.0), 3.0, AnimationInstance.mode.EASE_OUT)
 		for index in range(opponents.size()):
 			var i = opponents[index]
 			index = float(index)
-			#Utils.slide_to(i, center + Vector2( 64 + 16 * index, 32 * (index-(opponents.size()-1)/2.0)) * Vector2(invert, 0.0), 3.0, AnimationInstance.mode.EASE_OUT)
+			#Utils.slide_to(i, center + Vector2( 64 + 16 * index, 32 * (index-(opponents.size()-1)/2.0)) * Vector2(reverse, 0.0), 3.0, AnimationInstance.mode.EASE_OUT)
 		await get_tree().create_timer(0.9).timeout
 
 		# Make the rest of the world invisible to save draw calls!

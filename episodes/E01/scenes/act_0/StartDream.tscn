@@ -2,23 +2,23 @@
 
 [ext_resource path="res://assets/scene_components/DefaultScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/sunglow1.res" type="Environment" id=2]
-[ext_resource path="res://assets/building_places/Buildings/Claire-Inside-1.png" type="Texture" id=3]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated3.png" type="Texture" id=4]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated1.png" type="Texture" id=5]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated5.png" type="Texture" id=6]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated2.png" type="Texture" id=7]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission.png" type="Texture" id=8]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated6.png" type="Texture" id=9]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated4.png" type="Texture" id=10]
+[ext_resource path="res://assets/building_places/Buildings/Claire-Inside-1.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated3.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated1.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated5.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated2.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated6.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated4.png" type="Texture2D" id=10]
 [ext_resource path="res://assets/characters/_character_scenes/Claire.res" type="PackedScene" id=11]
 [ext_resource path="res://addons/SmartRichTextLabel/SmartRichTextLabel.gd" type="Script" id=12]
 [ext_resource path="res://assets/music/mus_good_morning.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/sounds/SFX_Alarm.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/sounds/voices/voice_typewriter.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/fonts/PixeloidSans-Bold.tres" type="DynamicFont" id=16]
-[ext_resource path="res://assets/fonts/PixeloidSans.tres" type="DynamicFont" id=17]
-[ext_resource path="res://assets/images/sprites_dialogs/continue.png" type="Texture" id=18]
-[ext_resource path="res://assets/images/sprites_vfx/red-vignette.png" type="Texture" id=19]
+[ext_resource path="res://assets/fonts/PixeloidSans-Bold.tres" type="FontFile" id=16]
+[ext_resource path="res://assets/fonts/PixeloidSans.tres" type="FontFile" id=17]
+[ext_resource path="res://assets/images/sprites_dialogs/continue.png" type="Texture2D" id=18]
+[ext_resource path="res://assets/images/sprites_vfx/red-vignette.png" type="Texture2D" id=19]
 [ext_resource path="res://assets/sounds/Ominous Opening.wav" type="AudioStream" id=20]
 
 [sub_resource type="GDScript" id=4]
@@ -33,31 +33,31 @@ func white_grow():
 func scene_ready():
 	var bkpd = DCCore.dialog_box
 	DCCore.dialog_box = $\"Overlay/Black/Dialog Label\"
-	yield(get_tree().create_timer(3.0), \"timeout\")
+	await get_tree().create_timer(3.0).timeout
 	
 	DCCore.dialog_box.write( \"...\" )
-	yield(DCCore.dialog_box, \"resumed\")
+	await DCCore.dialog_box.resumed
 	DCCore.dialog_box.write( \"Finally.\" )
-	yield(DCCore.dialog_box, \"resumed\")
+	await DCCore.dialog_box.resumed
 	DCCore.dialog_box.write( \"Here you are.\" )
-	yield(DCCore.dialog_box, \"resumed\")
+	await DCCore.dialog_box.resumed
 	DCCore.dialog_box.write( \"In your peaceful slumber.\" )
-	yield(DCCore.dialog_box, \"resumed\")
+	await DCCore.dialog_box.resumed
 	DCCore.dialog_box.write( \"How blissful.¢¢ How peaceful.\" )
-	yield(DCCore.dialog_box, \"resumed\")
+	await DCCore.dialog_box.resumed
 	$\"AnimationPlayer\".play(\"alarmstart\")
 	$\"AnimationPlayer2\".play(\"red\")
 	DCCore.dialog_box.write( \"It's nice.\" )
-	yield(DCCore.dialog_box, \"resumed\")
+	await DCCore.dialog_box.resumed
 	DCCore.dialog_box.write( \"However,¢¢ it must come to an end.\" )
-	yield(DCCore.dialog_box, \"resumed\")
+	await DCCore.dialog_box.resumed
 	DCCore.dialog_box.write( \"Now.\" )
-	yield(DCCore.dialog_box, \"resumed\")
+	await DCCore.dialog_box.resumed
 	DCCore.dialog_box.write( \"Claire.\" )
-	yield(DCCore.dialog_box, \"resumed\")
+	await DCCore.dialog_box.resumed
 	$\"AnimationPlayer3\".play(\"whitening\")
 	DCCore.dialog_box.write( \"It's time¢¢ for ¢y¢o¢u ¢t¢o\" )
-	yield(DCCore.dialog_box, \"paused\")
+	await DCCore.dialog_box.paused
 	
 	DCCore.dialog_box = bkpd
 	$WeirdSound.stop()
@@ -66,11 +66,11 @@ func scene_ready():
 	$\"Overlay/Black/Dialog Label\".queue_free()
 	$Overlay/Black.visible=false
 	
-	yield(get_tree().create_timer(4.0), \"timeout\")
+	await get_tree().create_timer(4.0).timeout
 	
 	$Alarm.stop()
 	
-	yield(get_tree().create_timer(4.0), \"timeout\")
+	await get_tree().create_timer(4.0).timeout
 	
 	$Music.play()
 	
@@ -160,8 +160,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ false ]
 }
@@ -172,8 +172,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ -5.777 ]
 }
@@ -184,8 +184,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
@@ -200,8 +200,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -212,8 +212,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ -20.0, -5.777 ]
 }
@@ -224,8 +224,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 3.9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 3.9 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -239,8 +239,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
@@ -256,8 +256,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 1, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.741176 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -271,8 +271,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
@@ -283,8 +283,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ false ]
 }
@@ -299,8 +299,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 6 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -311,8 +311,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 5.9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 5.9 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
@@ -322,25 +322,25 @@ script = SubResource( 4 )
 scene_name = "Scene 1"
 scene_initial_zoom = 1.0
 
-[node name="World" type="Node2D" parent="." index="2"]
+[node name="World3D" type="Node2D" parent="." index="2"]
 
-[node name="ViewportContainer" type="ViewportContainer" parent="World" index="0"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="World3D" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 240.0
-margin_bottom = 135.0
+offset_right = 240.0
+offset_bottom = 135.0
 stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="World/ViewportContainer" index="0"]
+[node name="SubViewport" type="SubViewport" parent="World3D/SubViewportContainer" index="0"]
 size = Vector2( 240, 135 )
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="House" type="Sprite" parent="World/ViewportContainer/Viewport" index="0"]
+[node name="House" type="Sprite2D" parent="World3D/SubViewportContainer/SubViewport" index="0"]
 material = SubResource( 2 )
 position = Vector2( 120, 67.5 )
 texture = ExtResource( 3 )
@@ -348,7 +348,7 @@ texture = ExtResource( 3 )
 [node name="claire" parent="3DObjects" index="0" instance=ExtResource( 11 )]
 position = Vector2( 165.463, 66.8215 )
 
-[node name="Sprite" parent="3DObjects/claire/AnimationHandler" index="1"]
+[node name="Sprite2D" parent="3DObjects/claire/AnimationHandler" index="1"]
 frame = 46
 
 [node name="Env" type="WorldEnvironment" parent="." index="5"]
@@ -385,7 +385,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="continue" type="AnimatedSprite" parent="Overlay/Black" index="2"]
+[node name="continue" type="AnimatedSprite2D" parent="Overlay/Black" index="2"]
 visible = false
 position = Vector2( 216.678, 75.6102 )
 frames = SubResource( 29 )
@@ -397,15 +397,15 @@ playing = true
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 16.0
-margin_top = -2.0
-margin_right = -16.0
-margin_bottom = -8.0
-rect_min_size = Vector2( 0, 8 )
-rect_clip_content = false
+offset_left = 16.0
+offset_top = -2.0
+offset_right = -16.0
+offset_bottom = -8.0
+minimum_size = Vector2( 0, 8 )
+clip_contents = false
 mouse_filter = 2
 custom_colors/default_color = Color( 1, 1, 1, 1 )
-custom_constants/table_hseparation = 3
+custom_constants/table_h_separation = 3
 custom_constants/line_separation = 0
 custom_fonts/bold_font = ExtResource( 16 )
 custom_fonts/normal_font = ExtResource( 17 )

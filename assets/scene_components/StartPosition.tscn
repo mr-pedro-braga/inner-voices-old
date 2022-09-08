@@ -6,11 +6,11 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
 
-export var id = \"default\"
+@export var id = \"default\"
 
 func _ready():
 	if Gameplay.LOADING:
-		yield(Gameplay, \"LOADING_FINISHED\")
+		await Gameplay.LOADING_FINISHED
 	if Characters.map_characters.has(id):
 		Characters.set_playable_character(id)
 		ScreenCore.attach_camera()

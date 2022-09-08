@@ -14,3 +14,6 @@ dest_files=["res://.godot/imported/mus_lapsed_doll.mp3-8be23478a550ff64d2a850190
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

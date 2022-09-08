@@ -20,7 +20,7 @@ void fragment() {
 }"
 custom_defines = ""
 
-[sub_resource type="StreamTexture2D" id=2]
+[sub_resource type="CompressedTexture2D" id=2]
 load_path = "res://.import/Corrupted Plant_Emission.png-02bfcb5a130d510ae52e45e68f21f428.stex"
 
 [sub_resource type="ShaderMaterial" id=3]

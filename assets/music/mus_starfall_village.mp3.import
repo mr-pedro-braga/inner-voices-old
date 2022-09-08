@@ -14,3 +14,6 @@ dest_files=["res://.godot/imported/mus_starfall_village.mp3-e57ce4a22578ad27558a
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -19,10 +19,10 @@ func set_back(back_a):
 func update_size(value):
 	size = value
 	if back != null:
-		back.rect_position = -size/2 * 10
-		back.rect_size = size * 10
-		border.rect_position = -size/2 * 10 - Vector2(3, 3)
-		border.rect_size = size * 10 + Vector2(6, 6)
+		back.position = -size/2 * 10
+		back.size = size * 10
+		border.position = -size/2 * 10 - Vector2(3, 3)
+		border.size = size * 10 + Vector2(6, 6)
 		col.scale = size / 4
 		border_sensor.scale = col.scale
 
@@ -38,14 +38,14 @@ func _process(_delta):
 		col.disabled = true
 		if has_node("BattleBox/Kuro"):
 			var k = get_node(^"BattleBox/Kuro")
-			if k.position.x < back.rect_position.x:
-				k.position.x += back.rect_size.x+4
-			if k.position.x > back.rect_position.x + back.rect_size.x+4:
-				k.position.x -= back.rect_size.x+4
-			if k.position.y < back.rect_position.y:
-				k.position.y += back.rect_size.y+4
-			if k.position.y > back.rect_position.y + back.rect_size.y+4:
-				k.position.y -= back.rect_size.y+4
+			if k.position.x < back.position.x:
+				k.position.x += back.size.x+4
+			if k.position.x > back.position.x + back.size.x+4:
+				k.position.x -= back.size.x+4
+			if k.position.y < back.position.y:
+				k.position.y += back.size.y+4
+			if k.position.y > back.position.y + back.size.y+4:
+				k.position.y -= back.size.y+4
 	if Utils.arena_status.slippery_floor and back_sprite != "blue" :
 		set_back(0)
 		back_sprite = "blue"

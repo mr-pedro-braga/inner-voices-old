@@ -28,8 +28,8 @@ func _process(delta):
 		AudioManager.play(\"SFX_Hurt\")
 		cool_cutscene += 1
 	if $BetterCamera.position.y <= -200 and cool_cutscene == 2:
-		$Sprite.modulate.a -= 5 * delta
-	if cool_cutscene == 2 and $Sprite.modulate.a <= 0:
+		$Sprite2D.modulate.a -= 5 * delta
+	if cool_cutscene == 2 and $Sprite2D.modulate.a <= 0:
 		cool_cutscene = 3
 		ScreenCore.global_camera = cbkp
 		Gameplay.warp(\"act_I/clio_backstage_room\", Vector2(120, 97))
@@ -51,7 +51,7 @@ script = SubResource( "1" )
 scene_name = "Scene 1"
 scene_initial_zoom = 1.0
 
-[node name="Sprite" type="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 texture = ExtResource( "3" )
 
 [node name="claire" parent="3DObjects" index="0" instance=ExtResource( "2" )]

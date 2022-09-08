@@ -15,7 +15,7 @@ void fragment() {
 	COLOR = col;
 }"
 
-[sub_resource type="StreamTexture2D" id="2"]
+[sub_resource type="CompressedTexture2D" id="2"]
 
 [resource]
 shader = SubResource( "1" )

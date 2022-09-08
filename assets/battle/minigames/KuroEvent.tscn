@@ -3,11 +3,11 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Area2D
 
-export var event = \"\"
-export var parameter = \"\"
-export var arguments = []
-export var trigger_mode: int = 0
-export var recipient:NodePath
+@export var event = \"\"
+@export var parameter = \"\"
+@export var arguments = []
+@export var trigger_mode: int = 0
+@export var recipient:NodePath
 
 var overlapping: bool = false
 

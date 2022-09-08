@@ -27,7 +27,7 @@ func _process(delta):
 	offset_origin = Vector2(
 		0,
 		0.5*clamp(
-			135 - get_node(^"/root/GameRoot/HUD/bottom_black_bar").rect_position.y if not Gameplay.in_ui else 0, 0, 15)
+			135 - get_node(^"/root/GameRoot/HUD/bottom_black_bar").position.y if not Gameplay.in_ui else 0, 0, 15)
 		)
 	
 	# Only shake when there's shake time remaining.

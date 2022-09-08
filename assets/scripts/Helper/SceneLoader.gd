@@ -1,5 +1,5 @@
 # Loads a scene in the background using a seperate thread and a queue.
-# Foreach new scene there will be an instance of ResourceInteractiveLoader
+# Foreach new scene there will be an instance of ResourceLoader
 # that will raise an on_scene_loaded event once the scene has been loaded.
 # Hooking the on_progress event will give you the current progress of any
 # scene that is being processed in realtime. The loader also uses caching
@@ -41,7 +41,7 @@ signal on_scene_loaded
 
 func _ready():
 	thread = Thread.new()
-	thread.start(_thread_runner, null)
+	thread.start(Callable(_thread_runner,null))
 
 func _thread_runner(_o):
 	while true:
@@ -68,7 +68,7 @@ func _thread_runner(_o):
 					awaiter.loader = cache[awaiter.path].loader
 					awaiter.instance = cache[awaiter.path].instance.duplicate()
 					call_deferred("emit_signal", "on_scene_loaded", awaiter)
-					awaiters.remove(awaiters.find(awaiter))
+					awaiters.remove_at(awaiters.find(awaiter))
 
 func load_scene(path, props = null):
 	if not file.file_exists(path):

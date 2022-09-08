@@ -55,7 +55,7 @@ __meta__ = {
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 size = Vector2(240, 135)
-size_override_stretch = true
+size_2d_override_stretch = true
 usage = 0
 
 [node name="aliasingtest" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
@@ -76,7 +76,7 @@ offset_left = 32.1734
 offset_top = -0.353546
 offset_right = 195.173
 offset_bottom = -0.353546
-rect_scale = Vector2(0.5, 1)
+scale = Vector2(0.5, 1)
 __meta__ = {
 "_edit_use_anchors_": false
 }

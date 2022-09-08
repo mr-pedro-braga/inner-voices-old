@@ -1,7 +1,7 @@
 [remap]
 
 importer="oggvorbisstr"
-type="AudioStreamOGGVorbis"
+type="AudioStreamOggVorbis"
 uid="uid://v3fane1fgkiq"
 path="res://.godot/imported/Harmony Hall.ogg-828222544bfaff92dfc86d65b65a89c3.oggvorbisstr"
 
@@ -14,3 +14,6 @@ dest_files=["res://.godot/imported/Harmony Hall.ogg-828222544bfaff92dfc86d65b65a
 
 loop=true
 loop_offset=21.6
+bpm=0
+beat_count=0
+bar_beats=4

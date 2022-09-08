@@ -49,11 +49,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://assets/user_interface/ChoiceIcon.gd"
 }, {
-"base": "EditorPlugin",
-"class": &"CustomPlayButtonPlugin",
-"language": &"GDScript",
-"path": "res://addons/fabianlc_custom_play_scene_button/plugin.gd"
-}, {
 "base": "EventEssentials",
 "class": &"DefaultScene",
 "language": &"GDScript",
@@ -134,6 +129,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/SmartRichTextLabel/SmartRichTextLabel.gd"
 }, {
+"base": "Node",
+"class": &"SoundManagerModule",
+"language": &"GDScript",
+"path": "res://addons/sound_manager/module/internal_scripts/SoundManager_config.gd"
+}, {
 "base": "ReferenceRect",
 "class": &"SpriteText",
 "language": &"GDScript",
@@ -148,7 +148,6 @@ _global_script_class_icons={
 "CharacterAnimationHandler": "",
 "Choice": "",
 "ChoiceIcon": "",
-"CustomPlayButtonPlugin": "",
 "DefaultScene": "",
 "DialogEvent": "",
 "EventEssentials": "",
@@ -165,6 +164,7 @@ _global_script_class_icons={
 "SceneScript": "",
 "ScriptableEmitter": "",
 "SmartRichTextLabel": "",
+"SoundManagerModule": "",
 "SpriteText": ""
 }
 
@@ -181,6 +181,7 @@ config/description="A psychological fantasy jRPG about the nature of being human
 run/main_scene="res://assets/GAME SCREENS/game_root.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Inner_Voices"
+config/features=PackedStringArray("4.0")
 boot_splash/image="res://assets/images/big-cover.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color(1, 1, 1, 1)
@@ -188,7 +189,6 @@ config/icon="res://assets/images/logo-32x.png"
 config/macos_native_icon="res://assets/images/icon_16.icns"
 config/windows_native_icon="res://assets/images/icon_16.ico"
 run/custom_first_scene="res://episodes/E01/scenes/mrealm/adhd_world/Hub_A.tscn"
-config/features=PackedStringArray("4.0")
 
 [audio]
 
@@ -239,7 +239,7 @@ search_in_file_extensions=PackedStringArray("gd", "shader", "json", "sson")
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ChromaAddons/plugin.cfg", "res://addons/ChromaRPG/plugin.cfg", "res://addons/fabianlc_custom_play_scene_button/plugin.cfg")
+enabled=PackedStringArray()
 
 [global]
 
@@ -391,8 +391,8 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-batching/options/single_rect_fallback=true
 textures/canvas_textures/default_texture_filter=0
+batching/options/single_rect_fallback=true
 2d/snapping/use_gpu_pixel_snap=true
 threads/thread_model=2
 environment/default_clear_color=Color(0, 0, 0, 1)

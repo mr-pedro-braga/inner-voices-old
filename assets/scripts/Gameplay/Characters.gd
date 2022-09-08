@@ -3,7 +3,7 @@
 #		Another Series Party
 #	
 #	Takes care of the party!
-#	Add and remove characters to the party, and more!
+#	Add and remove_at characters to the party, and more!
 #	game states.
 #
 #--------------------------------------------------------#
@@ -66,4 +66,4 @@ func update_party():
 
 ## Setup Function to be called in start of game
 func setup():
-	party_follower_path = get_node(^"/root/GameRoot/World/FollowerPath")
+	party_follower_path = get_node(^"/root/GameRoot/World3D/FollowerPath")

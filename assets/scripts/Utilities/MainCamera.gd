@@ -1,6 +1,6 @@
 extends Node
 
-@onready var global_camera = get_node(^"/root/GameRoot/World/Camera3D")	# RefCounted to the main camera
+@onready var global_camera = get_node(^"/root/GameRoot/World3D/Camera3D")	# RefCounted to the main camera
 var character_camera_offset = -16
 var zoom_offset = 0
 var camera_position = Vector2.ZERO

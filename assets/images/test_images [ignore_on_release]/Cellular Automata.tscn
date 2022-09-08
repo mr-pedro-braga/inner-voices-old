@@ -6,7 +6,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
 
-export(NodePath) var tex
+@export var tex: NodePath
 
 var t = 0.0
 
@@ -17,7 +17,7 @@ func _process(delta):
 		print(\"Swapping\")
 		var tex:Texture2D = $SubViewportContainer/SubViewport.get_texture()
 		var s:ShaderMaterial = $SubViewportContainer/SubViewport/Texture2D.material
-		s.set_shader_param(\"previous\", tex)
+		s.set_shader_uniform(\"previous\", tex)
 		$Texture2.texture = tex
 "
 __meta__ = {

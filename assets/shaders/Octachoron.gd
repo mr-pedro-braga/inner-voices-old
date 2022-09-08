@@ -9,7 +9,7 @@ func _process(delta):
 	
 	var s = 1.0 + 0.3 * sin(Utils.time*2)
 	scale = Vector3(s, s, s)
-	get_parent().get_parent().rect_position.y = -32 + 8*s
+	get_parent().get_parent().position.y = -32 + 8*s
 	
 	var r = 0.6 + 0.3 * sin(Utils.time*5 + 0)
 	var g = 0.6 + 0.3 * sin(Utils.time*5 + TAU/3)

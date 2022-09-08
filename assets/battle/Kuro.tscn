@@ -17,7 +17,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.979079, 0.000322938), -1.8919,
 [sub_resource type="CurveTexture" id="7"]
 curve = SubResource( "6" )
 
-[sub_resource type="ParticlesMaterial" id="8"]
+[sub_resource type="ParticleProcessMaterial" id="8"]
 emission_shape = 1
 emission_sphere_radius = 2.0
 gravity = Vector3(0, 4, 0)

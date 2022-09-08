@@ -27,7 +27,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed(\"cheat\"):
-		yield(get_tree().create_timer(1.0), \"timeout\")
+		await get_tree().create_timer(1.0).timeout
 		SoundtrackCore.bgm_restart()
 
 func evt_door_1(_id, _parameters, _arguments):
@@ -43,20 +43,20 @@ func evt_door_1(_id, _parameters, _arguments):
 	
 	DCCore.enter_cutscene()
 	c.play(\"LampAttack\")
-	yield(c, \"animation_finished\")
+	await c.animation_finished
 	Gameplay.playable_character_node.angle = 0
 	Gameplay.playable_character_node.action = \"defend\"
-	yield(get_tree().create_timer(0.5), \"timeout\")
+	await get_tree().create_timer(0.5).timeout
 	
 	$Camera2D.shake(1, 15, 4)
 	SoundtrackCore.battle_m_player.playing = true
 	Gameplay.playable_character_node.action = \"pushback\"
 	c.play(\"LampPush\")
-	yield(c, \"animation_finished\")
-	yield(get_tree().create_timer(1.0), \"timeout\")
+	await c.animation_finished
+	await get_tree().create_timer(1.0).timeout
 	
 	DCCore.dialog(\"test_dialog\", \"ninten_what_are_you\")
-	yield(get_node(\"/root/GameRoot/Dialog\"), \"dialog_section_finished\")
+	await get_node(\"/root/GameRoot/Dialog\").dialog_section_finished
 	
 	BattleCore.request_battle([\"andy\"], false, false)
 	

@@ -41,7 +41,7 @@ var release := true
 
 func _ready():
 	match Memory.sget(\"section\"):
-		0: # If the player is in the Safe Room!
+		0: # If the player is in the Safe Node3D!
 			Gameplay.transition_player.play(\"set_black\" if release else \"set_clear\")
 
 		1: # If the player is in the main hallways! 
@@ -79,7 +79,7 @@ func _ready():
 func evt_fight_andy(_id, _parameter, _arguments):
 	DCCore.enter_cutscene()
 	#DCCore.dialog(\"places/new_horizon/school_lines\", \"andy_pre_battle\")
-	#yield(DCCore, \"dialog_finished\")
+	#await DCCore.dialog_finished
 	BattleCore.transpose_characters([
 		Characters.map_characters[\"claire\"],
 		Characters.map_characters[\"andy\"]
@@ -469,7 +469,7 @@ __meta__ = {
 dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
 dialog_keys = ["locked_door_art"]
 
-[node name="Principal-Room" type="Node2D" parent="3DObjects"]
+[node name="Principal-Node3D" type="Node2D" parent="3DObjects"]
 visible = false
 script = ExtResource( "5" )
 
@@ -493,22 +493,22 @@ __meta__ = {
 layer = 2
 follow_viewport_enable = true
 
-[node name="Safe-Room" type="Node2D" parent="CanvasLayer"]
+[node name="Safe-Node3D" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( "5" )
 
-[node name="Events" type="Node2D" parent="CanvasLayer/Safe-Room"]
+[node name="Events" type="Node2D" parent="CanvasLayer/Safe-Node3D"]
 script = ExtResource( "5" )
 
-[node name="SceneStart" type="Area2D" parent="CanvasLayer/Safe-Room/Events"]
+[node name="SceneStart" type="Area2D" parent="CanvasLayer/Safe-Node3D/Events"]
 position = Vector2(660.791, 322.794)
 script = ExtResource( "11" )
 event_name = "sroom_start"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Safe-Room/Events/SceneStart"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Safe-Node3D/Events/SceneStart"]
 visible = false
 shape = ExtResource( "9" )
 
-[node name="BackstageDoor" type="Area2D" parent="CanvasLayer/Safe-Room/Events"]
+[node name="BackstageDoor" type="Area2D" parent="CanvasLayer/Safe-Node3D/Events"]
 position = Vector2(872, 320)
 script = ExtResource( "11" )
 trigger_mode = 1
@@ -516,35 +516,35 @@ trigger_area = Vector2(24, 16)
 event_name = "sroom_backstage_door_a"
 event_arguments = [NodePath("../../../../3DObjects/BackstageDoor")]
 
-[node name="BackstageBack" type="Area2D" parent="CanvasLayer/Safe-Room/Events"]
+[node name="BackstageBack" type="Area2D" parent="CanvasLayer/Safe-Node3D/Events"]
 position = Vector2(824, 296)
 script = ExtResource( "11" )
 trigger_area = Vector2(16, 8)
 event_name = "sroom_backstage_door_b"
 event_arguments = [NodePath("../../../../3DObjects/BackstageDoor")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Safe-Room/Events/BackstageBack"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Safe-Node3D/Events/BackstageBack"]
 position = Vector2(48, 24)
 shape = SubResource( "2" )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CanvasLayer/Safe-Room/Events/BackstageBack"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CanvasLayer/Safe-Node3D/Events/BackstageBack"]
 position = Vector2(48, 24)
 shape = SubResource( "3" )
 
-[node name="BoardA" type="Area2D" parent="CanvasLayer/Safe-Room/Events"]
+[node name="BoardA" type="Area2D" parent="CanvasLayer/Safe-Node3D/Events"]
 position = Vector2(615.536, 342.593)
 rotation = -0.785398
 script = ExtResource( "8" )
 dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"
 dialog_keys = ["safe_room_bigboard1", "safe_room_bigboard2"]
 
-[node name="SceneEvent" type="Area2D" parent="CanvasLayer/Safe-Room/Events"]
+[node name="SceneEvent" type="Area2D" parent="CanvasLayer/Safe-Node3D/Events"]
 position = Vector2(621.9, 389.262)
 script = ExtResource( "11" )
 trigger_area = Vector2(56, 8)
 event_name = "sroom_cant_exit"
 
-[node name="Mark" type="Area2D" parent="CanvasLayer/Safe-Room/Events"]
+[node name="Mark" type="Area2D" parent="CanvasLayer/Safe-Node3D/Events"]
 position = Vector2(824, -296)
 script = ExtResource( "8" )
 dialog_sson_file = "res://episodes/E01/dialogue/world/places/new_horizon/school_lines.sson"

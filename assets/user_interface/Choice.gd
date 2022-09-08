@@ -48,7 +48,7 @@ func init_icons():
 				nametag = Utils.choice_nametag.instantiate()
 				nametagtxt = nametag.get_node(^"Text")
 				nametagtexture = nametag.get_node(^"Texture2D")
-				nametag.rect_position.x = 9
+				nametag.position.x = 9
 				selection_indicator.add_child(nametag)
 		LIST_TOP:
 			selection_indicator.position.y = -32*0.9
@@ -58,7 +58,7 @@ func init_icons():
 				nametag = Utils.choice_nametag.instantiate()
 				nametagtxt = nametag.get_node(^"Text")
 				nametagtexture = nametag.get_node(^"Texture2D")
-				nametag.rect_position.x = 9
+				nametag.position.x = 9
 				selection_indicator.add_child(nametag)
 				offset -= 24
 		LIST_RIGHT:
@@ -67,10 +67,10 @@ func init_icons():
 				nametag = Utils.choice_nametag.instantiate()
 				nametagtxt = nametag.get_node(^"Text")
 				nametagtexture = nametag.get_node(^"Texture2D")
-				nametag.rect_position.x = -9
-				nametag.get_node(^"Texture2D").rect_scale.x = -1
+				nametag.position.x = -9
+				nametag.get_node(^"Texture2D").scale.x = -1
 				var ntext = nametag.get_node(^"Text")
-				ntext.rect_position.x = 8 - nametag.get_node(^"Texture2D").rect_size.x
+				ntext.position.x = 8 - nametag.get_node(^"Texture2D").size.x
 				selection_indicator.add_child(nametag)
 				offset -= 24
 	update_nametag(choices[choice_index%choices_count])
@@ -91,8 +91,8 @@ func update_nametag(text:String):
 		return
 	if nametagtxt is RichTextLabel:
 		var v = text.length()*6
-		nametagtxt.bbcode_text = text
-		nametagtexture.rect_size.x = max(48, v)
+		nametagtxt.text = text
+		nametagtexture.size.x = max(48, v)
 		return
 	nametagtxt.text = text
 
@@ -100,13 +100,13 @@ func _process(_delta):
 	match text_pos:
 		0:
 			dialog_box.text = question
-			Utils.selected_choice_box.bbcode_text = choices[choice_index%choices_count]
+			Utils.selected_choice_box.text = choices[choice_index%choices_count]
 			dialog_box.visible_characters = -1
 		1:
-			Utils.selected_choice_box.bbcode_text = "[center]"+question+"[/center]"
+			Utils.selected_choice_box.text = "[center]"+question+"[/center]"
 			Utils.selected_choice_box.visible_characters = -1
 		2:
-			Utils.selected_choice_box.bbcode_text = "[center]"+question+"[/center]"
+			Utils.selected_choice_box.text = "[center]"+question+"[/center]"
 			Utils.selected_choice_box.visible_characters = -1
 	if Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_down"):
 		choice_index += 1
@@ -116,7 +116,7 @@ func _process(_delta):
 			Utils.speak(choices[choice_index%choices_count])
 		update_nametag(choices[choice_index%choices_count])
 		if display == LIST_RIGHT:
-			nametag.get_node(^"Text").rect_position.x = 8 - nametag.get_node(^"Texture2D").rect_size.x
+			nametag.get_node(^"Text").position.x = 8 - nametag.get_node(^"Texture2D").size.x
 	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_up"):
 		choice_index -= 1
 		AudioManager.play_sound("SFX_Menu_Rotate")
@@ -125,9 +125,9 @@ func _process(_delta):
 			Utils.speak(choices[choice_index%choices_count])
 		update_nametag(choices[choice_index%choices_count])
 		if display == LIST_RIGHT:
-			nametag.get_node(^"Text").rect_position.x = 8 - nametag.get_node(^"Texture2D").rect_size.x
+			nametag.get_node(^"Text").position.x = 8 - nametag.get_node(^"Texture2D").size.x
 	if Input.is_action_just_pressed("ok"):
-		Utils.selected_choice_box.bbcode_text = ""
+		Utils.selected_choice_box.text = ""
 		dialog_box.text = ""
 		AudioManager.play_sound("SFX_Menu_Select")
 		DCCore.choice_result = choice_index % choices_count

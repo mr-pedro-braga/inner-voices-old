@@ -108,12 +108,12 @@ func face_center():
 
 # Sets the overworld SOUL effect transparency.
 func set_fx_soul_intensity(value:bool):
-	#$AnimatedSprite2D.material.set_shader_param("soul_effect_intensity", value)
+	#$AnimatedSprite2D.material.set_shader_uniform("soul_effect_intensity", value)
 	pass
 
 # Set wheter this character is being highlighted.
 func set_highlited(value:bool):
-	#$AnimatedSprite2D.material.set_shader_param("is_highlighted", value)
+	#$AnimatedSprite2D.material.set_shader_uniform("is_highlighted", value)
 	pass
 
 # Updates the current animation to "anim", if it exists.
@@ -369,7 +369,7 @@ func process_route(delta):
 			animation_state.ovw_action = "walk"
 			position = poff.position
 			angle = int(round((fposmod(poff.rotation_degrees/45, 8))))
-			if poff.unit_offset >= 1:
+			if poff.progress_ratio >= 1:
 				emit_signal("route_line_finished")
 				started=false
 				in_path = false
@@ -477,7 +477,7 @@ func _process(_delta):
 	
 	### Cast Raycast to correct position in order to interact with events!
 	var a = animation_state.ovw_angle * 45
-	get_node(^"RayCast2D").target_position = 10 * Vector2(cos(deg2rad(a))*1.5, sin(deg2rad(a)))
+	get_node(^"RayCast2D").target_position = 10 * Vector2(cos(deg_to_rad(a))*1.5, sin(deg_to_rad(a)))
 	
 	update()
 	
@@ -504,7 +504,7 @@ func _process(_delta):
 	
 
 ## Configuration Warnings
-func _get_configuration_warning():
+func _get_configuration_warnings():
 	if get_node_or_null("AnimationHandler") == null:
 		return 'Character Nodes need an Animation Handler, you know?'
 	return ''

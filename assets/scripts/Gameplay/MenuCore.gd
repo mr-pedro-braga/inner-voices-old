@@ -53,7 +53,7 @@ func _process(_delta):
 			ScreenCore.zoom_offset = 0.0
 			AudioManager.play_sound("UI/SFX_Menu_Rotate", "ogg")
 	if Input.is_action_just_pressed("fullscreen"):
-		OS.window_fullscreen = !OS.window_fullscreen
+		ProjectSettings.set("display/window/size/fullscreen", !OS.window_fullscreen)
 
 # Inventories
 

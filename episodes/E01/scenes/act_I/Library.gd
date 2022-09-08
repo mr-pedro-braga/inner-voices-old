@@ -52,22 +52,22 @@ func _ready():
 
 		var dialog_box = DCCore.dialog_box
 		
-		var k = dialog_box.rect_position.y
+		var k = dialog_box.position.y
 
 		await get_tree().create_timer(0.5).timeout
 		Utils.play_transition("set_black")
 		
 		DCCore.use_portraits = false
-		dialog_box.rect_position.y = -55
+		dialog_box.position.y = -55
 		DCCore.dialog("places/new_horizon/school_lines", "cutscene_2_1")
 		await DCCore.dialog_finished
 
-		dialog_box.rect_position.y = -65
+		dialog_box.position.y = -65
 		DCCore.dialog("places/new_horizon/school_lines", "cutscene_2_2")
 		await DCCore.dialog_finished
 		DCCore.use_portraits = true
 
-		dialog_box.rect_position.y = k
+		dialog_box.position.y = k
 		await get_tree().create_timer(1.0).timeout
 
 		Utils.play_transition("set_clear")
@@ -80,4 +80,4 @@ func _ready():
 		Utils.leave_event()
 
 func _process(_delta):
-	camera.offset = Vector2(0, 0.5*(135 - get_node(^"/root/GameRoot/HUD/bottom_black_bar").rect_position.y))
+	camera.offset = Vector2(0, 0.5*(135 - get_node(^"/root/GameRoot/HUD/bottom_black_bar").position.y))

@@ -142,7 +142,9 @@ func load_stats(character_id, char_stats_file, alignment):
 		var file = File.new()
 		file.open(char_stats_file, File.READ)
 		var text = file.get_as_text()
-		#character_stats[character_id] = JSON.parse(text)
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(text)
+		#character_stats[character_id] = test_json_conv.get_data()
 
 #@ Creates a character on the world given specifications
 func create_character(id):
@@ -311,7 +313,7 @@ func update_soul_meters():
 		si.setup(i.to_lower(), st.MHP, st.HP, st.MSP, st.SP, st["hp-foreground"], st["hp-background"])
 		soul_infos_node.add_child(si)
 		si.reveal_battle()
-		si.rect_position.x = (index * 44 - (party_size - 1) * 22)
+		si.position.x = (index * 44 - (party_size - 1) * 22)
 		si.self_update(i)
 		add_separation = true
 	pass

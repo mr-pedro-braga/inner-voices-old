@@ -56,11 +56,11 @@ func spawn_bullet(count=1):
 		k.get_node(^"Damage").damage = damage
 		add_child(k)
 		k.position = offset
-		var a = deg2rad(angle_offset_i * index + 180)
+		var a = deg_to_rad(angle_offset_i * index + 180)
 		k.position = k.position + Vector2(cos(a), sin(a)) * radius_offset_i
 		k.set_projectile(bullet_sprite,
 						bullet_speed + random(-bullet_speed_offset, bullet_speed_offset),
-						rotation + index * deg2rad(angle_offset_i),
+						rotation + index * deg_to_rad(angle_offset_i),
 						bullet_life)
 		if not set_angle:
 			k.rotation = -self.rotation
@@ -76,9 +76,9 @@ func _emit_timer_end_signal():
 func _create_timer(object_target, float_wait_time, bool_is_oneshot, string_function):
 	timer = Timer.new()
 	timer.set_one_shot(bool_is_oneshot)
-	timer.set_timer_process_mode(0)
+	timer.set_timer_process_callback(0)
 	timer.set_wait_time(float_wait_time)
-	timer.connect("timeout", object_target, string_function)
+	timer.connect("timeout",Callable(object_target,string_function))
 	self.add_child(timer)
 	timer.start()
 

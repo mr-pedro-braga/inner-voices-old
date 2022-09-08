@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://episodes/E01/scenes/act_IV/dark-ethereal-bridge.png" type="Texture" id=1]
+[ext_resource path="res://episodes/E01/scenes/act_IV/dark-ethereal-bridge.png" type="Texture2D" id=1]
 [ext_resource path="res://assets/scene_components/DefaultScene.tscn" type="PackedScene" id=2]
-[ext_resource path="res://episodes/E01/scenes/act_IV/dark-etheral-palace-bg.png" type="Texture" id=3]
+[ext_resource path="res://episodes/E01/scenes/act_IV/dark-etheral-palace-bg.png" type="Texture2D" id=3]
 [ext_resource path="res://episodes/E01/scenes/act_IV/DarkEtherealPalace.gd" type="Script" id=4]
 
 [node name="Scene" instance=ExtResource( 2 )]
@@ -29,10 +29,10 @@ cell_size = Vector2( 32, 32 )
 format = 1
 
 [node name="TextureRect" type="TextureRect" parent="Floor" index="0"]
-margin_left = -18.6924
-margin_top = 60.7574
-margin_right = 258.308
-margin_bottom = 156.757
+offset_left = -18.6924
+offset_top = 60.7574
+offset_right = 258.308
+offset_bottom = 156.757
 texture = ExtResource( 1 )
 stretch_mode = 2
 __meta__ = {
