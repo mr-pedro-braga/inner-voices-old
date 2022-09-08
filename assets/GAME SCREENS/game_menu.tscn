@@ -1,39 +1,27 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://b4v4xmtnk1i2r"]
 
-[ext_resource path="res://assets/images/IV-logo1.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/battle/battle_screen_backgrounds/Alpha.res" type="PackedScene" id=2]
+[ext_resource type="Texture2D" uid="uid://hv0k62n0dhyj" path="res://assets/images/IV-logo1.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://53ou1msar3pk" path="res://assets/battle/battle_screen_backgrounds/Alpha.res" id="2"]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform vec4 key_color : source_color;
-
-void fragment() {
-	
-	vec4 col = texture(TEXTURE, UV);
-	if (col == key_color) {
-		col = vec4(0.0);
-	}
-	
-	COLOR = col;
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/key_color = Color(0, 0, 0, 1)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wao0y"]
+blend_mode = 1
 
 [node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="BattleBG" parent="." instance=ExtResource( 2 )]
+[node name="BattleBG" parent="." instance=ExtResource("2")]
 self_modulate = Color(1, 1, 1, 0.258824)
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="logo_chromatic_light" type="Sprite2D" parent="."]
-material = SubResource( 2 )
+material = SubResource("CanvasItemMaterial_wao0y")
 position = Vector2(120, 48)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource( 1 )
+texture = ExtResource("1")

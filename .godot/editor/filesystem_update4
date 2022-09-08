@@ -5,3 +5,7 @@ res://assets/map_making/tilesets/General-Overworld-D.tres
 res://assets/battle/Kuro.tres
 res://assets/building_places/Tilemaps/General-Overworld.tres
 res://episodes/E02/scenes/tilemaps/DinerA.tres
+res://episodes/E01/scenes/act_0/StartDream.tscn
+res://assets/map_making/special_scenes/claire_dream_prologue/sunglow1.res
+res://assets/battle/battle_screen_backgrounds/Alpha.res
+res://assets/GAME SCREENS/game_menu.tscn

@@ -1,27 +1,19 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=58 format=3 uid="uid://dc5s6xv1h1lhr"]
 
-[ext_resource path="res://assets/scene_components/DefaultScene.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/sunglow1.res" type="Environment" id=2]
-[ext_resource path="res://assets/building_places/Buildings/Claire-Inside-1.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated3.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated1.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated5.png" type="Texture2D" id=6]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated2.png" type="Texture2D" id=7]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission.png" type="Texture2D" id=8]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated6.png" type="Texture2D" id=9]
-[ext_resource path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated4.png" type="Texture2D" id=10]
-[ext_resource path="res://assets/characters/_character_scenes/Claire.res" type="PackedScene" id=11]
-[ext_resource path="res://addons/SmartRichTextLabel/SmartRichTextLabel.gd" type="Script" id=12]
-[ext_resource path="res://assets/music/mus_good_morning.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/sounds/SFX_Alarm.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sounds/voices/voice_typewriter.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/fonts/PixeloidSans-Bold.tres" type="FontFile" id=16]
-[ext_resource path="res://assets/fonts/PixeloidSans.tres" type="FontFile" id=17]
-[ext_resource path="res://assets/images/sprites_dialogs/continue.png" type="Texture2D" id=18]
-[ext_resource path="res://assets/images/sprites_vfx/red-vignette.png" type="Texture2D" id=19]
-[ext_resource path="res://assets/sounds/Ominous Opening.wav" type="AudioStream" id=20]
+[ext_resource type="PackedScene" path="res://assets/scene_components/DefaultScene.tscn" id="1"]
+[ext_resource type="Environment" path="res://assets/map_making/special_scenes/claire_dream_prologue/sunglow1.res" id="2"]
+[ext_resource type="Texture2D" uid="uid://df05ru36f4k10" path="res://assets/building_places/Buildings/Claire-Inside-1.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bv7rak53c5kwl" path="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission.png" id="8"]
+[ext_resource type="PackedScene" path="res://assets/characters/_character_scenes/Claire.res" id="11"]
+[ext_resource type="Script" path="res://addons/SmartRichTextLabel/SmartRichTextLabel.gd" id="12"]
+[ext_resource type="AudioStream" uid="uid://33p408427i7v" path="res://assets/music/mus_good_morning.wav" id="13"]
+[ext_resource type="AudioStream" uid="uid://dek73d6r3x16e" path="res://assets/sounds/SFX_Alarm.wav" id="14"]
+[ext_resource type="AudioStream" uid="uid://blqcmgsrgicbw" path="res://assets/sounds/voices/voice_typewriter.wav" id="15"]
+[ext_resource type="Texture2D" uid="uid://cu1r6x3rk1d18" path="res://assets/images/sprites_dialogs/continue.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://c0pwansrukwe1" path="res://assets/images/sprites_vfx/red-vignette.png" id="19"]
+[ext_resource type="AudioStream" uid="uid://buirn1e0sc21e" path="res://assets/sounds/Ominous Opening.wav" id="20"]
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id="4"]
 script/source = "extends DefaultScene
 
 func alarm_start():
@@ -93,11 +85,8 @@ func _on_Dialog_Label_paused():
 func _on_Dialog_Label_resumed():
 	$Overlay/Black/continue.visible = false
 "
-__meta__ = {
-"Scene_Path": "res://episodes/E01/scenes/act_0/StartDream.tscn"
-}
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id="1"]
 code = "shader_type canvas_item;
 
 //Emission texture
@@ -112,288 +101,793 @@ void fragment() {
 	COLOR = col;
 }"
 
-[sub_resource type="AnimatedTexture" id=3]
-frames = 7
-frame_0/texture = ExtResource( 5 )
-frame_1/texture = ExtResource( 7 )
-frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 4 )
-frame_2/delay_sec = 0.0
-frame_3/texture = ExtResource( 10 )
-frame_3/delay_sec = 0.0
-frame_4/texture = ExtResource( 6 )
-frame_4/delay_sec = 0.0
-frame_5/texture = ExtResource( 9 )
-frame_5/delay_sec = 0.0
-frame_6/texture = ExtResource( 8 )
-frame_6/delay_sec = 0.0
-
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
-render_priority = 1
-shader = SubResource( 1 )
-shader_param/emission_strength = 1.0
-shader_param/emission = SubResource( 3 )
+shader = SubResource("1")
+emission = ExtResource("8")
+emission_strength = 1.0
 
-[sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 18 )
-region = Rect2( 0, 0, 8, 8 )
+[sub_resource type="Animation" id="9"]
+resource_name = "idle_0"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 0)]
+}
 
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 18 )
-region = Rect2( 8, 0, 8, 8 )
+[sub_resource type="Animation" id="22"]
+resource_name = "idle_0_talk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(8, 0), Vector2(9, 0)]
+}
 
-[sub_resource type="SpriteFrames" id=29]
-animations = [ {
-"frames": [ SubResource( 27 ), SubResource( 28 ) ],
+[sub_resource type="Animation" id="10"]
+resource_name = "idle_1"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 1)]
+}
+
+[sub_resource type="Animation" id="23"]
+resource_name = "idle_1_talk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(8, 1), Vector2(9, 1)]
+}
+
+[sub_resource type="Animation" id="11"]
+resource_name = "idle_2"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 2)]
+}
+
+[sub_resource type="Animation" id="24"]
+resource_name = "idle_2_talk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(8, 2), Vector2(9, 2)]
+}
+
+[sub_resource type="Animation" id="12"]
+resource_name = "idle_3"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 3)]
+}
+
+[sub_resource type="Animation" id="25"]
+resource_name = "idle_3_talk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(8, 3), Vector2(9, 3)]
+}
+
+[sub_resource type="Animation" id="13"]
+resource_name = "idle_4"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 4)]
+}
+
+[sub_resource type="Animation" id="26"]
+resource_name = "idle_4_talk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(8, 4), Vector2(9, 4)]
+}
+
+[sub_resource type="Animation" id="14"]
+resource_name = "idle_5"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 5)]
+}
+
+[sub_resource type="Animation" id="27"]
+resource_name = "idle_5_talk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(8, 5), Vector2(9, 5)]
+}
+
+[sub_resource type="Animation" id="15"]
+resource_name = "idle_6"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 6)]
+}
+
+[sub_resource type="Animation" id="28"]
+resource_name = "idle_6_talk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(8, 6), Vector2(9, 6)]
+}
+
+[sub_resource type="Animation" id="16"]
+resource_name = "idle_7"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 7)]
+}
+
+[sub_resource type="Animation" id="29"]
+resource_name = "idle_7_talk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(8, 7), Vector2(9, 7)]
+}
+
+[sub_resource type="Animation" id="17"]
+resource_name = "sit_3"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 3)]
+}
+
+[sub_resource type="Animation" id="18"]
+resource_name = "sit_3_talk"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(10, 3), Vector2(11, 3)]
+}
+
+[sub_resource type="Animation" id="19"]
+resource_name = "sit_4"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 4)]
+}
+
+[sub_resource type="Animation" id="20"]
+resource_name = "sit_4_talk"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(10, 4), Vector2(11, 4)]
+}
+
+[sub_resource type="Animation" id="21"]
+resource_name = "sit_down_3"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_s5tg5"]
+resource_name = "walk_0"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(8, 0)]
+}
+
+[sub_resource type="Animation" id="3"]
+resource_name = "walk_1"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(8, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ommx4"]
+resource_name = "walk_2"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(8, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_mbnrw"]
+resource_name = "walk_3"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 3), Vector2(8, 3)]
+}
+
+[sub_resource type="Animation" id="5"]
+resource_name = "walk_4"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 4), Vector2(8, 4)]
+}
+
+[sub_resource type="Animation" id="6"]
+resource_name = "walk_5"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(8, 5)]
+}
+
+[sub_resource type="Animation" id="7"]
+resource_name = "walk_6"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 6), Vector2(8, 6)]
+}
+
+[sub_resource type="Animation" id="8"]
+resource_name = "walk_7"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 7), Vector2(8, 7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrm1v"]
+_data = {
+"idle_0": SubResource("9"),
+"idle_0_talk": SubResource("22"),
+"idle_1": SubResource("10"),
+"idle_1_talk": SubResource("23"),
+"idle_2": SubResource("11"),
+"idle_2_talk": SubResource("24"),
+"idle_3": SubResource("12"),
+"idle_3_talk": SubResource("25"),
+"idle_4": SubResource("13"),
+"idle_4_talk": SubResource("26"),
+"idle_5": SubResource("14"),
+"idle_5_talk": SubResource("27"),
+"idle_6": SubResource("15"),
+"idle_6_talk": SubResource("28"),
+"idle_7": SubResource("16"),
+"idle_7_talk": SubResource("29"),
+"sit_3": SubResource("17"),
+"sit_3_talk": SubResource("18"),
+"sit_4": SubResource("19"),
+"sit_4_talk": SubResource("20"),
+"sit_down_3": SubResource("21"),
+"walk_0": SubResource("Animation_s5tg5"),
+"walk_1": SubResource("3"),
+"walk_2": SubResource("Animation_ommx4"),
+"walk_3": SubResource("Animation_mbnrw"),
+"walk_4": SubResource("5"),
+"walk_5": SubResource("6"),
+"walk_6": SubResource("7"),
+"walk_7": SubResource("8")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qk2e"]
+atlas = ExtResource("18")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_son14"]
+atlas = ExtResource("18")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3qlxj"]
+animations = [{
+"frames": [SubResource("AtlasTexture_7qk2e"), SubResource("AtlasTexture_son14")],
 "loop": true,
-"name": "continue",
+"name": &"continue",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id="30"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Alarm:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ false ]
+"values": [false]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Alarm:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ -5.777 ]
+"values": [-5.777]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Overlay/Black/Red:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id="31"]
 resource_name = "alarmstart"
 length = 4.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Alarm:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Alarm:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 4 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ -20.0, -5.777 ]
+"values": [-20.0, -5.777]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Overlay/Black/Red:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 3.9 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 3.9),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_urc6c"]
+_data = {
+"RESET": SubResource("30"),
+"alarmstart": SubResource("31")
+}
+
+[sub_resource type="Animation" id="32"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Overlay/Black/Red:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id="33"]
 resource_name = "red"
 length = 1.5
-loop = true
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Overlay/Black/Red:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 1, 1.5 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.741176 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.741176), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wnt3h"]
+_data = {
+"RESET": SubResource("32"),
+"red": SubResource("33")
+}
+
+[sub_resource type="Animation" id="34"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("../../../WeirdSound:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ false ]
+"values": [false]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id="35"]
 resource_name = "whitening"
 length = 6.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 6 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("../../../WeirdSound:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 5.9 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 5.9),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ true, false ]
+"values": [true, false]
 }
 
-[node name="Scene" instance=ExtResource( 1 )]
-script = SubResource( 4 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f4vka"]
+_data = {
+"RESET": SubResource("34"),
+"whitening": SubResource("35")
+}
+
+[node name="Scene" instance=ExtResource("1")]
+script = SubResource("4")
 scene_name = "Scene 1"
 scene_initial_zoom = 1.0
+
+[node name="ColorRect" parent="Background" index="0"]
+anchors_preset = 15
 
 [node name="World3D" type="Node2D" parent="." index="2"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="World3D" index="0"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 240.0
 offset_bottom = 135.0
 stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SubViewport" type="SubViewport" parent="World3D/SubViewportContainer" index="0"]
-size = Vector2( 240, 135 )
 transparent_bg = true
 handle_input_locally = false
-render_target_update_mode = 3
+size = Vector2i(240, 135)
+render_target_update_mode = 4
 
 [node name="House" type="Sprite2D" parent="World3D/SubViewportContainer/SubViewport" index="0"]
-material = SubResource( 2 )
-position = Vector2( 120, 67.5 )
-texture = ExtResource( 3 )
+material = SubResource("2")
+position = Vector2(120, 67.5)
+texture = ExtResource("3")
 
-[node name="claire" parent="3DObjects" index="0" instance=ExtResource( 11 )]
-position = Vector2( 165.463, 66.8215 )
+[node name="claire" parent="3DObjects" index="0" instance=ExtResource("11")]
+position = Vector2(165.463, 66.8215)
 
-[node name="Sprite2D" parent="3DObjects/claire/AnimationHandler" index="1"]
-frame = 46
+[node name="AnimationPlayer" parent="3DObjects/claire/AnimationHandler" index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_hrm1v")
+}
+
+[node name="RayCast2D" parent="3DObjects/claire" index="2"]
+target_position = Vector2(9.18485e-16, 10)
+
+[node name="SOUL" parent="3DObjects/claire" index="3"]
+animation = &"ollie"
 
 [node name="Env" type="WorldEnvironment" parent="." index="5"]
-environment = ExtResource( 2 )
+environment = ExtResource("2")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." index="6"]
-color = Color( 0.498039, 0.423529, 0.341176, 1 )
+color = Color(0.498039, 0.423529, 0.341176, 1)
 
 [node name="Overlay" type="CanvasLayer" parent="." index="7"]
 
 [node name="Black" type="ColorRect" parent="Overlay" index="0"]
+visible = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 1)
 
 [node name="Red" type="TextureRect" parent="Overlay/Black" index="0"]
-self_modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 19 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("19")
 
 [node name="white" type="ColorRect" parent="Overlay/Black" index="1"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(1, 1, 1, 0)
 
 [node name="continue" type="AnimatedSprite2D" parent="Overlay/Black" index="2"]
 visible = false
-position = Vector2( 216.678, 75.6102 )
-frames = SubResource( 29 )
-animation = "continue"
+position = Vector2(216.678, 75.6102)
+frames = SubResource("SpriteFrames_3qlxj")
+animation = &"continue"
 frame = 1
 playing = true
 
 [node name="Dialog Label" type="RichTextLabel" parent="Overlay/Black" index="3"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -401,17 +895,10 @@ offset_left = 16.0
 offset_top = -2.0
 offset_right = -16.0
 offset_bottom = -8.0
-minimum_size = Vector2( 0, 8 )
-clip_contents = false
 mouse_filter = 2
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-custom_constants/table_h_separation = 3
-custom_constants/line_separation = 0
-custom_fonts/bold_font = ExtResource( 16 )
-custom_fonts/normal_font = ExtResource( 17 )
 bbcode_enabled = true
 scroll_active = false
-script = ExtResource( 12 )
+script = ExtResource("12")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -420,37 +907,34 @@ text_wait_action = "ok"
 text_cancel_action = "back"
 
 [node name="beep" type="AudioStreamPlayer" parent="Overlay/Black/Dialog Label" index="1"]
-stream = ExtResource( 15 )
+stream = ExtResource("15")
 volume_db = -7.222
-bus = "SFX"
 
 [node name="Music" type="AudioStreamPlayer" parent="." index="8"]
-stream = ExtResource( 13 )
-bus = "Music"
+stream = ExtResource("13")
 
 [node name="Alarm" type="AudioStreamPlayer" parent="." index="9"]
-stream = ExtResource( 14 )
+stream = ExtResource("14")
 volume_db = -5.777
-bus = "Underwater"
 
 [node name="WeirdSound" type="AudioStreamPlayer" parent="." index="10"]
-stream = ExtResource( 20 )
+stream = ExtResource("20")
 volume_db = -7.312
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
-anims/RESET = SubResource( 30 )
-anims/alarmstart = SubResource( 31 )
+libraries = {
+"": SubResource("AnimationLibrary_urc6c")
+}
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="12"]
-anims/RESET = SubResource( 32 )
-anims/red = SubResource( 33 )
+libraries = {
+"": SubResource("AnimationLibrary_wnt3h")
+}
 
 [node name="AnimationPlayer3" type="AnimationPlayer" parent="." index="13"]
 root_node = NodePath("../Overlay/Black/white")
-anims/RESET = SubResource( 34 )
-anims/whitening = SubResource( 35 )
-
-[connection signal="paused" from="Overlay/Black/Dialog Label" to="." method="_on_Dialog_Label_paused"]
-[connection signal="resumed" from="Overlay/Black/Dialog Label" to="." method="_on_Dialog_Label_resumed"]
+libraries = {
+"": SubResource("AnimationLibrary_f4vka")
+}
 
 [editable path="3DObjects/claire"]
