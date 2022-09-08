@@ -1,24 +1,28 @@
 {
 	"attributes":
 		{
-			"MHP": 30,
+			"MHP": 10,
 			"MSP": 10,
 			
 			"trait": "00AAFF",
 			
-			"HP": 30,
+			"hp-foreground": "00AAFF",
+			"hp-background": "0b3d53",
+			
+			"HP": 10,
 			"SP": 10,
 			
 			"AT": 4,
 			"DF": 2,
-			"SP": 5,
+			"AG": 5,
 			"IQ": 3,
 			 
 			"ST": 10,
 			
-			"spell_alias": "qspell"
+			"skill": "skills"
 		},
-	"attacks": [
+	"attacks":
+	[
 			{"pool":"twistedhallways", "id":"punches"},
 			{"pool":"twistedhallways", "id":"drip"},
 			{"pool":"twistedhallways", "id":"like"}
@@ -29,7 +33,7 @@
 			{"id":"wait", "icon":"wait"},
 			{"id":"spare", "icon":"spare"}
 		],
-	"spells":
+	"skills":
 		[
 			{"id":"bubble_wrap", "icon":"q_bubble_wrap"}
 		],

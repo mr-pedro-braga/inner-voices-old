@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/misc_lower_sq.wav-8ba20fc3d488b104b83299c9762ca49f.sample"
+uid="uid://b1rlc5me8ekl"
+path="res://.godot/imported/misc_lower_sq.wav-8ba20fc3d488b104b83299c9762ca49f.sample"
 
 [deps]
 
 source_file="res://assets/sounds/voices/misc_lower_sq.wav"
-dest_files=[ "res://.import/misc_lower_sq.wav-8ba20fc3d488b104b83299c9762ca49f.sample" ]
+dest_files=["res://.godot/imported/misc_lower_sq.wav-8ba20fc3d488b104b83299c9762ca49f.sample"]
 
 [params]
 

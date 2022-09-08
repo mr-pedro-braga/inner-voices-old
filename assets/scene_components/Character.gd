@@ -1,5 +1,5 @@
-tool
-extends KinematicBody2D
+@tool
+extends CharacterBody2D
 class_name Character
 
 
@@ -23,19 +23,20 @@ signal route_finished
 #-----------------------------------------#
 
 # The Character's ID (in lowercase, please)
-export(String) var character_id = "claire"
-export(String, "ALLY", "OPPONENT") var alignment = "OPPONENT"
+@export var character_id: String = "claire"
+
+@export_enum("ALLY", "OPPONENT") var alignment: int = 0
+
 var is_party_member := false
 var party_index := 0
 
 #-----------------------------------------#
 #   Movement Variables
 #-----------------------------------------#
-export var enabled := true
-export var current := false
+@export var enabled := true
+@export var current := false
 var ignoring_inputs := true
 var in_cutscene := false
-
 var animation_state := {
 	"lock_animation": false,
 	"lock_animation_name": "",
@@ -50,20 +51,21 @@ var animation_state := {
 	"prefix": ""
 }
 
-
 #-----------------------------------------#
-export var attacks = ""
-export var char_stats_file = "claire.attacks"
+@export_file("*.gd") var attacks := ""
+@export_file var char_stats_file 
 #-----------------------------------------#
 var is_running := false
 var in_route := false
 var in_path := false
-var velocity := Vector2.ZERO
 var input_vector := Vector2.ZERO
 var last_input_vector := Vector2.DOWN
 var mv_target := Vector2.ZERO
-export var angle := 2 setget set_angle
-export var Z := 0
+@export var angle := 2:
+	set(value):
+		# TODO: Manually copy the code from this method.
+		set_angle(value)
+@export var Z := 0
 
 func set_angle(value):
 	angle = value
@@ -100,24 +102,24 @@ func load_options():
 # Make this character face the center of the Battle.
 func face_center():
 	if position.x < BattleCore.battle.position.x:
-		scale.x = -abs(scale.x)
+		$AnimationHandler.scale.x = -abs($AnimationHandler.scale.x)
 	else:
-		scale.x =  abs(scale.x)
+		$AnimationHandler.scale.x =  abs($AnimationHandler.scale.x)
 
 # Sets the overworld SOUL effect transparency.
 func set_fx_soul_intensity(value:bool):
-	#$AnimatedSprite.material.set_shader_param("soul_effect_intensity", value)
+	#$AnimatedSprite2D.material.set_shader_param("soul_effect_intensity", value)
 	pass
 
 # Set wheter this character is being highlighted.
 func set_highlited(value:bool):
-	#$AnimatedSprite.material.set_shader_param("is_highlighted", value)
+	#$AnimatedSprite2D.material.set_shader_param("is_highlighted", value)
 	pass
 
 # Updates the current animation to "anim", if it exists.
 func set_animation(anim:String):
-	if $AnimatedSprite.frames.has_animation(anim) and $AnimatedSprite.animation!=anim and $AnimatedSprite.animation!=anim+"_talk":
-		$AnimatedSprite.play(anim)
+	if $AnimatedSprite2D.frames.has_animation(anim) and $AnimatedSprite2D.animation!=anim and $AnimatedSprite2D.animation!=anim+"_talk":
+		$AnimatedSprite2D.play(anim)
 
 func set_animation_property(property:String, value):
 	animation_state[property] = value
@@ -134,6 +136,8 @@ func update_animation():
 
 # Halt every action.
 func stop():
+	if animation_state.ovw_action in ["run", "walk"]:
+		animation_state.ovw_action = "idle"
 	is_running = false
 	mv_target = position
 	input_vector = Vector2.ZERO
@@ -149,7 +153,7 @@ func process_party_member(_i, _delta):
 var last_pos: Vector2 = Vector2.ZERO
 func add_follower_point(_point: Vector2):
 	var pathio = Characters.party_follower_path
-	var curve : Curve2D = pathio.get_curve()
+	var curve : Curve2D = pathio.curve
 		
 	if position.distance_to(last_pos) > 12:
 		curve.add_point(position)
@@ -167,13 +171,9 @@ func add_follower_point(_point: Vector2):
 
 ### Physics ###
 func _physics_process(delta):
-	update()
-	if Engine.editor_hint:
-		return # FROM HERE, CODE ONLY RUNS IN RUNTIME
 	
-	# If this character is moving, and the angle isn't locked, set it to face the current velocity.
-	if not animation_state.ovw_angle_lock and input_vector:
-		animation_state.ovw_angle = round(fposmod(last_input_vector.angle() * 8/TAU, 8))
+	if Engine.is_editor_hint():
+		return # FROM HERE, CODE ONLY RUNS IN RUNTIME
 	
 	#---------------#
 	#  Input
@@ -185,8 +185,8 @@ func _physics_process(delta):
 		if character_id == Characters.playable_character:
 			# Generate the input vector from the appropriate actions set in Project Settings.
 			input_vector = Vector2(
-				Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-				Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+				Input.get_axis(&"move_left", &"move_right"),
+				Input.get_axis(&"move_up", &"move_down")
 			)
 				
 			# Halt every action as you enter an event, a menu or a dialog.
@@ -234,7 +234,7 @@ func _physics_process(delta):
 	
 	# If character is enabled (and not in battle), move it.
 	if enabled and not Gameplay.GAMEMODE == Gameplay.GM.BATTLE:
-		move_and_slide(velocity)
+		move_and_slide()
 		# If character is not in a cutscene.
 		if not in_cutscene and not Gameplay.in_event and is_party_member:
 			
@@ -263,7 +263,7 @@ func _physics_process(delta):
 					Characters.mainchar_moving = velocity != Vector2.ZERO
 				
 				# Update actions between running, walking, charging the run.
-				if velocity or in_path:
+				if velocity != null or in_path != null:
 					# Set the action to "run" if this character is running, otherwise just walk.
 					animation_state.ovw_action = "run" if is_running else "walk"
 				elif animation_state.ovw_action in ["run_charge", "idle", "run", "walk"]:
@@ -309,7 +309,7 @@ func play_route():
 	while current_mv_instruction_index < mv_route.size():
 		current_mv_instruction = mv_route[current_mv_instruction_index]
 		current_mv_instruction_index+=1
-		yield(self, "route_line_finished")
+		await self.route_line_finished
 	
 	# Reset the route and max_speed.
 	mv_route = []
@@ -407,7 +407,7 @@ func process_route(delta):
 		"dialog":
 			# Call a dialog real quick.
 			Gameplay.dialog(current_mv_instruction["file"], current_mv_instruction["block"])
-			yield(get_node("/root/GameRoot/Dialog"), "dialog_section_finished")
+			await get_node(^"/root/GameRoot/Dialog").dialog_section_finished
 			emit_signal("route_line_finished")
 		"wait":
 			# Wait for a custom amount of time, without using yield().
@@ -442,6 +442,13 @@ func process_route(delta):
 			animation_state.ovw_angle = fposmod(int(position.angle_to(_tp) / 8), 8)
 			
 			emit_signal("route_line_finished")
+		"face_character":
+			# Face a certain target position
+			var _tp = Characters.map_characters[current_mv_instruction["character"]].global_position
+			print(current_mv_instruction["character"])
+			print(global_position)
+			animation_state.ovw_angle = fposmod(int((_tp - global_position).angle() * 8 / TAU), 8)
+			emit_signal("route_line_finished")
 		"destroy":
 			# Commit suicide.
 			emit_signal("route_line_finished")
@@ -453,7 +460,7 @@ func process_route(delta):
 #-----------------------------------------#
 
 func _ready():
-	if Engine.editor_hint: return
+	if Engine.is_editor_hint(): return
 	
 	# Update its reference in Party::map_characters
 	update_reference()
@@ -470,9 +477,11 @@ func _process(_delta):
 	
 	### Cast Raycast to correct position in order to interact with events!
 	var a = animation_state.ovw_angle * 45
-	get_node("RayCast2D").cast_to = 10 * Vector2(cos(deg2rad(a))*1.5, sin(deg2rad(a)))
+	get_node(^"RayCast2D").target_position = 10 * Vector2(cos(deg2rad(a))*1.5, sin(deg2rad(a)))
 	
-	if Engine.editor_hint: return
+	update()
+	
+	if Engine.is_editor_hint(): return
 	
 	### If this character is the main character, leave a trail of positions for the party followers to follow.
 	if character_id == Characters.playable_character:
@@ -486,6 +495,13 @@ func _process(_delta):
 		ignoring_inputs = false
 	
 	$AnimationHandler._animate()
+	
+	update()
+
+	# If this character is moving, and the angle isn't locked, set it to face the current velocity.
+	if not animation_state.ovw_angle_lock and input_vector:
+		animation_state.ovw_angle = round(fposmod(last_input_vector.angle() * 8/TAU, 8))
+	
 
 ## Configuration Warnings
 func _get_configuration_warning():

@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Cheer1.wav-18469ba2631aeb0cbfeb18d6d59b335a.sample"
+uid="uid://b7bn2ec24jk26"
+path="res://.godot/imported/SFX_Cheer1.wav-18469ba2631aeb0cbfeb18d6d59b335a.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Cheer1.wav"
-dest_files=[ "res://.import/SFX_Cheer1.wav-18469ba2631aeb0cbfeb18d6d59b335a.sample" ]
+dest_files=["res://.godot/imported/SFX_Cheer1.wav-18469ba2631aeb0cbfeb18d6d59b335a.sample"]
 
 [params]
 

@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/narrator.wav-ab7640c041c1de74f230423741072f5c.sample"
+uid="uid://cvjxx3o3jf7nc"
+path="res://.godot/imported/narrator.wav-ab7640c041c1de74f230423741072f5c.sample"
 
 [deps]
 
 source_file="res://assets/sounds/voices/narrator.wav"
-dest_files=[ "res://.import/narrator.wav-ab7640c041c1de74f230423741072f5c.sample" ]
+dest_files=["res://.godot/imported/narrator.wav-ab7640c041c1de74f230423741072f5c.sample"]
 
 [params]
 

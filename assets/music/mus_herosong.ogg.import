@@ -1,13 +1,14 @@
 [remap]
 
-importer="ogg_vorbis"
+importer="oggvorbisstr"
 type="AudioStreamOGGVorbis"
-path="res://.import/mus_herosong.ogg-5378f07f2ab43f0337ed37aa40816ea5.oggstr"
+uid="uid://brygml27rhwc1"
+path="res://.godot/imported/mus_herosong.ogg-5378f07f2ab43f0337ed37aa40816ea5.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/music/mus_herosong.ogg"
-dest_files=[ "res://.import/mus_herosong.ogg-5378f07f2ab43f0337ed37aa40816ea5.oggstr" ]
+dest_files=["res://.godot/imported/mus_herosong.ogg-5378f07f2ab43f0337ed37aa40816ea5.oggvorbisstr"]
 
 [params]
 

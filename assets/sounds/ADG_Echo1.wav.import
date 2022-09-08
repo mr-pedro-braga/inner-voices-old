@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/ADG_Echo1.wav-7e1b0e13eee9c9e3bea1a9d4004ad648.sample"
+uid="uid://dln4yetcdxwl4"
+path="res://.godot/imported/ADG_Echo1.wav-7e1b0e13eee9c9e3bea1a9d4004ad648.sample"
 
 [deps]
 
 source_file="res://assets/sounds/ADG_Echo1.wav"
-dest_files=[ "res://.import/ADG_Echo1.wav-7e1b0e13eee9c9e3bea1a9d4004ad648.sample" ]
+dest_files=["res://.godot/imported/ADG_Echo1.wav-7e1b0e13eee9c9e3bea1a9d4004ad648.sample"]
 
 [params]
 

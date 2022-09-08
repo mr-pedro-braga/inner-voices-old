@@ -1,21 +1,24 @@
 extends Node2D
 
-export var rate = 0.5 setget set_rate
+@export var rate = 0.5:
+	set(value):
+		# TODO: Manually copy the code from this method.
+		set_rate(value)
 var inverse_rate
 var index = 0.0
-export var one_shot = false
-export var random_offset:Vector2
+@export var one_shot = false
+@export var random_offset:Vector2
 
-export var emit = "bullet"
-export var set_angle = false
-export var bullet_sprite = "droplet"
-export var bullet_bundle = 1
-export var angle_offset_i = 0.0
-export var radius_offset_i = 0.0
-export var bullet_life = 3.0
-export var bullet_speed = 64.0
-export var bullet_speed_offset = 1.0
-export var bullet_modulate:Color = Color.white
+@export var emit = "bullet"
+@export var set_angle = false
+@export var bullet_sprite = "droplet"
+@export var bullet_bundle = 1
+@export var angle_offset_i = 0.0
+@export var radius_offset_i = 0.0
+@export var bullet_life = 3.0
+@export var bullet_speed = 64.0
+@export var bullet_speed_offset = 1.0
+@export var bullet_modulate:Color = Color.WHITE
 var damage
 var life_time = 0.0
 var scene_bullet
@@ -34,7 +37,7 @@ func _ready():
 		queue_free()
 		return
 	self._create_timer(self, life_time, true, "_emit_timer_end_signal")
-	yield(self, "timer_end")
+	await self.timer_end
 	queue_free()
 
 var timeout = 0.0
@@ -49,8 +52,8 @@ func _process(delta):
 func spawn_bullet(count=1):
 	var offset:Vector2 = vrandom(random_offset)
 	for _i in range(count):
-		var k = scene_bullet.instance()
-		k.get_node("Damage").damage = damage
+		var k = scene_bullet.instantiate()
+		k.get_node(^"Damage").damage = damage
 		add_child(k)
 		k.position = offset
 		var a = deg2rad(angle_offset_i * index + 180)

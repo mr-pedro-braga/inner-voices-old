@@ -1,4 +1,4 @@
 extends Resource
 class_name FileEntry
 
-export(String, FILE) var file_path
+@export var file_path: String, FILE

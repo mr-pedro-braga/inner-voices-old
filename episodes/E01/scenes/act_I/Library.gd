@@ -1,15 +1,15 @@
 extends DefaultScene
 
-onready var camera = get_node("Camera2D")
-onready var andy = get_node("3DObjects/andy")
-onready var bruno = get_node("3DObjects/bruno")
+@onready var camera = get_node(^"Camera2D")
+@onready var andy = get_node(^"3DObjects/andy")
+@onready var bruno = get_node(^"3DObjects/bruno")
 
-export(bool) var debug
+@export var debug: bool
 
 func evt_exit(_id, _parameter, _arguments):
 	if not Memory.has_switch("joke_1") and not debug:
 		DCCore.dialog("places/new_horizon/school_lines", "library_dont_leave")
-		yield(DCCore, "dialog_finished")
+		await DCCore.dialog_finished
 	else:
 		if Memory.sget("joke_1") or debug:
 			Memory.switch(Memory.EPISODE, "section", 1)
@@ -19,9 +19,8 @@ func evt_exit(_id, _parameter, _arguments):
 			DCCore.dialog("places/new_horizon/school_lines", "library_leave_attack_1")
 			_id.queue_free()
 			Memory.switch(Memory.EPISODE, "section", 1)
-			yield(DCCore, "dialog_finished")
+			await DCCore.dialog_finished
 			Gameplay.warp(_parameter, _arguments[0], _arguments[1], _arguments[2])
-	
 
 func evt_andy(_id, _parameter, _arguments):
 	if debug:
@@ -33,7 +32,7 @@ func evt_andy(_id, _parameter, _arguments):
 	Memory.switch(Memory.EPISODE, "joke_1", false)
 	#andy.action = "sit_look"
 	DCCore.dialog("places/new_horizon/school_lines", "library_talk_andy")
-	yield(DCCore, "dialog_finished")
+	await DCCore.dialog_finished
 	Utils.leave_event()
 	Characters.add_party_member("andy")
 
@@ -55,30 +54,30 @@ func _ready():
 		
 		var k = dialog_box.rect_position.y
 
-		yield(get_tree().create_timer(0.5), "timeout")
+		await get_tree().create_timer(0.5).timeout
 		Utils.play_transition("set_black")
 		
 		DCCore.use_portraits = false
 		dialog_box.rect_position.y = -55
 		DCCore.dialog("places/new_horizon/school_lines", "cutscene_2_1")
-		yield(DCCore, "dialog_finished")
+		await DCCore.dialog_finished
 
 		dialog_box.rect_position.y = -65
 		DCCore.dialog("places/new_horizon/school_lines", "cutscene_2_2")
-		yield(DCCore, "dialog_finished")
+		await DCCore.dialog_finished
 		DCCore.use_portraits = true
 
 		dialog_box.rect_position.y = k
-		yield(get_tree().create_timer(1.0), "timeout")
+		await get_tree().create_timer(1.0).timeout
 
 		Utils.play_transition("set_clear")
 		ScreenCore.global_camera.clear_current()
 		$Camera2D.make_current()
 
 		DCCore.dialog("places/new_horizon/school_lines", "cutscene_2_3")
-		yield(DCCore, "dialog_finished")
+		await DCCore.dialog_finished
 
 		Utils.leave_event()
 
 func _process(_delta):
-	camera.offset = Vector2(0, 0.5*(135 - get_node("/root/GameRoot/HUD/bottom_black_bar").rect_position.y))
+	camera.offset = Vector2(0, 0.5*(135 - get_node(^"/root/GameRoot/HUD/bottom_black_bar").rect_position.y))

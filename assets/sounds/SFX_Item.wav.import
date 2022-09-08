@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Item.wav-9388818381a7064766e777ddd8a63c24.sample"
+uid="uid://cpd8v13ic47iy"
+path="res://.godot/imported/SFX_Item.wav-9388818381a7064766e777ddd8a63c24.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Item.wav"
-dest_files=[ "res://.import/SFX_Item.wav-9388818381a7064766e777ddd8a63c24.sample" ]
+dest_files=["res://.godot/imported/SFX_Item.wav-9388818381a7064766e777ddd8a63c24.sample"]
 
 [params]
 

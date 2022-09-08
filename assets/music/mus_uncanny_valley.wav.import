@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_uncanny_valley.wav-0dc01797050500731326d127914791a8.sample"
+uid="uid://ilvpmqr6vhpa"
+path="res://.godot/imported/mus_uncanny_valley.wav-0dc01797050500731326d127914791a8.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_uncanny_valley.wav"
-dest_files=[ "res://.import/mus_uncanny_valley.wav-0dc01797050500731326d127914791a8.sample" ]
+dest_files=["res://.godot/imported/mus_uncanny_valley.wav-0dc01797050500731326d127914791a8.sample"]
 
 [params]
 

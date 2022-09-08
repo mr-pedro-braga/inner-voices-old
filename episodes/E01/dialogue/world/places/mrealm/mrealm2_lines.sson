@@ -1,4 +1,4 @@
---house_4
+--pizza_house
 	PizzaMan (): Hm?\n- Is it the pizza guy?
 		Yes (talk_good):
 			PizzaMan (): Weird, I didn't order any pizza...
@@ -24,8 +24,8 @@
 	pose charlie scared_down 2
 	shake
 	bgm resume
-	Charlie (aaa): ¬SAaaaaaaaaaa¬N
-	Charlie (aaa): ¬SMy word, oh my¬N
+	Charlie (aaa): [shake]Aaaaaaaaaaa[/shake]
+	Charlie (aaa): [shake]My word, oh my[/shake]
 	wait 1.0
 	pose charlie scared_oh 2
 	Charlie (): One second...
@@ -34,12 +34,12 @@
 		Yes (talk_good):
 			pose charlie scared_down 2
 			shake
-			Charlie (aaa): ¬SAaaaaaaaaaaaa¢¢\n- A human person!
+			Charlie (aaa): [shake]Aaaaaaaaaaaaa¢¢\n- A human person![/shake]
 		No (talk_bad):
 			pose charlie scared_down 2
 			shake
-			Charlie (aaa): ¬SAaaaaaaaaaaaa¢¢\n- What the heck ARE you then?!?!
-	Charlie (aaa): ¬SI'm gonna bloody die...¬N
+			Charlie (aaa): [shake]Aaaaaaaaaaaaa¢¢\n- What the heck ARE you then?!?![/shake]
+	Charlie (aaa): [shake]I'm gonna bloody die...[/shake]
 	wait 1.0
 	pose charlie scared_oh 2
 	Charlie (): A-¢¢another second...
@@ -48,13 +48,13 @@
 		Yes (talk_good):
 			pose charlie scared_down 2
 			shake
-			Charlie (aaa): ¬SAaaaaaaaaaaaa¢¢\n- I'm gonna die,¢¢ and for real!
+			Charlie (aaa): [shake]Aaaaaaaaaaaaa¢¢[/shake]\n- [shake]I'm gonna die,¢¢ and for real![/shake]
 		No (talk_bad):
 			pose charlie scared_down 2
 			shake
-			Charlie (aaa): ¬SAaaaaaaaaaaaa¢¢\n- Am I getting MAD???"
-			Charlie (aaa): ¬SIs this what isolation does?
-	Charlie (aaa): ¬SAaaaaaa¬N
+			Charlie (aaa): [shake]Aaaaaaaaaaaaa¢¢\n- Am I getting MAD???"[/shake]
+			Charlie (aaa): [shake]Is this what isolation does?[/shake]
+	Charlie (aaa): [shake]Aaaaaaa[/shake]
 	move claire
 		mvto -114 256
 	Claire (): I'm not gona... hurt you...
@@ -100,9 +100,9 @@
 	HatCat (): Let's play again, mate!
 
 --hatcatgotit2
-HatCat (): Nyaa, ha ha!
-HatCat (): Fantastic!
-HatCat (): You really are quite¢.¢.¢. Fantastic...
+	HatCat (): Nyaa, ha ha!
+	HatCat (): Fantastic!
+	HatCat (): You really are quite¢.¢.¢. Fantastic...
 
 --hatcatlostit
 	HatCat (): Nyaa, ha ha...
@@ -128,7 +128,7 @@ HatCat (): You really are quite¢.¢.¢. Fantastic...
 --sign1
 	* (Something written in an odd language)."
 	text_mode kuroi
-	* lito lit' deriako,\n   merune dare ko vei."
+	* lito lit' deriako, merune dare ko vei."
 	text_mode latin
 
 --hallwayknight
@@ -137,19 +137,19 @@ HatCat (): You really are quite¢.¢.¢. Fantastic...
 --spri_1
 	* By second nature, you reach to it...
 	Spri (): Wassup Claire, ma boss!
-	Spri (): Yooo!!!! so much time passed!
+	Spri (): Yooo!!!!¢¢ So much time¢ passed!
 	Spri (): Hm?¢¢ What's with your face?
-	Spri (): Were you expecting ¬C01something else¬C00?
+	Spri (): Were you expecting ¢¢¢¢[color=yellow]something else[/color]?
 	Spri (): I am not shocked.\n- Noone never expects me, huh.
 	Spri (): I don't even care anymore.
 
 --spri_2
-	* This lonely city amidst the void\nfills you with...¢¢ something,¢¢ I guess???
+	* This lonely city amidst the void fills you with...¢¢¢¢ something,¢¢¢¢ I guess???
 
 --bonsy_1
 	VoiceLight (): Hm?
 	VoiceLight (): Oh my,¢¢ it's the hero of SPIRIT!
-	VoiceLight (): You know,¢¢ with all that is\nhappening, it's hard to stay happy...
+	VoiceLight (): You know,¢¢ with all that is happening, it's hard to stay happy...
 	VoiceLight (): I feel so.¢.¢.¢ so hollow.
 	VoiceLight (): That's why I bought this girl-shaped balloon.
 	VoiceLight (): To keep me company.

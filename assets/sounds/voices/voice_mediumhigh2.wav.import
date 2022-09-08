@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/voice_mediumhigh2.wav-ebd56482aedfbd4bc8d9493edcfcf054.sample"
+uid="uid://bnsfb8dl5kan2"
+path="res://.godot/imported/voice_mediumhigh2.wav-ebd56482aedfbd4bc8d9493edcfcf054.sample"
 
 [deps]
 
 source_file="res://assets/sounds/voices/voice_mediumhigh2.wav"
-dest_files=[ "res://.import/voice_mediumhigh2.wav-ebd56482aedfbd4bc8d9493edcfcf054.sample" ]
+dest_files=["res://.godot/imported/voice_mediumhigh2.wav-ebd56482aedfbd4bc8d9493edcfcf054.sample"]
 
 [params]
 

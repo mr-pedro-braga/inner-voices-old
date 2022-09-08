@@ -1,13 +1,14 @@
 [remap]
 
-importer="ogg_vorbis"
+importer="oggvorbisstr"
 type="AudioStreamOGGVorbis"
-path="res://.import/SFX_Menu_OK.ogg-9b3925e77765519e7606d2e2d0c50eee.oggstr"
+uid="uid://mccmor6ydmc1"
+path="res://.godot/imported/SFX_Menu_OK.ogg-9b3925e77765519e7606d2e2d0c50eee.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/UI/SFX_Menu_OK.ogg"
-dest_files=[ "res://.import/SFX_Menu_OK.ogg-9b3925e77765519e7606d2e2d0c50eee.oggstr" ]
+dest_files=["res://.godot/imported/SFX_Menu_OK.ogg-9b3925e77765519e7606d2e2d0c50eee.oggvorbisstr"]
 
 [params]
 

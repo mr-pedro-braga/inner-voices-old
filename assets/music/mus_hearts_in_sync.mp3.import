@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ioml3ikcb87w"
+path="res://.godot/imported/mus_hearts_in_sync.mp3-d281f48c98255f4d83e123c582a04c64.mp3str"
+
+[deps]
+
+source_file="res://assets/music/mus_hearts_in_sync.mp3"
+dest_files=["res://.godot/imported/mus_hearts_in_sync.mp3-d281f48c98255f4d83e123c582a04c64.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

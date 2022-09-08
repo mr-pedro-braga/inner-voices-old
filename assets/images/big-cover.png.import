@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/big-cover.png-670fe4c0d4da6241876ceb8abbff6d90.image"
+uid="uid://s5halm457yw7"
+path="res://.godot/imported/big-cover.png-670fe4c0d4da6241876ceb8abbff6d90.image"
 
 [deps]
 
 source_file="res://assets/images/big-cover.png"
-dest_files=[ "res://.import/big-cover.png-670fe4c0d4da6241876ceb8abbff6d90.image" ]
+dest_files=["res://.godot/imported/big-cover.png-670fe4c0d4da6241876ceb8abbff6d90.image"]
 
 [params]
 

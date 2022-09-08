@@ -1,35 +1,36 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/Claire-Inside-Emission-Animated2.png-99e19a4534921175ae4ea282202ff8ae.stex"
+type="CompressedTexture2D"
+uid="uid://doqn4s2cd4ywx"
+path.s3tc="res://.godot/imported/Claire-Inside-Emission-Animated2.png-99e19a4534921175ae4ea282202ff8ae.s3tc.ctex"
+path.etc2="res://.godot/imported/Claire-Inside-Emission-Animated2.png-99e19a4534921175ae4ea282202ff8ae.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc", "etc2"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/map_making/special_scenes/claire_dream_prologue/Claire-Inside-Emission-Animated2.png"
-dest_files=[ "res://.import/Claire-Inside-Emission-Animated2.png-99e19a4534921175ae4ea282202ff8ae.stex" ]
+dest_files=["res://.godot/imported/Claire-Inside-Emission-Animated2.png-99e19a4534921175ae4ea282202ff8ae.s3tc.ctex", "res://.godot/imported/Claire-Inside-Emission-Animated2.png-99e19a4534921175ae4ea282202ff8ae.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/lossy_quality=0.7
-compress/hdr_mode=0
+compress/hdr_compression=1
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+compress/streamed=false
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
 process/normal_map_invert_y=false
-stream=false
-size_limit=0
-detect_3d=false
-svg/scale=1.0
+process/hdr_as_srgb=false
+process/size_limit=0
+detect_3d/compress_to=0

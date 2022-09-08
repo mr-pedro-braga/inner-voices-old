@@ -13,7 +13,7 @@ layer = -1
 [node name="ColorRect" type="ColorRect" parent="Background"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color(0, 0, 0, 1)
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -22,4 +22,4 @@ __meta__ = {
 
 [node name="Anchors" type="Node2D" parent="."]
 
-[node name="3DObjects" type="YSort" parent="."]
+[node name="3DObjects" type="Node2D" parent="."]

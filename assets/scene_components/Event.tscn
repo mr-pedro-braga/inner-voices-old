@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-trigger_area = Vector2( 0, 0 )
+trigger_area = Vector2(0, 0)

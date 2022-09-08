@@ -1,8 +1,8 @@
 extends Node
 
 var text_speed_scale = 0.5
-onready var dialog_box : SmartRichTextLabel = get_node("/root/GameRoot/HUD/bottom_black_bar/Dialog Label")
-onready var dialog_face := get_node("/root/GameRoot/HUD/TextIndicators/Portrait")
+@onready var dialog_box : RichTextLabel = get_node(^"/root/GameRoot/HUD/bottom_black_bar/Dialog Label")
+@onready var dialog_face := get_node(^"/root/GameRoot/HUD/TextIndicators/Portrait")
 var _dialog_face_on_screen := false
 
 signal dialog_ok
@@ -64,9 +64,7 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 					last_character_mroute = k["character"]
 					Characters.map_characters[k["character"]].move_route(k["route"])
 				"await":
-					if not Characters.map_characters.has(k["character"]):
-						continue
-					yield(Characters.map_characters[last_character_mroute], "route_finished")
+					await Characters.map_characters[last_character_mroute].route_finished
 				"pose":
 					if not Characters.map_characters.has(k["character"]):
 						continue
@@ -79,33 +77,43 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 							var a = lerp_angle(old_angle*pi4, new_angle*pi4, (i+1)/d)/pi4
 							Characters.map_characters[k["character"]].set_animation_property("ovw_angle", a)
 							Characters.map_characters[k["character"]].update_animation()
-							yield(get_tree().create_timer(0.05), "timeout")
+							await get_tree().create_timer(0.05).timeout
 						Characters.map_characters[k.character].set_animation_property("ovw_angle", int(new_angle) % 8)
 					if k.has("action"):
 						Characters.map_characters[k["character"]].set_animation_property("ovw_action", k["action"])
 					Characters.map_characters[k["character"]].update_animation()
+				"pose":
+					if not Characters.map_characters.has(k["character"]):
+						continue
+					match k.action:
+						"join":
+							Characters.add_party_member(k.character)
+						"add":
+							Characters.add_party_member(k.character)
+						"remove":
+							Characters.remove_party_member(k.character)
 				"wait":
 					dialog_box.text = ""
 					slide_faces_out()
-					yield(get_tree().create_timer(k.amount), "timeout")
+					await get_tree().create_timer(k.amount).timeout
 				"dialog":
 					# Checks if the dialog gives any bust sprite
 					if k.has("bust_left"):
 						if k["bust_left"] == "none":
-							if get_node("/root/GameRoot/HUD/LeftBust").on_screen:
-								get_node("/root/GameRoot/HUD/LeftBust").on_screen = false
-								get_node("/root/GameRoot/HUD/LeftBust/Anim").play_backwards("in_right")
-						elif not get_node("/root/GameRoot/HUD/LeftBust").on_screen:
-							get_node("/root/GameRoot/HUD/LeftBust").on_screen = true
-							get_node("/root/GameRoot/HUD/LeftBust/Anim").play("in_right")
+							if get_node(^"/root/GameRoot/HUD/LeftBust").on_screen:
+								get_node(^"/root/GameRoot/HUD/LeftBust").on_screen = false
+								get_node(^"/root/GameRoot/HUD/LeftBust/Anim").play_backwards("in_right")
+						elif not get_node(^"/root/GameRoot/HUD/LeftBust").on_screen:
+							get_node(^"/root/GameRoot/HUD/LeftBust").on_screen = true
+							get_node(^"/root/GameRoot/HUD/LeftBust/Anim").play("in_right")
 					if k.has("bust_right"):
 						if k["bust_right"] == "none":
-							if get_node("/root/GameRoot/HUD/RightBust").on_screen:
-								get_node("/root/GameRoot/HUD/RightBust").on_screen = false
-								get_node("/root/GameRoot/HUD/RightBust/Anim").play_backwards("in_right")
-						elif not get_node("/root/GameRoot/HUD/RightBust").on_screen:
-							get_node("/root/GameRoot/HUD/RightBust").on_screen = true
-							get_node("/root/GameRoot/HUD/RightBust/Anim").play("in_right")
+							if get_node(^"/root/GameRoot/HUD/RightBust").on_screen:
+								get_node(^"/root/GameRoot/HUD/RightBust").on_screen = false
+								get_node(^"/root/GameRoot/HUD/RightBust/Anim").play_backwards("in_right")
+						elif not get_node(^"/root/GameRoot/HUD/RightBust").on_screen:
+							get_node(^"/root/GameRoot/HUD/RightBust").on_screen = true
+							get_node(^"/root/GameRoot/HUD/RightBust/Anim").play("in_right")
 
 					var portrait_name
 					var voice
@@ -125,11 +133,11 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 
 					if face_anim == "none" or not DCCore.use_portraits:
 						if _dialog_face_on_screen:
-							dialog_face.get_node("Anim").play("out")
+							dialog_face.get_node(^"Anim").play("out")
 						_dialog_face_on_screen = false
 					else:
 						if not _dialog_face_on_screen:
-							dialog_face.get_node("Anim").play("in")
+							dialog_face.get_node(^"Anim").play("in")
 						_dialog_face_on_screen = true
 						if dialog_face.frames.has_animation(face_anim):
 							dialog_face.animation = face_anim
@@ -141,25 +149,25 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 						write_to(dialog_box, k.prefix + content, voice)
 					else:
 						write_to(dialog_box, content, voice)
-					yield(dialog_box, "finished")
+					await dialog_box.finished
 
 					if k.has("has_choice"):
 						if k.has_choice:
 							# The choice part
 							DCCore.choice(k.prefix + content, k.texts, k.icons, -16, dialog_box)
-							var _choice_accepted = yield(DCCore, "choice_finished")
+							var _choice_accepted = await DCCore.choice_finished
 
 							# In case there are answers, play the selected one and wait
 							# until the answers finish.
 							play(k.answers[DCCore.choice_result], "", false, level + 1)
-							while yield(self, "wait") != level + 1:
+							while await self.wait != level + 1:
 								pass
 				"switch":
 					Memory.switch(k.switch_type, k.name, k.value)
 				"sfx":
 					AudioManager.play(k.name)
 				"function":
-					var scene = get_node("/root/GameRoot/World/Scene/")
+					var scene = get_node(^"/root/GameRoot/World3D/Scene/")
 					if not scene.has_method(k.name):
 						Utils.throw_error("The current scene does not have the function "+str(k.name))
 						continue
@@ -177,7 +185,7 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 								k.file, k.name
 							)
 				"screen":
-					var t = get_node("/root/GameRoot/Transition/TransitionPlayer")
+					var t = get_node(^"/root/GameRoot/Transition/TransitionPlayer")
 					match k["action"]:
 						"turn":
 							if k.parameter:
@@ -193,23 +201,23 @@ func play(in_dialog, sub_id, is_master=true, level = 0):
 	if is_master:
 		DCCore.on_dialog_finished()
 		if not Gameplay.GAMEMODE == Gameplay.GM.BATTLE and not DCCore.in_cutscene and not MenuCore.in_mmenu:
-			get_node("/root/GameRoot/HUD/black_bars").play("dialog_pop_out")
-			get_node("/root/GameRoot/HUD/black_bars_top").play("menu_out")
+			get_node(^"/root/GameRoot/HUD/black_bars").play("dialog_pop_out")
+			get_node(^"/root/GameRoot/HUD/black_bars_top").play("menu_out")
 		dialog_box.clear()
 		slide_faces_out()
 	else:
 		emit_signal("wait", level)
 
 func slide_faces_out():
-	if get_node("/root/GameRoot/HUD/LeftBust").on_screen:
-		get_node("/root/GameRoot/HUD/LeftBust").on_screen = false
-		get_node("/root/GameRoot/HUD/LeftBust/Anim").play_backwards("in_right")
-	if get_node("/root/GameRoot/HUD/RightBust").on_screen:
-		get_node("/root/GameRoot/HUD/RightBust").on_screen = false
-		get_node("/root/GameRoot/HUD/RightBust/Anim").play_backwards("in_right")
+	if get_node(^"/root/GameRoot/HUD/LeftBust").on_screen:
+		get_node(^"/root/GameRoot/HUD/LeftBust").on_screen = false
+		get_node(^"/root/GameRoot/HUD/LeftBust/Anim").play_backwards("in_right")
+	if get_node(^"/root/GameRoot/HUD/RightBust").on_screen:
+		get_node(^"/root/GameRoot/HUD/RightBust").on_screen = false
+		get_node(^"/root/GameRoot/HUD/RightBust/Anim").play_backwards("in_right")
 	if _dialog_face_on_screen:
 		_dialog_face_on_screen = false
-		dialog_face.get_node("Anim").play("out")
+		dialog_face.get_node(^"Anim").play("out")
 
 func playc(id, sub_id, choices, icons, offset, mode=0):
 	dialog_box = DCCore.dialog_box
@@ -217,7 +225,9 @@ func playc(id, sub_id, choices, icons, offset, mode=0):
 		var file = File.new()
 		file.open("res://assets/dialogs/" + DCCore.lang + "/" + id + ".json", file.READ)
 		var text = file.get_as_text()
-		var current_dialog = parse_json(text)
+		var json = JSON.new()
+		json.parse(text)
+		var current_dialog = json.get_data()
 		file.close()
 		var in_dialog = current_dialog
 		var dialog = in_dialog[sub_id]
@@ -229,7 +239,7 @@ func playc(id, sub_id, choices, icons, offset, mode=0):
 		
 		write_to(dialog_box, k["content"], k["speaker"])
 		
-		yield(dialog_box, "finished")
+		await dialog_box.finished
 		DCCore.choice(k["content"], choices, icons, offset, dialog_box, mode)
 	else:
 		DCCore.choice("", choices, icons, offset, dialog_box, mode)
@@ -237,23 +247,22 @@ func playc(id, sub_id, choices, icons, offset, mode=0):
 	emit_signal("dialog_section_finished")
 	dialog_box.text_delay = 0.05
 
-
 func simple_choice(choices, icons, offset, mode=0, text_pos=0, question="...?"):
 	dialog_box = DCCore.dialog_box
 	DCCore.choice(question, choices, icons, offset, dialog_box, mode, text_pos)
-	yield(DCCore, "choice_finished")
+	await DCCore.choice_finished
 	Gameplay.in_dialog = false
 	emit_signal("dialog_section_finished")
 
 func simple_char_choice(chars, text_pos=0, question="On whom...?"):
 	dialog_box = DCCore.dialog_box
 	DCCore.char_choice(question, chars, text_pos)
-	yield(DCCore, "choice_finished")
+	await DCCore.choice_finished
 	Gameplay.in_dialog = false
 	emit_signal("dialog_section_finished")
 
 # Write something step by step in a dialog box
-func write_to(db:SmartRichTextLabel, content, voice):
+func write_to(db:RichTextLabel, content, voice):
 	DCCore.is_writing = true
 	
 	db.write(content)
@@ -266,6 +275,6 @@ func write_to(db:SmartRichTextLabel, content, voice):
 		SpeechSynth.stop()
 		Utils.speak(db.text.replace("* ", "").replace("- ", ""))
 	
-	yield(db, "finished")
+	await db.finished
 	
 	DCCore.is_writing = false

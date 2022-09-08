@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Claire_Fanfarre.wav-be36988dc4eef9d00d256f50e8fdf2e8.sample"
+uid="uid://cnolsiutrpw8u"
+path="res://.godot/imported/SFX_Claire_Fanfarre.wav-be36988dc4eef9d00d256f50e8fdf2e8.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Claire_Fanfarre.wav"
-dest_files=[ "res://.import/SFX_Claire_Fanfarre.wav-be36988dc4eef9d00d256f50e8fdf2e8.sample" ]
+dest_files=["res://.godot/imported/SFX_Claire_Fanfarre.wav-be36988dc4eef9d00d256f50e8fdf2e8.sample"]
 
 [params]
 

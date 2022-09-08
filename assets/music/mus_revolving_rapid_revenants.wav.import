@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_revolving_rapid_revenants.wav-3043101c0490e2d5c12171b527ddedde.sample"
+uid="uid://dysxjsh2racni"
+path="res://.godot/imported/mus_revolving_rapid_revenants.wav-3043101c0490e2d5c12171b527ddedde.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_revolving_rapid_revenants.wav"
-dest_files=[ "res://.import/mus_revolving_rapid_revenants.wav-3043101c0490e2d5c12171b527ddedde.sample" ]
+dest_files=["res://.godot/imported/mus_revolving_rapid_revenants.wav-3043101c0490e2d5c12171b527ddedde.sample"]
 
 [params]
 

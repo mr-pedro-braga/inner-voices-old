@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=15 format=2]
 
-[ext_resource path="res://assets/images/sprites_battle/kuro.png" type="Texture" id=1]
-[ext_resource path="res://assets/images/sprites_battle/heart.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/sprites_battle/kuro.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/images/sprites_battle/heart.png" type="Texture2D" id=2]
 
 
 

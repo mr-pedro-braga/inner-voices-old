@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bj6jodfqmd5fr"
+path="res://.godot/imported/mus_dreams_of_a_child.mp3-b02a0d3726cd203ffb59001e45e93f8e.mp3str"
+
+[deps]
+
+source_file="res://assets/music/mus_dreams_of_a_child.mp3"
+dest_files=["res://.godot/imported/mus_dreams_of_a_child.mp3-b02a0d3726cd203ffb59001e45e93f8e.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

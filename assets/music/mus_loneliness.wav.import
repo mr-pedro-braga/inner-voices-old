@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_loneliness.wav-02a500b8a1c114f3e91464557ba92dde.sample"
+uid="uid://b2djkf7f6qbi2"
+path="res://.godot/imported/mus_loneliness.wav-02a500b8a1c114f3e91464557ba92dde.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_loneliness.wav"
-dest_files=[ "res://.import/mus_loneliness.wav-02a500b8a1c114f3e91464557ba92dde.sample" ]
+dest_files=["res://.godot/imported/mus_loneliness.wav-02a500b8a1c114f3e91464557ba92dde.sample"]
 
 [params]
 

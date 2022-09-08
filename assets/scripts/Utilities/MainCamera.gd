@@ -1,15 +1,15 @@
 extends Node
 
-onready var global_camera = get_node("/root/GameRoot/World/Camera")	# Reference to the main camera
+@onready var global_camera = get_node(^"/root/GameRoot/World/Camera3D")	# RefCounted to the main camera
 var character_camera_offset = -16
 var zoom_offset = 0
 var camera_position = Vector2.ZERO
 var camera_attached := false
-export var zoom := 1.0 setget update_zoom
+@export var zoom := 1.0:
+	set(value):
+		# TODO: Manually copy the code from this method.
+		zoom = (value)
 var zoom_drag := 1.0
-
-func update_zoom(_zoom):
-	zoom = _zoom
 
 func update_zoom_instant(_zoom):
 	zoom = _zoom
@@ -28,7 +28,7 @@ func process_camera(_delta):
 	if not Gameplay.is_game_running or Gameplay.LOADING:
 		return
 		
-	# Update Main Camera Zoom
+	# Update Main Camera3D Zoom
 	zoom_drag = move_toward(zoom_drag, zoom, 0.05)
 	global_camera.zoom = Vector2(zoom_drag, zoom_drag)
 	

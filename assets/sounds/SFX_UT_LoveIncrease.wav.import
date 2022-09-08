@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_UT_LoveIncrease.wav-3ff07d9904b83d23d65c702394fbc25d.sample"
+uid="uid://bbm12bxv5ipb7"
+path="res://.godot/imported/SFX_UT_LoveIncrease.wav-3ff07d9904b83d23d65c702394fbc25d.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_UT_LoveIncrease.wav"
-dest_files=[ "res://.import/SFX_UT_LoveIncrease.wav-3ff07d9904b83d23d65c702394fbc25d.sample" ]
+dest_files=["res://.godot/imported/SFX_UT_LoveIncrease.wav-3ff07d9904b83d23d65c702394fbc25d.sample"]
 
 [params]
 

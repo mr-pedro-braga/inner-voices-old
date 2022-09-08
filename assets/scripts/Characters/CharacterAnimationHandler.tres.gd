@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node2D
 class_name CharacterAnimationHandler
 
@@ -8,9 +8,9 @@ enum {
 	ACTIONS_ONLY = 2
 }
 
-export var enabled = true
-export var animation_mode = DIRECTIONAL_8
-export(NodePath) var animation_target_path
+@export var enabled = true
+@export var animation_mode = DIRECTIONAL_8
+@export var animation_target_path: NodePath
 var animation_target : AnimationPlayer
 var parent : Character
 
@@ -25,7 +25,7 @@ func _animate():
 	if not animation_target:
 		return
 	
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		_update_animation_editor()
 	else:
 		_update_animation()

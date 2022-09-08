@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b8ui4humsw0st"
+path="res://.godot/imported/mus_starfall_village.mp3-e57ce4a22578ad27558a66f5dc009520.mp3str"
+
+[deps]
+
+source_file="res://assets/music/mus_starfall_village.mp3"
+dest_files=["res://.godot/imported/mus_starfall_village.mp3-e57ce4a22578ad27558a66f5dc009520.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

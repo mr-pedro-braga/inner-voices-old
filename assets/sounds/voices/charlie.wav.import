@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/charlie.wav-5f6050aed53e6ac19f0f162bba741087.sample"
+uid="uid://b85vbc3ohw7u0"
+path="res://.godot/imported/charlie.wav-5f6050aed53e6ac19f0f162bba741087.sample"
 
 [deps]
 
 source_file="res://assets/sounds/voices/charlie.wav"
-dest_files=[ "res://.import/charlie.wav-5f6050aed53e6ac19f0f162bba741087.sample" ]
+dest_files=["res://.godot/imported/charlie.wav-5f6050aed53e6ac19f0f162bba741087.sample"]
 
 [params]
 

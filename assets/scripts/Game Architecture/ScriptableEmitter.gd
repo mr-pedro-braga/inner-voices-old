@@ -1,7 +1,7 @@
 extends Node2D
 class_name ScriptableEmitter
 
-var bullet_scene = preload("res://assets/battle/battle_pattern_sprites/battle_sub_patterns/bullet.tscn")
+var bullet_scene = load("res://assets/battle/battle_pattern_sprites/battle_sub_patterns/bullet.tscn")
 var battle_box
 var sscript := []
 var escript := []
@@ -18,7 +18,7 @@ var damage = {
 var attack_timer_clock
 
 func setup():
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	attack_timer_clock = Timer.new()
 	add_child(attack_timer_clock)
 	attack_timer_clock.wait_time = 0.1
@@ -26,8 +26,8 @@ func setup():
 	match attack_settings.type:
 		# If Type is Bullets, connect "tick" to the Timer's timeout.
 		1:
-			#battle_box.get_node("Anim").play(attack_settings.anim_in)
-			attack_timer_clock.connect("timeout", self, "tick")
+			#battle_box.get_node(^"Anim").play(attack_settings.anim_in)
+			attack_timer_clock.connect(&"timeout", self.tick)
 			attack_timer_clock.start()
 
 func init_emitter():
@@ -52,7 +52,7 @@ var burst_size = 8
 func tick():
 	var burst_index = 0
 	for b in range(burst_size):
-		var i = bullet_scene.instance()
+		var i = bullet_scene.instantiate()
 		i.sscript = sscript
 		i.unique_id = bullets_spawned
 		i.burst_id = bursts_spawned

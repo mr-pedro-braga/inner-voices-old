@@ -4,7 +4,10 @@
 			"MHP": 10,
 			"MSP": 10,
 			
-			"trait": "ff0000",
+			"trait": "631226",
+			
+			"hp-foreground": "93320a",
+			"hp-background": "631226",
 			
 			"HP": 10,
 			"SP": 10,

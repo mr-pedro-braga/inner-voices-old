@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bidleo8aix2ar"
+path="res://.godot/imported/mus_prince_sam.mp3-470af86692746e017de0563b61f8f917.mp3str"
+
+[deps]
+
+source_file="res://assets/music/mus_prince_sam.mp3"
+dest_files=["res://.godot/imported/mus_prince_sam.mp3-470af86692746e017de0563b61f8f917.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

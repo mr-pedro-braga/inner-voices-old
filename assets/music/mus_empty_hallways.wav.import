@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_empty_hallways.wav-a7fb61387a9856ad9deb80599360af58.sample"
+uid="uid://cugkn4w0nnlrb"
+path="res://.godot/imported/mus_empty_hallways.wav-a7fb61387a9856ad9deb80599360af58.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_empty_hallways.wav"
-dest_files=[ "res://.import/mus_empty_hallways.wav-a7fb61387a9856ad9deb80599360af58.sample" ]
+dest_files=["res://.godot/imported/mus_empty_hallways.wav-a7fb61387a9856ad9deb80599360af58.sample"]
 
 [params]
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dei53wsjr3a85"
+path="res://.godot/imported/mus_mysterious_forest.mp3-366359654b039fa855ccf8f848851878.mp3str"
+
+[deps]
+
+source_file="res://assets/music/mus_mysterious_forest.mp3"
+dest_files=["res://.godot/imported/mus_mysterious_forest.mp3-366359654b039fa855ccf8f848851878.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

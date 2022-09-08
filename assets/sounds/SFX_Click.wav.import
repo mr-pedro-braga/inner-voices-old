@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Click.wav-869a04b891ff08a0d768b58cc92ee9cf.sample"
+uid="uid://ci68v4lqtxcvp"
+path="res://.godot/imported/SFX_Click.wav-869a04b891ff08a0d768b58cc92ee9cf.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Click.wav"
-dest_files=[ "res://.import/SFX_Click.wav-869a04b891ff08a0d768b58cc92ee9cf.sample" ]
+dest_files=["res://.godot/imported/SFX_Click.wav-869a04b891ff08a0d768b58cc92ee9cf.sample"]
 
 [params]
 

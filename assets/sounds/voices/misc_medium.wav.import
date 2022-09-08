@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/misc_medium.wav-e795dc66769b7a56bd61afdcef80adef.sample"
+uid="uid://v2tp3yi8flgs"
+path="res://.godot/imported/misc_medium.wav-e795dc66769b7a56bd61afdcef80adef.sample"
 
 [deps]
 
 source_file="res://assets/sounds/voices/misc_medium.wav"
-dest_files=[ "res://.import/misc_medium.wav-e795dc66769b7a56bd61afdcef80adef.sample" ]
+dest_files=["res://.godot/imported/misc_medium.wav-e795dc66769b7a56bd61afdcef80adef.sample"]
 
 [params]
 

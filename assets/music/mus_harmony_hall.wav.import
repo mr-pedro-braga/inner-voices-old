@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_harmony_hall.wav-469a13de99e8005cb47a4f3836ec7803.sample"
+uid="uid://dgwyqlytakqxi"
+path="res://.godot/imported/mus_harmony_hall.wav-469a13de99e8005cb47a4f3836ec7803.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_harmony_hall.wav"
-dest_files=[ "res://.import/mus_harmony_hall.wav-469a13de99e8005cb47a4f3836ec7803.sample" ]
+dest_files=["res://.godot/imported/mus_harmony_hall.wav-469a13de99e8005cb47a4f3836ec7803.sample"]
 
 [params]
 

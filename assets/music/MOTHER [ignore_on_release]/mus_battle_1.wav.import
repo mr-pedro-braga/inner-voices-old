@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_battle_1.wav-3f793392bf25d0c4c37321cef6784c58.sample"
+uid="uid://cwmjf4gk13rd1"
+path="res://.godot/imported/mus_battle_1.wav-3f793392bf25d0c4c37321cef6784c58.sample"
 
 [deps]
 
 source_file="res://assets/music/MOTHER [ignore_on_release]/mus_battle_1.wav"
-dest_files=[ "res://.import/mus_battle_1.wav-3f793392bf25d0c4c37321cef6784c58.sample" ]
+dest_files=["res://.godot/imported/mus_battle_1.wav-3f793392bf25d0c4c37321cef6784c58.sample"]
 
 [params]
 

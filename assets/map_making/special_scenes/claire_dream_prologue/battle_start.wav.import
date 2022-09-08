@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/battle_start.wav-198c12b6b51fb4952c68dd614b860a18.sample"
+uid="uid://bjfagk2mnc8ov"
+path="res://.godot/imported/battle_start.wav-198c12b6b51fb4952c68dd614b860a18.sample"
 
 [deps]
 
 source_file="res://assets/map_making/special_scenes/claire_dream_prologue/battle_start.wav"
-dest_files=[ "res://.import/battle_start.wav-198c12b6b51fb4952c68dd614b860a18.sample" ]
+dest_files=["res://.godot/imported/battle_start.wav-198c12b6b51fb4952c68dd614b860a18.sample"]
 
 [params]
 

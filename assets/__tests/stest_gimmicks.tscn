@@ -1,8 +1,8 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/battle/Kuro.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/battle/bullet_board_background_sprites/back_black.png" type="Texture" id=2]
-[ext_resource path="res://assets/images/sprites_battle/box_border.png" type="Texture" id=3]
+[ext_resource path="res://assets/battle/bullet_board_background_sprites/back_black.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/images/sprites_battle/box_border.png" type="Texture2D" id=3]
 [ext_resource path="res://assets/battle/BattleBox.gd" type="Script" id=4]
 [ext_resource path="res://assets/battle/battle_screen_backgrounds/Mint.res" type="PackedScene" id=5]
 [ext_resource path="res://assets/battle/battle_screen_backgrounds/Alpha.res" type="PackedScene" id=6]
@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/battle/battle_screen_backgrounds/Omega.res" type="PackedScene" id=9]
 [ext_resource path="res://assets/battle/battle_screen_backgrounds/Soul.res" type="PackedScene" id=10]
 [ext_resource path="res://assets/battle/battle_screen_backgrounds/Citrus.res" type="PackedScene" id=11]
-[ext_resource path="res://assets/battle/bullet_board_background_sprites/back_blue.png" type="Texture" id=12]
+[ext_resource path="res://assets/battle/bullet_board_background_sprites/back_blue.png" type="Texture2D" id=12]
 
 [sub_resource type="GDScript" id=8]
 script/source = "extends Control
@@ -35,10 +35,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0.0717937 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.0717937),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("BattleBox/Textures:scale")
@@ -47,10 +47,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.125, 0.2, 0.25, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.125, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 0.9, 0.9 ), Vector2( 1, 1 ) ]
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0.9, 0.9), Vector2(1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("BattleBox/Textures:rotation_degrees")
@@ -59,10 +59,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0.0 ]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id=3]
@@ -74,10 +74,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("BattleBox/Textures:rotation_degrees")
@@ -86,10 +86,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 0.378929 ),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.378929),
 "update": 0,
-"values": [ 90.0, 0.0 ]
+"values": [90.0, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("BattleBox/Textures:position")
@@ -98,10 +98,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id=4]
@@ -113,10 +113,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("BattleBox/Textures:rotation_degrees")
@@ -125,10 +125,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 0.378929 ),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 0.378929),
 "update": 0,
-"values": [ 90.0, 0.0 ]
+"values": [90.0, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("BattleBox/Textures:position")
@@ -137,10 +137,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id=5]
@@ -152,10 +152,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 0.353553 ),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.353553),
 "update": 0,
-"values": [ 0.0, -90.0 ]
+"values": [0.0, -90.0]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("BattleBox/Textures:scale")
@@ -164,10 +164,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 0.329877 ),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.329877),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
 }
 
 [sub_resource type="Animation" id=6]
@@ -179,10 +179,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 0.0717937 ),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.0717937),
 "update": 0,
-"values": [ Vector2( 0, 100 ), Vector2( 0, 0 ) ]
+"values": [Vector2(0, 100), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("BattleBox/Textures:scale")
@@ -191,10 +191,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("BattleBox/Textures:rotation_degrees")
@@ -203,10 +203,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0.0 ]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id=7]
@@ -218,8 +218,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = false
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.3 )
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath("BattleBox/Textures:position:y")
@@ -228,8 +228,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.3 )
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("BattleBox/Textures:scale")
@@ -238,10 +238,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
 }
 
 [node name="Node2D" type="Control"]
@@ -279,8 +279,8 @@ visible = false
 
 [node name="Battle2" type="Node2D" parent="."]
 script = ExtResource( 4 )
-size = Vector2( 7, 7 )
-backs = [ ExtResource( 12 ) ]
+size = Vector2(7, 7)
+backs = [ExtResource( 12 )]
 damage = {
 "amount": 2.0,
 "element": "fire",
@@ -294,12 +294,12 @@ collision_mask = 2
 [node name="Textures" type="Node2D" parent="Battle2/BattleBox"]
 
 [node name="Back" type="TextureRect" parent="Battle2/BattleBox/Textures"]
-margin_left = -35.0
-margin_top = -35.0
-margin_right = 35.0
-margin_bottom = 35.0
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
 grow_horizontal = 2
-rect_pivot_offset = Vector2( 20, 20 )
+rect_pivot_offset = Vector2(20, 20)
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 2
@@ -308,16 +308,16 @@ __meta__ = {
 }
 
 [node name="Border" type="NinePatchRect" parent="Battle2/BattleBox/Textures"]
-margin_left = -38.0
-margin_top = -38.0
-margin_right = 38.0
-margin_bottom = 38.0
-rect_pivot_offset = Vector2( 23, 23 )
+offset_left = -38.0
+offset_top = -38.0
+offset_right = 38.0
+offset_bottom = 38.0
+rect_pivot_offset = Vector2(23, 23)
 texture = ExtResource( 3 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+patch_offset_left = 3
+patch_offset_top = 3
+patch_offset_right = 3
+patch_offset_bottom = 3
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 __meta__ = {
@@ -326,8 +326,8 @@ __meta__ = {
 
 [node name="Collision" type="CollisionPolygon2D" parent="Battle2/BattleBox"]
 visible = false
-scale = Vector2( 1.75, 1.75 )
-polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20, -20, 20, -20, -20, -30, -20, -30, 30, 30, 30, 30, -30, -20, -30 )
+scale = Vector2(1.75, 1.75)
+polygon = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20, -20, -20, -30, -20, -30, 30, 30, 30, 30, -30, -20, -30)
 
 [node name="Anim" type="AnimationPlayer" parent="Battle2"]
 anims/elastic_in = SubResource( 2 )
@@ -344,11 +344,11 @@ collision_mask = 2
 
 [node name="Collision2" type="CollisionPolygon2D" parent="Battle2/BorderSensor"]
 visible = false
-scale = Vector2( 1.75, 1.75 )
-polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20, -20, 20, -20, -20, -30, -20, -30, 30, 30, 30, 30, -30, -20, -30 )
+scale = Vector2(1.75, 1.75)
+polygon = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20, -20, -20, -30, -20, -30, 30, 30, 30, 30, -30, -20, -30)
 
 [node name="Kuro" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1.50002, 0 )
+position = Vector2(1.50002, 0)
 character = "claire"
 
 [node name="Anim" parent="Kuro" index="1"]

@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_HeavyStep.wav-0828591f1562a58201d2bf66465fef11.sample"
+uid="uid://wl5brop37gqa"
+path="res://.godot/imported/SFX_HeavyStep.wav-0828591f1562a58201d2bf66465fef11.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_HeavyStep.wav"
-dest_files=[ "res://.import/SFX_HeavyStep.wav-0828591f1562a58201d2bf66465fef11.sample" ]
+dest_files=["res://.godot/imported/SFX_HeavyStep.wav-0828591f1562a58201d2bf66465fef11.sample"]
 
 [params]
 

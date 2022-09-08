@@ -2,12 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/mus_arcade_starship.mp3-47dc034fac95716bfb21bf68fed4a999.mp3str"
+uid="uid://du1f1x8sa1no3"
+path="res://.godot/imported/mus_arcade_starship.mp3-47dc034fac95716bfb21bf68fed4a999.mp3str"
 
 [deps]
 
 source_file="res://assets/music/mus_arcade_starship.mp3"
-dest_files=[ "res://.import/mus_arcade_starship.mp3-47dc034fac95716bfb21bf68fed4a999.mp3str" ]
+dest_files=["res://.godot/imported/mus_arcade_starship.mp3-47dc034fac95716bfb21bf68fed4a999.mp3str"]
 
 [params]
 

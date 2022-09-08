@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_hearts_in_kitchen_sink.wav-ef3d70fd4fcd3308efc23c25c4bf8eda.sample"
+uid="uid://yswwurckmi57"
+path="res://.godot/imported/mus_hearts_in_kitchen_sink.wav-ef3d70fd4fcd3308efc23c25c4bf8eda.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_hearts_in_kitchen_sink.wav"
-dest_files=[ "res://.import/mus_hearts_in_kitchen_sink.wav-ef3d70fd4fcd3308efc23c25c4bf8eda.sample" ]
+dest_files=["res://.godot/imported/mus_hearts_in_kitchen_sink.wav-ef3d70fd4fcd3308efc23c25c4bf8eda.sample"]
 
 [params]
 

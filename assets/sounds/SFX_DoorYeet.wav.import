@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_DoorYeet.wav-70465803a20471c6afc594bc1ee09e53.sample"
+uid="uid://cudhdwt0bsc5v"
+path="res://.godot/imported/SFX_DoorYeet.wav-70465803a20471c6afc594bc1ee09e53.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_DoorYeet.wav"
-dest_files=[ "res://.import/SFX_DoorYeet.wav-70465803a20471c6afc594bc1ee09e53.sample" ]
+dest_files=["res://.godot/imported/SFX_DoorYeet.wav-70465803a20471c6afc594bc1ee09e53.sample"]
 
 [params]
 

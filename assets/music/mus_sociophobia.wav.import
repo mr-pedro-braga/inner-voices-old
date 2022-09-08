@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_sociophobia.wav-71f81345e6e4cc78e0e0368062582a49.sample"
+uid="uid://c021rxbiisgj2"
+path="res://.godot/imported/mus_sociophobia.wav-71f81345e6e4cc78e0e0368062582a49.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_sociophobia.wav"
-dest_files=[ "res://.import/mus_sociophobia.wav-71f81345e6e4cc78e0e0368062582a49.sample" ]
+dest_files=["res://.godot/imported/mus_sociophobia.wav-71f81345e6e4cc78e0e0368062582a49.sample"]
 
 [params]
 

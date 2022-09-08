@@ -1,4 +1,4 @@
-tool
+@tool
 extends EventReference
 class_name DialogEvent
 
@@ -8,20 +8,22 @@ class_name DialogEvent
 # Useful for setting up simple talking events with minimal setup.
 #
 
-export(String, FILE, "*.sson") var dialog_sson_file
-export(Array, String) var dialog_keys
+@export_file("*.sson")
+var dialog_sson_file
+
+@export var dialog_keys := []
 
 #@ The current dialog from the list
 var dialog_index = 0
 
 #@ If this dialog calls or activate some switch.
-export(String) var switch = ""
+@export var switch: String = ""
 
 # Load the correct event icon
 func _process(_delta):
 	if not texture:
 		texture = preload("res://assets/images/editor_only/icon_event_dialogue.png")
-	if not color:
+	if color == null:
 		color = Color(1, 0.098039, 0.182598, 0.321569)
 	update()
 
@@ -41,7 +43,8 @@ func _draw():
 		font,
 		Vector2.ZERO,
 		file,
-		Color.white
+		0, -1, 16,
+		Color.WHITE
 	)
 
 # When this event gets activated
@@ -57,7 +60,7 @@ func _deactivate():
 	Utils.leave_event()
 
 	if switch != "":
-		Gameplay.switches[switch] = true
+		Memory.switch(Memory.EPISODE, switch, true)
 
 	if dialog_index < dialog_keys.size() - 1:
 		dialog_index += 1

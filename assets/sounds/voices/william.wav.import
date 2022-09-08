@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/william.wav-244758d6b83fcea388eef8c47230a949.sample"
+uid="uid://c3ik1qfq6pj1o"
+path="res://.godot/imported/william.wav-244758d6b83fcea388eef8c47230a949.sample"
 
 [deps]
 
 source_file="res://assets/sounds/voices/william.wav"
-dest_files=[ "res://.import/william.wav-244758d6b83fcea388eef8c47230a949.sample" ]
+dest_files=["res://.godot/imported/william.wav-244758d6b83fcea388eef8c47230a949.sample"]
 
 [params]
 

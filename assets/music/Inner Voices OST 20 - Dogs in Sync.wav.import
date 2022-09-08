@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Inner Voices OST 20 - Dogs in Sync.wav-e3aba9fc61768ecde08559dcc7b082a5.sample"
+uid="uid://cqlpctgsnsnbc"
+path="res://.godot/imported/Inner Voices OST 20 - Dogs in Sync.wav-e3aba9fc61768ecde08559dcc7b082a5.sample"
 
 [deps]
 
 source_file="res://assets/music/Inner Voices OST 20 - Dogs in Sync.wav"
-dest_files=[ "res://.import/Inner Voices OST 20 - Dogs in Sync.wav-e3aba9fc61768ecde08559dcc7b082a5.sample" ]
+dest_files=["res://.godot/imported/Inner Voices OST 20 - Dogs in Sync.wav-e3aba9fc61768ecde08559dcc7b082a5.sample"]
 
 [params]
 

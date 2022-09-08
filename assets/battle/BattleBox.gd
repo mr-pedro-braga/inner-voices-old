@@ -1,13 +1,16 @@
-tool
+@tool
 extends Node2D
 
-export var size: Vector2 = Vector2(3, 3) setget update_size
-onready var back = get_node("BattleBox/Textures/Back")
-onready var border = get_node("BattleBox/Textures/Border")
-onready var border_sensor = get_node("BorderSensor/Collision2")
-onready var col = get_node("BattleBox/Collision")
+@export var size: Vector2 = Vector2(3, 3):
+	set(value):
+		# TODO: Manually copy the code from this method.
+		update_size(value)
+@onready var back = get_node(^"BattleBox/Textures/Back")
+@onready var border = get_node(^"BattleBox/Textures/Border")
+@onready var border_sensor = get_node(^"BorderSensor/Collision2")
+@onready var col = get_node(^"BattleBox/Collision")
 
-export(Array, Texture) var backs
+@export var backs: Array[Texture2D]
 
 var back_sprite = ""
 func set_back(back_a):
@@ -24,17 +27,17 @@ func update_size(value):
 		border_sensor.scale = col.scale
 
 func _process(_delta):
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		return
-	border.modulate = Color.white
+	border.modulate = Color.WHITE
 	col.disabled = false
 	if Utils.arena_status.hot_border:
-		border.modulate = Color(1, 0.652893, 0.054688).linear_interpolate(Color(1, 0.143311, 0.054688), sin(10*Utils.time)*0.5+0.5)
+		border.modulate = Color(1, 0.652893, 0.054688).lerp(Color(1, 0.143311, 0.054688), sin(10*Utils.time)*0.5+0.5)
 	if Utils.arena_status.torus_border:
 		border.modulate = Color(0.164063, 0.275085, 1)
 		col.disabled = true
 		if has_node("BattleBox/Kuro"):
-			var k = get_node("BattleBox/Kuro")
+			var k = get_node(^"BattleBox/Kuro")
 			if k.position.x < back.rect_position.x:
 				k.position.x += back.rect_size.x+4
 			if k.position.x > back.rect_position.x + back.rect_size.x+4:
@@ -47,7 +50,7 @@ func _process(_delta):
 		set_back(0)
 		back_sprite = "blue"
 
-export var damage = {
+@export var damage = {
 	"amount": 0.1,
 	"element": "fire",
 	"type": "normal"

@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Thud.wav-fd0e1a65ec6b5e2ff71e1ea7c15829a2.sample"
+uid="uid://bj80pvjq0m805"
+path="res://.godot/imported/SFX_Thud.wav-fd0e1a65ec6b5e2ff71e1ea7c15829a2.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Thud.wav"
-dest_files=[ "res://.import/SFX_Thud.wav-fd0e1a65ec6b5e2ff71e1ea7c15829a2.sample" ]
+dest_files=["res://.godot/imported/SFX_Thud.wav-fd0e1a65ec6b5e2ff71e1ea7c15829a2.sample"]
 
 [params]
 

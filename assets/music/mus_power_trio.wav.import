@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_power_trio.wav-d5bd457470ef442b7ffe0f12638a47dc.sample"
+uid="uid://bu1f5v20j640p"
+path="res://.godot/imported/mus_power_trio.wav-d5bd457470ef442b7ffe0f12638a47dc.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_power_trio.wav"
-dest_files=[ "res://.import/mus_power_trio.wav-d5bd457470ef442b7ffe0f12638a47dc.sample" ]
+dest_files=["res://.godot/imported/mus_power_trio.wav-d5bd457470ef442b7ffe0f12638a47dc.sample"]
 
 [params]
 

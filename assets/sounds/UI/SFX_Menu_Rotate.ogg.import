@@ -1,13 +1,14 @@
 [remap]
 
-importer="ogg_vorbis"
+importer="oggvorbisstr"
 type="AudioStreamOGGVorbis"
-path="res://.import/SFX_Menu_Rotate.ogg-af115a580da7de079ff6ae97ffc8cff0.oggstr"
+uid="uid://b7si56f6icjg5"
+path="res://.godot/imported/SFX_Menu_Rotate.ogg-af115a580da7de079ff6ae97ffc8cff0.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/UI/SFX_Menu_Rotate.ogg"
-dest_files=[ "res://.import/SFX_Menu_Rotate.ogg-af115a580da7de079ff6ae97ffc8cff0.oggstr" ]
+dest_files=["res://.godot/imported/SFX_Menu_Rotate.ogg-af115a580da7de079ff6ae97ffc8cff0.oggvorbisstr"]
 
 [params]
 

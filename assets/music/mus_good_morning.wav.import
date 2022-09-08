@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_good_morning.wav-bc601c9295a279e9461c563d243367d5.sample"
+uid="uid://33p408427i7v"
+path="res://.godot/imported/mus_good_morning.wav-bc601c9295a279e9461c563d243367d5.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_good_morning.wav"
-dest_files=[ "res://.import/mus_good_morning.wav-bc601c9295a279e9461c563d243367d5.sample" ]
+dest_files=["res://.godot/imported/mus_good_morning.wav-bc601c9295a279e9461c563d243367d5.sample"]
 
 [params]
 
@@ -16,6 +17,6 @@ force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
-edit/normalize=true
+edit/normalize=false
 edit/loop=false
 compress/mode=0

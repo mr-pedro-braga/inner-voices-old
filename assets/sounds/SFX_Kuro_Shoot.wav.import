@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Kuro_Shoot.wav-b7eb86cd29a91aab8321d835b8b430bd.sample"
+uid="uid://cbfe4veh4h5mp"
+path="res://.godot/imported/SFX_Kuro_Shoot.wav-b7eb86cd29a91aab8321d835b8b430bd.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Kuro_Shoot.wav"
-dest_files=[ "res://.import/SFX_Kuro_Shoot.wav-b7eb86cd29a91aab8321d835b8b430bd.sample" ]
+dest_files=["res://.godot/imported/SFX_Kuro_Shoot.wav-b7eb86cd29a91aab8321d835b8b430bd.sample"]
 
 [params]
 

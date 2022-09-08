@@ -1,8 +1,8 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/socool2_2.png-6e2f98da5fa6e6532b8d59a4c357f469.stex"
+type="StreamTexture2D"
+path="res://.godot/imported/socool2_2.png-6e2f98da5fa6e6532b8d59a4c357f469.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,25 +10,25 @@ metadata={
 [deps]
 
 source_file="res://assets/characters/ollie/socool2_2.png"
-dest_files=[ "res://.import/socool2_2.png-6e2f98da5fa6e6532b8d59a4c357f469.stex" ]
+dest_files=["res://.godot/imported/socool2_2.png-6e2f98da5fa6e6532b8d59a4c357f469.stex"]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
-compress/hdr_mode=0
+compress/hdr_compression=1
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+compress/streamed=false
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
+process/normal_map_invert_y=false
 process/HDR_as_SRGB=false
-process/invert_color=false
-stream=false
-size_limit=0
-detect_3d=false
+process/size_limit=0
+detect_3d/compress_to=1
 svg/scale=1.0

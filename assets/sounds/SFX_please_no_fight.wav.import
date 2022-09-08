@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_please_no_fight.wav-e66adb37b638240508649ce90140a76d.sample"
+uid="uid://cle0vghs0ppnc"
+path="res://.godot/imported/SFX_please_no_fight.wav-e66adb37b638240508649ce90140a76d.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_please_no_fight.wav"
-dest_files=[ "res://.import/SFX_please_no_fight.wav-e66adb37b638240508649ce90140a76d.sample" ]
+dest_files=["res://.godot/imported/SFX_please_no_fight.wav-e66adb37b638240508649ce90140a76d.sample"]
 
 [params]
 

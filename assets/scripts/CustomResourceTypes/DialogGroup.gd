@@ -1,6 +1,6 @@
 extends Resource
 class_name FileGroupSSON
 
-export(Resource) var file_english
-export(Resource) var file_portuguese
-export(Resource) var file_japanese
+@export var file_english: Resource
+@export var file_portuguese: Resource
+@export var file_japanese: Resource

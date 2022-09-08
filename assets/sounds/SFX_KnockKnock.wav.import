@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_KnockKnock.wav-987e495fb770a6c4460bea5349b600d4.sample"
+uid="uid://ca32u0gxsxwxa"
+path="res://.godot/imported/SFX_KnockKnock.wav-987e495fb770a6c4460bea5349b600d4.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_KnockKnock.wav"
-dest_files=[ "res://.import/SFX_KnockKnock.wav-987e495fb770a6c4460bea5349b600d4.sample" ]
+dest_files=["res://.godot/imported/SFX_KnockKnock.wav-987e495fb770a6c4460bea5349b600d4.sample"]
 
 [params]
 

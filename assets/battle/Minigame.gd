@@ -8,7 +8,7 @@ var minigame_timeout = 6.0
 var minigame_wait_timeout = 2.0
 var minigame_level = 1.0
 
-export var infinite := false
+@export var infinite := false
 
 var target
 
@@ -27,6 +27,6 @@ func _process(_delta):
 		game_canceled = true
 
 func end(delay):
-	yield(get_tree().create_timer(delay), "timeout")
+	await get_tree().create_timer(delay).timeout
 	Utils.emit_signal("minigame_finished")
 	queue_free()

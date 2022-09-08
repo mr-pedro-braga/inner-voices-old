@@ -278,28 +278,14 @@
 	bgm pause
 	Claire(): One...¢¢\n- Two...
 --library_leave_attack_2
-	Andy(attack): [shake]HUYAAAAA!!!!![/shake]
-	Andy(): .¢¢.¢¢.¢¢
-	Andy(smile): They must be taking a nap.
+	Andy(attack): [shake rate=50 level=20]HUYAAAAA!!!!![/shake]
+	Andy(): .¢¢¢¢ .¢¢¢¢ .¢¢¢¢
+	Andy(smile): They must be taking a nap, right?
 
 --locked_door
 	* The door is locked.
 --locked_door2
 	* The door is still locked.
-
---locked_door_art
-	* "ART CLASS"
-	* Locked.
---locked_door_aura
-	* "AURA LABORATORY"
-	* Locked,¢ also.
---mark_the_only_plant
-	* Here is Mark, the only plant on this side of the school.
-	* He's lonely.
---mark_the_only_plant2
-	Mark(): Hi!
---mark_the_only_plant3
-	* It's a plant.
 
 --pride_parade_poster
 	* Nothing interesting.
@@ -308,6 +294,18 @@
 	* A bit interesting, I guess?
 --pride_parade_poster2
 	* I wonder what that's about.
+
+--locked_gate
+	Andy(smile): Great! We got here!
+	* The front gate that leads outside.
+	* Locked.
+	Andy(mild_mad): O¢¢o¢¢h,¢¢ shoot.
+	Andy(): Oh, do you think there's a key somewhere inside?
+	Claire(up): Hmmm.¢¢.¢¢.¢¢ the principal's room?
+	Andy(): The principal's room it is.
+
+--locked_gate2
+	* Locked.¢¢\n* Maybe you'll find a key upstairs.
 
 --vending_machine
 	Andy(smile): There it is!
@@ -328,12 +326,262 @@
 	Andy(): Well,¢¢ you're the boss.
 
 --vending_machine_interact
-	* It doesn't even has anything inside.
+	* It doesn't even have anything inside.
 	* Unless...
 	* (You put your hands inside the dispenser)
-	* .¢¢.¢¢.¢¢!
+	* .¢¢ .¢¢ .¢¢¢¢ !
 	* 1x [Nacho Chips] found!¢ Oh yeah!
+	* Try Pressing %KEY_INVENTORY%
 	item give nacho_chips 1
 
 --vending_machine_interact2
 	* Strangely,¢ this machine seems to [color=yellow]not be tinted blue[/color].
+
+--what_we_do
+	Claire (): Andy...
+	Andy (): What, dear?
+	Claire (down): What are we going to do if we find some¢.¢.¢.
+	Andy (): Hm...
+	Andy (think): We¢.¢.¢.¢ may have to engage in a battle.
+	Claire (down): [shake]hm...[/shake]
+	Andy (smile): Worry not,¢¢ with me by your side, nothing bad can happen.
+
+--andy_pre_battle
+	Claire ():  I'm starting to think that...\n- We should go back...
+	Andy (): We are almost there.
+	Andy (confident): You were so confident.
+	pose claire idle 4
+	Claire ():  Didn't last long, eh?
+	Claire ():  I have a bad feeling about this.
+	Claire ():  It's... too quiet.
+	Andy (think): True.\n- Doesn't look apocalyptic.
+	Andy (think): But that's cause the monsters are downstairs.
+	Andy (smile): Having a slumber party.
+	pose claire idle 0
+	Claire ():  Andy...
+	Andy (smile): Tsc, relax girl.
+	Andy (): Btw, got an idea.
+	party remove andy
+	move andy
+		mvadd 0 -16
+		mvto 640 -320
+		mvadd 0 16
+		face claire
+	wait
+	speech_delay 0.03
+	Andy (smile): I'll just teach you how to fight.
+	Claire ():  what,¢¢¢¢ wait,¢¢¢¢ what?
+	Andy (smile): First,¢¢ we must synchronize.
+	Claire (question):  Nonono, wait.\n- Why are we doing that, again?
+	
+	Andy (relaax): Relaaaax.\n- Listen...
+	Andy (relaax): I'm going to show you how a fight works.
+	Andy (smile): It's even fun!
+	Claire (question): Isn't the idea to not fight?
+	Andy (smile): Weren't you with a bad feeling?
+	Andy (smile): That something's going to happen.
+	pose claire idle 2
+	speech_delay 0.03
+	Claire (up):  ¢¢.¢¢.¢¢.
+	Claire (down):  but¢¢ I don't like conflict...
+	Andy (smile): One more reason to get ready, to make the conflict go away faster.
+	Andy (proud): C'mon, c'mon.
+	pose claire idle 0
+	Claire (): ok...¢¢ what should I do?
+	speech_delay 0.06
+	Andy (): First,¢¢ look deep in my eyes.
+	speech_delay 0.03
+	Andy (): Are you looking?
+	speech_delay 0.06
+	Claire (): Y-¢¢yes.
+	Andy (): Take a deep breath...
+	Andy (): Forget¢¢ everything¢¢ else...
+
+--andy_ready
+	Claire ():  ¢¢.¢¢.¢¢.
+	Andy (confident): Ready?
+	Claire ():  no
+
+--andy_battle_comment
+	* What ARE you going to do?
+
+--andy_battle_spared
+	* Andy is SPARING you.
+
+--andy_battle_nospare
+	* The "opponent" still wants to fight.
+	* Try to change his mind...¢¢ somehow.
+
+--andy_battle_spare
+	Andy (smile): Done,¢¢ victory for us!
+	Andy (smile): This way,¢¢ nobody gets hurt.
+	Claire (smile): Fair.
+	Andy (confident): May we resume the mission, captain?
+	Claire (smile): Yes,¢¢ we may.
+
+--andy_battle_0
+	speech_delay 0.03
+	wait 1.0
+	Andy (smile): See this [color=purple]flower[/color]?
+	Andy (smile): This is your [color=purple]SOUL[/color],¢¢ the very culmination of your being.
+	Andy (smile): Like,¢¢¢ it ¢¢IS¢¢¢ what you ARE.
+	Andy (anime): In there lies your memories, ¢¢your fear...
+	Andy (anime): And your willpower!
+	Andy (smile): During a battle,¢¢ your SOUL and the opponent's
+	Andy (smile): will fight for control.
+	Andy (smile): Now it's your turn!
+	Andy (confident): So?¢¢\n- What are you going to do?
+
+--andy_battle_ouch
+	speech_delay 0.03
+	Andy (sad): Ouch, wait, no need to hit me.
+	Andy (confident): Poor monsters, don't have a heart?.
+	Andy (smile): Try to just shoo me.
+
+--andy_battle_hug
+	speech_delay 0.03
+	wait 1.0
+	Andy (): uh...¢¢\n- so¢¢ cute,¢¢ thanks??
+	Andy (think): but if I were a monster
+	Andy (think):  I would want to stay and not go away...
+	Andy (confident): wait¢¢, screw that???\n- I'm gonna accept this.
+	Andy (): I [color=yellow]SPARE[/color] you,¢¢ miss.
+
+--andy_battle_offense
+	speech_delay 0.03
+	wait 1.0
+	Andy (): *gasp*¢¢.\n- What's that language,¢¢ young lady...
+	Andy (): Tsc, tsc,¢¢ I don't even wanna fight anymore.
+	Andy (confident): [color=yellow]SPARE[/color] me that behaviour...
+
+--andy_battle_hug2
+	* Andy's soft and great for hugging.¢¢* ...but enough.
+
+--andy_battle_offense2
+	* You don't want to hurt his feelings,¢¢¢¢ do you?
+
+--andy_battle_hug_of
+	speech_delay 0.03
+	wait 1.0
+	Andy (smile): uh...¢¢\n- so¢¢ cute,¢¢ I'll forgive your dirty mouth.
+
+--andy_battle_offense_hg
+	speech_delay 0.03
+	wait 1.0
+	Andy (): Hugs,¢¢ then that.
+	Andy (): That's how life goes, huh..
+
+--andy_battle_1
+	speech_delay 0.03
+	wait 1.0
+	Andy (smile): So, in the opponent's turn...
+	Andy (smile): You must dodge in the [color=red]pattern[/color].
+	Andy (proud): Come on, dodge!
+
+--andy_battle_2
+	speech_delay 0.03
+	wait 1.0
+	Andy (smile): The idea is to make the opponent
+	Andy (smile): not wanna fight anymore.
+	Andy (): Aaaaand to not get hurt.
+
+--andy_battle_3
+	speech_delay 0.03
+	wait 1.0
+	Andy (smile): See? Simple.
+	Andy (): Try doing something to win.
+	Andy (confident): Pretend I'm a lil monster.
+	Andy (confident): [shake]GNHAAAARK[/shake]
+
+--andy_battle_1_spared
+	speech_delay 0.03
+	wait 1.0
+	Andy (): But, wait, I still need to teach you how to dodge.
+	Andy (think): You... ¢¢hm... ¢¢dodge by dodging.
+	Andy (smile): Just go.
+
+--andy_battle_2_spared
+	speech_delay 0.03
+	wait 1.0
+	Andy (smile): While you don't SPARE me, I'll attack you a bit more.
+
+--andy_battle_3_spared
+	speech_delay 0.03
+	wait 1.0
+	Andy (smile): Just waiting for you to SPARE me back...
+
+--mark_the_only_plant
+	* Here is Mark, the only plant on this side of the school.
+	* He's lonely.
+--mark_the_only_plant2
+	Mark(): Hi!
+--mark_the_only_plant3
+	* It's a plant.
+
+--locked_door_art
+	* "ART CLASS"
+	* Locked.
+--locked_door_aura
+	* "AURA LABORATORY"
+	* Locked,¢ also.
+
+--locked_door_principal
+	* "Director's room".¢\n* Locked.
+	Andy (): Locked, eh?
+	Claire ():  Yeah..
+	Andy (): Step aside.
+	move claire
+		mvto 472 -318
+		mvadd 2 0
+	
+	pose claire idle 0
+	move andy
+		mvto 488 -318
+		turn 7
+		wait 1.0
+	
+	wait
+	pose andy kick 7
+	call door_yeet
+	Andy (attack): [shake]HUYAAAAA!!!!![/shake]
+	Andy (smile): Okay,¢ let's not destroy any more property.
+	Claire ():  Great, because we already bashed three doors now.
+	pose andy idle 7
+
+--crash_comment
+	Andy (smile): Oh look, we got one!
+	Claire (): [shake]aaaaa[/shake].
+
+--crash_monster
+	Andy (smile): I have a pretty strong kick, eh?
+
+--principal_AC
+	* An air conditioner.\n* It conditions the air.
+
+--principal_get_item
+	* Found Key!¢¢\n* Use it to open the exit door!
+
+--principal_got_item
+	* You should now stop messing with other people's belongings.
+
+--what_could_go_wrong
+	Andy (smile): See? That was easy and quick.\n- We basically already escaped.
+	Claire (): We STILL need to go back through them.
+	Andy (): ...and they're sleeping.\n- It was pretty easy the first time...
+	Andy (think): We just need to do it again.
+	Andy (smile): Come on,¢¢ what could go wro¹ng.
+	pose claire idle 0
+	Claire (): (Shhhhh).¢¢\n- (Don't¢¢ say¢¢ that!)
+	Andy (mild_mad): .¢¢.¢¢.¢¢
+	Andy (mild_mad): "What could go wrong?"
+	Claire (up):  "character":"claire", "content": oh no.
+	Andy (smile): .¢¢.¢¢.¢¢
+	Andy (side): .¢¢.¢¢.¢¢
+	Andy (smile): See? ¢¢- Let's go now.
+	pose claire idle 4
+
+--then_it_goes_wrong
+	Andy (): Aaaaaand it went wrong.
+
+--wet_floor_battle
+	* Caution! The floor is ¬C05wet¬C00.

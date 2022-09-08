@@ -10,7 +10,7 @@ enum AudioType {
 }
 
 func play(name:String, volume:float = 0.0, ext = "wav"):
-	play_audio(AudioType.NON_POSITIONAL, get_node("/root/GameRoot/"), name, volume, 1.0, ext)
+	play_audio(AudioType.NON_POSITIONAL, get_node(^"/root/GameRoot/"), name, volume, 1.0, ext)
 
 var audio_cache := {}
 func play_audio(type: int, parent: Node, file: String, volume_db: float = 0.0, pitch_scale: float = 1.0, ext = "wav") -> void:
@@ -28,4 +28,4 @@ func play_audio(type: int, parent: Node, file: String, volume_db: float = 0.0, p
 	audio_stream_player.volume_db = volume_db
 	audio_stream_player.pitch_scale = pitch_scale
 	audio_stream_player.play()
-	audio_stream_player.connect("finished", audio_stream_player, "queue_free")
+	audio_stream_player.connect(&"finished", audio_stream_player.queue_free)

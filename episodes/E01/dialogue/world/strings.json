@@ -2,6 +2,7 @@
 	"checkpoint": "Checkpoint!",
 	
 	"KEY_OK": "[Z]",
+	"KEY_INVENTORY": "[I]",
 	"attack": "Attack!",
 	"act": "ACT",
 	"psi": "PSI",

@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_twisted_battle.wav-390822acc8e81bf672a97cdcdf745cfd.sample"
+uid="uid://dw4eqkykustqh"
+path="res://.godot/imported/mus_twisted_battle.wav-390822acc8e81bf672a97cdcdf745cfd.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_twisted_battle.wav"
-dest_files=[ "res://.import/mus_twisted_battle.wav-390822acc8e81bf672a97cdcdf745cfd.sample" ]
+dest_files=["res://.godot/imported/mus_twisted_battle.wav-390822acc8e81bf672a97cdcdf745cfd.sample"]
 
 [params]
 

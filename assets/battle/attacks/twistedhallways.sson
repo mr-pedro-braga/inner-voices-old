@@ -24,14 +24,14 @@
 	
 	type bullets
 	battle_box 5 5 slide_in_bottom slide_out_bottom
-	clock_interval 0.5
+	clock_interval 0.1
 	script
 		once
-			sprite punch
-			life_time 3
-			speed -24
+			sprite bullet
+			life_time 4
+			speed 64
 			angle unique_id * TAU/32
-			position 48 * Vector2(cos(angle), sin(angle))
+			position -64 * Vector2(cos(angle), -sin(angle))
 		process projectile
 	bullet_count 1
 

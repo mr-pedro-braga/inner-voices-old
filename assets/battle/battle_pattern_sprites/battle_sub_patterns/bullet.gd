@@ -1,17 +1,16 @@
-extends KinematicBody2D
+extends CharacterBody2D
 class_name Projectile
 
-export var integrity := 1
+@export var integrity := 1
 
-export var gravity_angle = TAU/4	# In radians
-export var gravity_module = 0	# In px/s²
-var velocity = Vector2(32, 16)
-export var life_time = 2.0
+@export var gravity_angle = TAU/4	# In radians
+@export var gravity_module = 0	# In px/s²
+@export var life_time = 2.0
 
-export var acceleration_angle = 0
-export var acceleration = 0 	# In px/s²
+@export var acceleration_angle = 0
+@export var acceleration = 0 	# In px/s²
 
-export var sprite_angle = 0 # in radians
+@export var sprite_angle = 0 # in radians
 
 var unique_id = 0
 var section_id = 0
@@ -23,8 +22,8 @@ var damage_mode = 0
 #@ The scale of damage compared to the emitter's damage value.
 var damage_scale = 1
 
-export var speed = 32			# In px/s
-export var angle = TAU/8 			# In radians
+@export var speed = 32			# In px/s
+@export var angle = TAU/8 			# In radians
 var alive_time = 0
 var sscript := []
 var first_turn = true
@@ -89,11 +88,11 @@ func process_script(s, delta):
 						damage_mode = value
 						match damage_mode:
 							0:
-								modulate = Color.white
+								modulate = Color.WHITE
 							1:
 								modulate = Color(0.705872, 0.382813, 1)
 							2:
-								modulate = Color.orange
+								modulate = Color.ORANGE
 					"damage_scale":
 						damage_scale = value
 			"log":
@@ -164,7 +163,10 @@ func on_hit(body):
 		AudioManager.play_sound("SFX_Hurt")
 		if not BattleCore.battle_target:
 			return
-		Utils.damage(BattleCore.battle_target.character_id, d)
+		if BattleCore.battle_target is String:
+			Utils.damage(BattleCore.battle_target, d)
+		else:
+			Utils.damage(BattleCore.battle_target.character_id, d)
 		#queue_free()
 
 func on_hit_2(body):

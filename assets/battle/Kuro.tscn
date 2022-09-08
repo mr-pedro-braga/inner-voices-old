@@ -1,225 +1,57 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://c567rwxpvnnmj"]
 
-[ext_resource path="res://assets/battle/Kuro.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://assets/scene_components/Kuro.gd" type="Script" id=2]
-[ext_resource path="res://addons/sprite_trail/SpriteTrail.gd" type="Script" id=3]
-[ext_resource path="res://assets/images/sprites_battle/particle_dust.png" type="Texture" id=4]
-[ext_resource path="res://assets/images/sprites_battle/snek-sprite.png" type="Texture" id=5]
-[ext_resource path="res://assets/battle/gimmicks/z_quirk_andy.scn" type="PackedScene" id=6]
-[ext_resource path="res://assets/images/sprites_battle/z_bruno_shield.png" type="Texture" id=7]
+[ext_resource type="Script" path="res://assets/scene_components/Kuro.gd" id="2"]
+[ext_resource type="Script" path="res://addons/sprite_trail/SpriteTrail.gd" id="3"]
+[ext_resource type="SpriteFrames" path="res://assets/battle/Kuro.tres" id="4_3mv5w"]
+[ext_resource type="PackedScene" uid="uid://cxmdu2u4yq87e" path="res://assets/battle/gimmicks/z_quirk_andy.scn" id="6"]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 7.70317
+[sub_resource type="Gradient" id="4"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.690196)
 
-[sub_resource type="Shader" id=2]
-code = "shader_type canvas_item;
-
-void fragment() {
-	vec4 col = texture(TEXTURE, UV);
-	if (texture(TEXTURE, UV - vec2(0.0, 0.025)).a > 0.0 &&
-		col.a == 0.0)
-	{
-		COLOR = vec4(0.0, 0.0, 0.0, 0.5);
-		return;
-	}
-	COLOR = col;
-}"
-
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
-
-[sub_resource type="Gradient" id=4]
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.690196 )
-
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id="5"]
 radius = 8.27157
 
-[sub_resource type="Curve" id=6]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.979079, 0.000322938 ), -1.8919, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.979079, 0.000322938), -1.8919, 0.0, 0, 0]
 
-[sub_resource type="CurveTexture" id=7]
-curve = SubResource( 6 )
+[sub_resource type="CurveTexture" id="7"]
+curve = SubResource( "6" )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id="8"]
 emission_shape = 1
 emission_sphere_radius = 2.0
-flag_disable_z = true
-gravity = Vector3( 0, 4, 0 )
-initial_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-radial_accel = 5.0
-radial_accel_random = 0.5
-scale = 0.3
-scale_random = 0.8
-scale_curve = SubResource( 7 )
+gravity = Vector3(0, 4, 0)
+scale_curve = SubResource( "7" )
 
-[sub_resource type="Animation" id=9]
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Anim:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.25 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.35, 1.4 ), Vector2( 0.778, 0.63 ), Vector2( 0.7, 0.7 ) ]
-}
-
-[sub_resource type="Animation" id=10]
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Anim:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.25 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1.4, 0.35 ), Vector2( 0.63, 0.778 ), Vector2( 0.7, 0.7 ) ]
-}
-
-[sub_resource type="Animation" id=11]
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Anim:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.25 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.35, 1.4 ), Vector2( 0.778, 0.63 ), Vector2( 0.7, 0.7 ) ]
-}
-
-[sub_resource type="GDScript" id=12]
-script/source = "extends KinematicBody2D
+[sub_resource type="GDScript" id="12"]
+script/source = "extends CharacterBody2D
 
 var damage = 400
 "
 
-[sub_resource type="Animation" id=13]
-resource_name = "shield_hide"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 0.176777, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.2, 0.2 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.05 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
-[sub_resource type="Animation" id=14]
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 0.176777, 1 ),
-"update": 0,
-"values": [ Vector2( 0.2, 0.2 ), Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.05 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="CapsuleShape2D" id=15]
+[sub_resource type="CapsuleShape2D" id="15"]
 radius = 1.225
 height = 3.3
 
-[node name="Kuro" type="KinematicBody2D"]
+[node name="Kuro" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 2
-script = ExtResource( 2 )
+script = ExtResource( "2" )
 character = "andy"
-andy_zquirk_scene = ExtResource( 6 )
-snek_texture = ExtResource( 5 )
+andy_zquirk_scene = ExtResource( "6" )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-scale = Vector2( 0.5, 0.5 )
-shape = SubResource( 1 )
-
-[node name="Anim" type="AnimatedSprite" parent="."]
-material = SubResource( 3 )
-position = Vector2( 0.25, 0.25 )
-scale = Vector2( 0.7, 0.7 )
-frames = ExtResource( 1 )
-animation = "andy"
-playing = true
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+frames = ExtResource( "4_3mv5w" )
 
 [node name="SpriteTrail" type="Node2D" parent="Anim"]
 show_behind_parent = true
-script = ExtResource( 3 )
+position = Vector2(0.25, 0.25)
+scale = Vector2(0.7, 0.7)
+script = ExtResource( "3" )
 life_time = 0.3
 copy_period = 0.02
-gradient = SubResource( 4 )
+gradient = SubResource( "4" )
 
 [node name="KuroSensor" type="Area2D" parent="."]
 visible = false
@@ -227,40 +59,25 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KuroSensor"]
-shape = SubResource( 5 )
+shape = SubResource( "5" )
 
-[node name="Dust" type="Particles2D" parent="."]
-self_modulate = Color( 0.117647, 0.203922, 0.482353, 1 )
+[node name="Dust" type="GPUParticles2D" parent="."]
+self_modulate = Color(0.117647, 0.203922, 0.482353, 1)
 show_behind_parent = true
-position = Vector2( -0.353554, 0.176773 )
+position = Vector2(-0.353554, 0.176773)
 amount = 5
 lifetime = 0.25
 local_coords = false
-process_material = SubResource( 8 )
-texture = ExtResource( 4 )
+process_material = SubResource( "8" )
 
-[node name="AnimPlayer" type="AnimationPlayer" parent="."]
-anims/Jump = SubResource( 9 )
-anims/move_discrete_horizontal = SubResource( 10 )
-anims/move_discrete_vertical = SubResource( 11 )
-
-[node name="Shield" type="KinematicBody2D" parent="."]
+[node name="Shield" type="CharacterBody2D" parent="."]
 collision_layer = 4
 collision_mask = 4
-script = SubResource( 12 )
-
-[node name="Sprite" type="Sprite" parent="Shield"]
-visible = false
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 7 )
-
-[node name="Anim" type="AnimationPlayer" parent="Shield"]
-anims/shield_hide = SubResource( 13 )
-anims/shield_pop = SubResource( 14 )
+script = SubResource( "12" )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
 visible = false
-position = Vector2( 0, -7 )
+position = Vector2(0, -7)
 rotation = 1.5708
-shape = SubResource( 15 )
+shape = SubResource( "15" )
 disabled = true

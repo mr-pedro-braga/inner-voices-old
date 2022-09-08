@@ -1,7 +1,8 @@
 extends Node
 
 # Battle and battle settings
-onready var battle = get_node("/root/GameRoot/WorldUI/Battle")
+@onready
+var battle = get_node(^"/root/GameRoot/WorldUI/Battle")
 var battle_turn: int = 0
 var turns_per_round: int = 0
 var battle_target = null
@@ -22,18 +23,18 @@ var battle_board_anim_out
 func bg_anim (anim):
 	match anim:
 		"battle_start":
-			AudioManager.play("SFX_UT_BattleStart")
-			get_node("/root/GameRoot/HUD2/BgAnim").play("battle_start")
-			yield(get_node("/root/GameRoot/HUD2/BgAnim"), "animation_finished")
+			AudioManager.play("SFX_Battle_Start")
+			get_node(^"/root/GameRoot/HUD2/BgAnim").play("battle_start")
+			await get_node(^"/root/GameRoot/HUD2/BgAnim").animation_finished
 			SoundtrackCore.battle_m_player.playing = true
-			yield(Utils, "hot_second")
+			await Utils.hot_second
 			for c in Characters.party:
-				var info = BattleCore.info_container.get_node(c)
+				var info = info_container.get_node(c)
 				info.reveal()
 		"darken":
-			get_node("/root/GameRoot/HUD2/BgAnim").play("darken")
+			get_node(^"/root/GameRoot/HUD2/BgAnim").play("darken")
 		"clear":
-			get_node("/root/GameRoot/HUD2/BgAnim").play("clear")
+			get_node(^"/root/GameRoot/HUD2/BgAnim").play("clear")
 
 ### Transpose all battlers to the battle layer
 var transposed := false
@@ -48,7 +49,7 @@ func transpose_characters(characters):
 		b.world_parent = b.get_parent()
 		b.world_position = b.position
 		b.get_parent().remove_child(b)
-		get_node("/root/GameRoot/BattleChars").add_child(b)
+		get_node(^"/root/GameRoot/BattleChars").add_child(b)
 	transposed = true
 
 ### Make all characters face the center
@@ -66,19 +67,19 @@ func return_characters(characters):
 
 func battle_start_animation():
 	ScreenCore.global_camera.smoothing_enabled = true
-	get_node("/root/GameRoot/HUD/black_bars").play("battle_slide_in")
-	get_node("/root/GameRoot/HUD/black_bars_top").play("menu_in")
+	get_node(^"/root/GameRoot/HUD/black_bars").play("battle_slide_in")
+	get_node(^"/root/GameRoot/HUD/black_bars_top").play("menu_in")
 
 # Call using 'battle(opponents, use abstract background, enemies first)'
 func request_battle(_opponents, bbg=false, surprise=false):
-	
-	var BattleBG = get_node("/root/GameRoot/HUD2/BattleBG")
+
+	var BattleBG = get_node(^"/root/GameRoot/HUD2/BattleBG")
 	BattleBG.visible = false
-	
+
 	battle_start_animation()
-	
+
 	SoundtrackCore.bgm_pause()
-	battle = get_node("/root/GameRoot/WorldUI/Battle")
+	battle = get_node(^"/root/GameRoot/WorldUI/Battle")
 	Characters.playable_character_node.velocity = Vector2.ZERO
 	Characters.playable_character_node.input_vector = Vector2.ZERO
 	Gameplay.GAMEMODE = Gameplay.GM.BATTLE
@@ -111,40 +112,40 @@ func request_battle(_opponents, bbg=false, surprise=false):
 	battle.position = 0.5 * (allycenter + opponentcenter) - Vector2(0, 16)
 	rc_chars(battlers)
 	for i in range(opponents.size()):
-		opponents[i].get_node("battle_script").battle_join()
+		opponents[i].get_node(^"battle_script").battle_join()
 	# Load every ally's attacks, acts, spells and stats if not loaded yet
 	turns_per_round = battlers.size()
-	
+
 	Utils.update_soul_meters()
 	for info in info_container.get_children():
 		info.reveal()
-	
+
 	if bbg:
 		if not transposed:
 			transpose_characters(battlers)
 		bg_anim("battle_start")
 		var center = 0.5 * (allycenter + opponentcenter)
-		
+
 		inverted = allycenter.x > center.x
 		var invert = -1 if inverted else 1
 		for index in range(Characters.party.size()):
 			var i = Characters.party_character_nodes[index]
-			Utils.slide_to(i, center + Vector2(-64 - 16 * index, 32 * (index-(Characters.party.size()-1)/2.0))  * Vector2(invert, 1.0), 3.0, AnimationInstance.mode.EASE_OUT)
+			#Utils.slide_to(i, center + Vector2(-64 - 16 * index, 32 * (index-(Characters.party.size()-1)/2.0))  * Vector2(invert, 1.0), 3.0, AnimationInstance.mode.EASE_OUT)
 		for index in range(opponents.size()):
 			var i = opponents[index]
 			index = float(index)
-			Utils.slide_to(i, center + Vector2( 64 + 16 * index, 32 * (index-(opponents.size()-1)/2.0)) * Vector2(invert, 0.0), 3.0, AnimationInstance.mode.EASE_OUT)
-		yield(get_tree().create_timer(0.9), "timeout")
-		
+			#Utils.slide_to(i, center + Vector2( 64 + 16 * index, 32 * (index-(opponents.size()-1)/2.0)) * Vector2(invert, 0.0), 3.0, AnimationInstance.mode.EASE_OUT)
+		await get_tree().create_timer(0.9).timeout
+
 		# Make the rest of the world invisible to save draw calls!
-		Gameplay.world.get_node("Scene/3DObjects").visible = false
-		
+		Gameplay.world.get_node(^"Scene/3DObjects").visible = false
+
 		battle_loop()
 		return
-	
+
 	if not SoundtrackCore.battle_m_player.playing:
 		SoundtrackCore.battle_m_player.playing = true
-	
+
 	if not transposed:
 		transpose_characters(battlers)
 	battle_loop()
@@ -165,122 +166,124 @@ var next_pattern = ""
 func load_battle_script (character):
 	if character.has_node("battle_script"):
 		return
+	character.load_options()
 	var battle_script = Node.new()
 	battle_script.name = "battle_script"
-	var script = load("res://assets/battle/battle_scripts/" + character.attacks)
+	var script = load(character.attacks)
 	battle_script.set_script(script)
 	battle_script.aff = character.character_id.to_lower()
 	Utils.battle_scripts[character.character_id.to_lower()] = battle_script
 	character.add_child(battle_script)
 
-onready var info_container = get_node("/root/GameRoot/HUD/SoulInfos")
+@onready var info_container = get_node(^"/root/GameRoot/HUD/SoulInfos")
 
 func battle_loop():
 	# BATTLES!!!
 	while(true):
-		
+
 		var turnch = battlers[battle_turn]
 		if turnch in Characters.party_character_nodes:
 			var skill = Utils.character_stats[turnch.character_id]["attributes"]["skill"]
-			
-			if true:#current_battle_line["dialog"] == "null":
-				DialogHandler.simple_choice(
-					[DCCore.strings["act"], DCCore.strings[skill], DCCore.strings["attack"], DCCore.strings["item"]],
-					["act", skill, "fight", "item"],
-				-16, 0, 2)
-			else:
-				
-				DCCore.load_dialog_into_cache(current_battle_line["file"])
-				var question = DCCore.dialog_cache[current_battle_line["file"]][current_battle_line["dialog"]]
-				
-				DialogHandler.simple_choice(
-					[DCCore.strings["act"], DCCore.strings[skill], DCCore.strings["attack"], DCCore.strings["item"]],
-					["act", skill, "fight", "item"],
-				-16, 0, 2, question)
-			
-			yield(DCCore, "choice_finished")
-			
-			current_battle_options = Utils.character_stats[battlers[battle_turn].character_id]
-			
-			#Thinking animation
-			Characters.map_characters[battlers[battle_turn].character_id].animation_state.battle_action = "think"
-			var choice_pos = 3 if inverted else 2
-			
-			match DCCore.choice_result:
-				0:
-					# Display and ask for which attack to execute!
-					var display_names = []
-					var icons = []
-					var acts = current_battle_options["acts"]
-					for j in range(acts.size()):
-						display_names.append(DCCore.strings[acts[j]["id"]])
-						icons.append(acts[j]["icon"])
-					DialogHandler.simple_choice(display_names, icons, -16, choice_pos, 2)
-					yield(DCCore, "choice_selected")
-					Utils.act(
-						battlers[battle_turn].character_id,
-						opponents[0].character_id,
-						acts[DCCore.choice_result]["id"]
-					)
-					yield(Utils, "act_finished")
-				1:
-					# Display and ask for which skill to execute!
-					var display_names = []
-					var icons = []
-					var attacks = current_battle_options["skills"]
-					for j in range(attacks.size()):
-						display_names.append(DCCore.strings[attacks[j]["id"]])
-						icons.append(attacks[j]["icon"])
-					DialogHandler.simple_choice(display_names, icons, -16, choice_pos, 2)
-					yield(DCCore, "choice_selected")
-				2:
-					# Display and ask for which attack to execute!
-					var display_names = []
-					var icons = []
-					var attacks = current_battle_options["attacks"]
-					for j in range(attacks.size()):
-						display_names.append(DCCore.strings[attacks[j]["id"]])
-						icons.append(attacks[j]["icon"])
-					DialogHandler.simple_choice(display_names, icons, -16, choice_pos, 2)
-					yield(DCCore, "choice_finished")
-					
-					var targets = opponents
-					DialogHandler.simple_char_choice(targets, 1)
-					yield(DCCore, "choice_finished")
-					battle_target = targets[DCCore.choice_result]
-					Utils.attack(battlers[battle_turn].character_id, battle_target, "general", "weak_punch")
-					yield(Utils, "attack_finished")
-				3:
-					MenuCore.focused_menu = "item"
-					MenuCore.set_open("item", true)
-					MenuCore.show_hotbar()
-					yield(DialogHandler, "dialog_ok")
-					MenuCore.set_open("item", false)
-					AudioManager.play_sound("SFX_Menu_Select")
-					MenuCore.hide_hotbar()
-		else:
-			# Give the Character and select the next attack
-			var bs = Utils.battle_scripts[battlers[battle_turn].character_id.to_lower()]
-			bs.battle_turn_select(battlers[battle_turn], battle_round)
-			yield(self, "turn_intro_finished")
-			if Gameplay.GAMEMODE == Gameplay.GM.OVERWORLD:
-				break
-			battle_target = Characters.party_character_nodes[int(rand_range(0.0, Characters.party.size()))]
-			#var info = info_container.get_node(battle_target.character_id)
-			if not next_attack_name["id"] == "null":
-				Utils.attack(battlers[battle_turn], battle_target.character_id, next_attack_name["pool"], next_attack_name["id"])
-				yield(Utils, "attack_finished")
-		Characters.map_characters[battlers[battle_turn].character_id].animation_state.battle_action = "idle"
-		battle_turn += 1
-		if battle_turn >= turns_per_round:
-			battle_turn = 0
-			battle_round += 1
-		if Gameplay.GAMEMODE == Gameplay.GM.OVERWORLD:
-			break
+
+#			if current_battle_line["dialog"] == "null":
+#				DialogHandler.simple_choice(
+#					[DCCore.strings["act"], DCCore.strings[skill], DCCore.strings["attack"], DCCore.strings["item"]],
+#					["act", skill, "fight", "item"],
+#				-16, 0, 2)
+#			else:
+#
+#				DCCore.load_dialog_into_cache(current_battle_line["file"])
+#				var question = DCCore.dialog_cache[current_battle_line["file"]][current_battle_line["dialog"]][0]
+#				question = question.prefix + question.content
+#
+#				DialogHandler.simple_choice(
+#					[DCCore.strings["act"], DCCore.strings[skill], DCCore.strings["attack"], DCCore.strings["item"]],
+#					["act", skill, "fight", "item"],
+#				-16, 0, 2, question)
+#
+#			await DCCore.choice_finished
+#
+#			current_battle_options = Utils.character_stats[battlers[battle_turn].character_id]
+#
+#			#Thinking animation
+#			Characters.map_characters[battlers[battle_turn].character_id].animation_state.battle_action = "think"
+#			var choice_pos = 3 if inverted else 2
+#
+#			match DCCore.choice_result:
+#				0:
+#					# Display and ask for which ACT to execute!
+#					var display_names = []
+#					var icons = []
+#					var acts = current_battle_options["acts"]
+#					for j in range(acts.size()):
+#						display_names.append(DCCore.strings[acts[j]["id"]])
+#						icons.append(acts[j]["icon"])
+#					DialogHandler.simple_choice(display_names, icons, -16, choice_pos, 2)
+#					await DCCore.choice_selected
+#					Utils.act(
+#						battlers[battle_turn].character_id,
+#						opponents[0].character_id,
+#						acts[DCCore.choice_result]["id"]
+#					)
+#					await Utils.act_finished
+#				1:
+#					# Display and ask for which skill to execute!
+#					var display_names = []
+#					var icons = []
+#					var attacks = current_battle_options["skills"]
+#					for j in range(attacks.size()):
+#						display_names.append(DCCore.strings[attacks[j]["id"]])
+#						icons.append(attacks[j]["icon"])
+#					DialogHandler.simple_choice(display_names, icons, -16, choice_pos, 2)
+#					await DCCore.choice_selected
+#				2:
+#					# Display and ask for which attack to execute!
+#					var display_names = []
+#					var icons = []
+#					var attacks = current_battle_options["attacks"]
+#					for j in range(attacks.size()):
+#						display_names.append(DCCore.strings[attacks[j]["id"]])
+#						icons.append(attacks[j]["icon"])
+#					DialogHandler.simple_choice(display_names, icons, -16, choice_pos, 2)
+#					await DCCore.choice_finished
+#
+#					var targets = opponents
+#					DialogHandler.simple_char_choice(targets, 1)
+#					await DCCore.choice_finished
+#					battle_target = targets[DCCore.choice_result]
+#					Utils.attack(battlers[battle_turn].character_id, battle_target, "general", "weak_punch")
+#					await Utils.attack_finished
+#				3:
+#					MenuCore.focused_menu = "item"
+#					MenuCore.set_open("item", true)
+#					MenuCore.show_hotbar()
+#					await DialogHandler.dialog_ok
+#					MenuCore.set_open("item", false)
+#					AudioManager.play_sound("SFX_Menu_Select")
+#					MenuCore.hide_hotbar()
+#		else:
+#			# Give the Character and select the next attack
+#			var bs = Utils.battle_scripts[battlers[battle_turn].character_id.to_lower()]
+#			bs.battle_turn_select(battlers[battle_turn], battle_round)
+#			await self.turn_intro_finished
+#			if Gameplay.GAMEMODE == Gameplay.GM.OVERWORLD:
+#				break
+#			battle_target = Characters.party_character_nodes[int(randf_range(0.0, Characters.party.size()))]
+#			#var info = info_container.get_node(battle_target.character_id)
+#			if not next_attack_name["id"] == "null":
+#				Utils.attack(battlers[battle_turn], battle_target.character_id, next_attack_name["pool"], next_attack_name["id"])
+#				await Utils.attack_finished
+#		Characters.map_characters[battlers[battle_turn].character_id].animation_state.battle_action = "idle"
+#		battle_turn += 1
+#		if battle_turn >= turns_per_round:
+#			battle_turn = 0
+#			battle_round += 1
+#		if Gameplay.GAMEMODE == Gameplay.GM.OVERWORLD:
+#			break
 
 func end_battle():
 	# Make the rest of the world visible again so yo[u can play.
-	Gameplay.world.get_node("Scene/3DObjects").visible = false
+	Gameplay.world.get_node(^"Scene/3DObjects").visible = true
 	Gameplay.GAMEMODE = Gameplay.GM.OVERWORLD
 	return_characters(battlers)
 	battlers = []
@@ -289,11 +292,11 @@ func end_battle():
 	battle.visible = false
 	battle_turn = 0
 	battle_round = 0
-	get_node("/root/GameRoot/BGM").playing = true
-	get_node("/root/GameRoot/BattleTheme").playing = false
-	get_node("/root/GameRoot/HUD/black_bars_top").play("menu_out")
-	get_node("/root/GameRoot/HUD/black_bars").play("battle_slide_out")
-	get_node("/root/GameRoot/HUD2/BattleBG").visible = false
+	get_node(^"/root/GameRoot/BGM").playing = true
+	get_node(^"/root/GameRoot/BattleTheme").playing = false
+	get_node(^"/root/GameRoot/HUD/black_bars_top").play("menu_out")
+	get_node(^"/root/GameRoot/HUD/black_bars").play("battle_slide_out")
+	get_node(^"/root/GameRoot/HUD2/BattleBG").visible = false
 	bg_anim("clear")
 	for info in info_container.get_children():
 		info.hide()
@@ -303,7 +306,7 @@ var emitter_scene# = load("res://assets/battle/battle_patterns/Emitter.tscn")
 
 func setup_all():
 	Utils.async_load("res://assets/battle/battle_pattern_sprites/Emitter.tscn")
-	emitter_scene = yield(SceneLoader, "on_scene_loaded").instance
+	#emitter_scene = await SceneLoader.on_scene_loaded.instance
 
 ## Create an eitter from a JSON specification
 func emitter_from(in_attack):

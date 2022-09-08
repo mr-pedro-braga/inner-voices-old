@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Menu_Cancel.wav-96db7f06a0570ac47a30cc8fc4352f29.sample"
+uid="uid://clr13gik86uqe"
+path="res://.godot/imported/SFX_Menu_Cancel.wav-96db7f06a0570ac47a30cc8fc4352f29.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Menu_Cancel.wav"
-dest_files=[ "res://.import/SFX_Menu_Cancel.wav-96db7f06a0570ac47a30cc8fc4352f29.sample" ]
+dest_files=["res://.godot/imported/SFX_Menu_Cancel.wav-96db7f06a0570ac47a30cc8fc4352f29.sample"]
 
 [params]
 

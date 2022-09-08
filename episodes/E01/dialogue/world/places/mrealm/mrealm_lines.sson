@@ -1,7 +1,9 @@
 --isaac_encounter
-	Claire (): Oh somebody!
+	move claire
+		face isaac
+	Claire (): Oh Andy!
 	wait 2.0
-	Claire (): Uh... hi?
+	Claire (): You aren't Andy are you?
 	move darwin
 		pose idle 1
 	Isaac (twisted): Ayo, how are ya mate!-\n¢¢- Oh no!
@@ -12,9 +14,10 @@
 	Isaac (twisted): All I see you are a little bummed.
 	Isaac (twisted): Leave that to me, I'll cheer ya up.
 	Isaac (twisted): Know what always lightens my mood?
-	sfx wsummon
+	sfx SFX_Weapon_Summon
 	move isaac
 		pose summon_weapon 1
+	bgm pause
 	wait 2.0
 	speech_delay 0.06
 	Isaac (twisted): A good ol' fight!
@@ -23,7 +26,7 @@
 --isaac_dodge
 	Isaac (twisted): Dodge This!
 --isaac_attackme
-	Issac (twisted): Come on, you can ¬C01attack¬C00 me.
+	Issac (twisted): Come on, you can [color=yellow]attack[/color] me.
 --isaac_battle_1
 	* ??? ATTACKs fimrly!
 --isaac_battle_2
@@ -31,14 +34,14 @@
 --isaac_battle_3
 	* ??? is ready to ATTACK!
 --isaac_nospare
-	* Stills want to fight.
+	* He still wants to FIGHT.
 --isaac_spare
-	Isaac (twisted): Done, you win mate!
-	Isaac (twisted): Eeeesh, I even got tired.
-	Isaac (twisted): Aight, i'ma blast off, cya.
+	Isaac (twisted): Done,¢ you win mate!
+	Isaac (twisted): Eeeesh,¢ I even got tired.
+	Isaac (twisted): Aight,¢ i'ma blast off,¢ cya.
 --isaac_spare_end
-	Isaac (twisted): Knew there was some strenght\nin those noodly arms!
-	Isaac (twisted): It isn't... much.
+	Isaac (twisted): Knew there was some strenght in those noodly arms!
+	Isaac (twisted): It isn't...¢ much.
 	Isaac (twisted): I think it's enough.
 	Isaac (twisted): Let's leave it at that.
 	* (Isaac is SPARING you.)
@@ -46,9 +49,9 @@
 	* The australian kid is SPARING you.
 
 --isaac_spare_please
-	Isaac (twisted): You... remember how you SPARE?
+	Isaac (twisted): You... remember how you [color=yellow]SPARE[/color]?
 	Isaac (twisted): You seem a little shy...
-	Isaac (twisted): No need for words,¢¢ just give me a thumbs up.
+	Isaac (twisted): No need for words,¢¢ [color=yellow]just give me a thumbs up[/color].
 
 --claire_help
 	* You call for help.
@@ -56,9 +59,9 @@
 	* But nobody came.
 
 --light_switch
-			* A light switch.\n¢¢ * (Click!)
-			* Somewhere,¢¢ a light was turned on.
+	* A light switch.\n¢¢ * (Click!)
+	* Somewhere,¢¢ a light was turned on.
 
 --light_switch_used
-			* A light switch.\n¢ * Already turned on.
+	* A light switch.\n¢ * Already turned on.
 

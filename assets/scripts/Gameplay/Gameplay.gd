@@ -8,7 +8,6 @@
 #
 #--------------------------------------------------------#
 
-
 extends Node
 
 ##########
@@ -18,14 +17,14 @@ extends Node
 #
 
 ### If you are currently in a scene with characters
-export var is_playing_story = true
-export var is_game_running = false
-export var slider1 = 0.0
+@export var is_playing_story = true
+@export var is_game_running = false
+@export var slider1 = 0.0
 
 ### Assets and references to important nodes.
 var _Assets
-onready var world = get_node("/root/GameRoot/World") 				# Reference to the map container
-onready var transition_player = get_node("/root/GameRoot/Transition/TransitionPlayer") # Reference to the transition player
+@onready var world = get_node(^"/root/GameRoot/World") 				# RefCounted to the map container
+@onready var transition_player = get_node(^"/root/GameRoot/Transition/TransitionPlayer") # RefCounted to the transition player
 
 var has_finished_setting_up: bool # Setup finished
 
@@ -46,16 +45,19 @@ func _ready():
 	#OS.window_per_pixel_transparency_enabled = true
 	
 	### Setup is complete!
-	if get_node("/root").has_node("GameRoot"):
+	if get_node(^"/root").has_node("GameRoot"):
 		is_game_running = true
 	
 	### Load the strings for my language
+	print("-- Loading strings for the current language.")
 	DCCore.load_strings()
 	
 	### Boot the character system
+	print("-- Booting the Character System")
 	Utils.character_system_init()
 	
 	### Setup the streeam players!
+	print("-- Plugging in the Speakers!")
 	SoundtrackCore.setup_stream_players()
 	
 	### Setup useful variables
@@ -65,13 +67,14 @@ func _ready():
 		DCCore.strings["player_name"] = "player"
 	
 	### If starting on the is_playing_story, setup the is_playing_story.
+	print("-- Done! Opening the Story's Book.")
 	if has_node("/root/GameRoot"):
 		if is_playing_story:
 			setup_is_playing_story()
 
 #@ Setup the is_playing_story, import the start scene and spawn the main character
 func setup_is_playing_story():
-	world.remove_child(get_node("/root/GameRoot/World/Scene"))
+	world.remove_child(get_node(^"/root/GameRoot/World/Scene"))
 	
 	LOADING = true
 	
@@ -81,12 +84,13 @@ func setup_is_playing_story():
 		Utils.async_load("res://assets/__tests/stest_scenes.tscn", {"id":"scene"})
 	else:
 		Utils.async_load(ProjectSettings.get_setting("application/run/custom_first_scene"), {"id":"scene"})
-	
-	new_scene = yield(Utils, "scene_loaded").instance
+		print("-- Loading Main Scene: " + ProjectSettings.get_setting("application/run/custom_first_scene"))
+	new_scene = load(ProjectSettings.get_setting("application/run/custom_first_scene")).instantiate()#(await Utils.scene_loaded).instance
+	print("-- Scene Loaded: ", new_scene)
 	
 	world.add_child(new_scene)
 	new_scene.name = "Scene"
-	if not get_node("/root/GameRoot/World/Scene").has_node("3DObjects"):
+	if not get_node(^"/root/GameRoot/World/Scene").has_node("3DObjects"):
 		print("(!) Warning; not a valid room (missing 3DObjects node)!")
 		return
 	
@@ -126,7 +130,7 @@ enum GM {
 	BOSS,
 	CUTSCENE
 }
-onready var GAMEMODE = GM.OVERWORLD
+@onready var GAMEMODE = GM.OVERWORLD
 
 ##########
 
@@ -138,7 +142,7 @@ onready var GAMEMODE = GM.OVERWORLD
 func warp(scene:String, location:Vector2, transition="slide_black", angle=-1):
 	Utils.async_load("res://episodes/"+scene_space+"/scenes/"+scene+".tscn")
 	warp_scene(
-		yield(Utils, "scene_loaded").loader,
+		(await Utils.scene_loaded).loader,
 		location,
 		transition,
 		angle
@@ -147,7 +151,7 @@ func warp(scene:String, location:Vector2, transition="slide_black", angle=-1):
 func warp_by_path(path:String, location:Vector2, transition="slide_black", angle=-1):
 	Utils.async_load(path)
 	warp_scene(
-		yield(Utils, "scene_loaded").loader,
+		(await Utils.scene_loaded).loader,
 		location,
 		transition,
 		angle
@@ -159,19 +163,19 @@ func warp_scene(scene:PackedScene, location:Vector2, transition="slide_black", a
 	Characters.party_follower_path.get_curve().clear_points()
 	transition_player.play(transition)
 	Characters.playable_character_node.enabled = false
-	yield(transition_player, "animation_finished")
+	await transition_player.animation_finished
 	
 	for i in range(Characters.party_character_nodes.size()):
 		var c:Node = Characters.party_character_nodes[i]
 		if c.get_parent() != null:
 			c.get_parent().remove_child(c)
 	
-	yield(get_tree().create_timer(0.25), "timeout")
-	var new_scene = scene.instance()
-	world.remove_child(get_node("/root/GameRoot/World/Scene"))
+	await get_tree().create_timer(0.25).timeout
+	var new_scene = scene.instantiate()
+	world.remove_child(get_node(^"/root/GameRoot/World/Scene"))
 	new_scene.name = "Scene"
 	world.add_child(new_scene)
-	var w = new_scene.get_node("3DObjects")
+	var w = new_scene.get_node(^"3DObjects")
 	if w:
 		for index in range(Characters.party_character_nodes.size()):
 			var i = Characters.party_character_nodes[index]
@@ -183,14 +187,13 @@ func warp_scene(scene:PackedScene, location:Vector2, transition="slide_black", a
 			i.mv_target = i.position
 			i.input_vector = Vector2.ZERO
 			i.velocity = Vector2.ZERO
-		if new_scene.has_method("scene_ready"):
-			new_scene.scene_ready()
 		ScreenCore.global_camera.make_current()
 		ScreenCore.global_camera.position = Characters.playable_character_node.position
 		Characters.party_follower_path.get_curve().clear_points()
+		if new_scene.has_method("scene_ready"):
+			new_scene.scene_ready()
 		if not angle == -1:
 			Characters.playable_character_node.angle = angle
-		
 		Characters.playable_character_node.update_reference()
 		Characters.playable_character_node.enabled = true
 	transition_player.play(transition+"_out")
@@ -202,10 +205,10 @@ signal warp_completed
 
 ### Warp between scenes or within a scene
 func teleport(location, transition="slide_black", angle=-1):
-	var t = get_node("/root/GameRoot/Transition/TransitionPlayer")
+	var t = get_node(^"/root/GameRoot/Transition/TransitionPlayer")
 	t.play(transition)
 	Characters.playable_character_node.enabled = false
-	yield(get_tree().create_timer(0.25), "timeout")
+	await get_tree().create_timer(0.25).timeout
 	for i in range(Characters.party_character_nodes.size()):
 		Characters.party_character_nodes[i].mv_target = location
 		Characters.party_character_nodes[i].position = location
@@ -215,7 +218,7 @@ func teleport(location, transition="slide_black", angle=-1):
 	if not angle == -1:
 		for c in Characters.party_character_nodes:
 			c.angle = angle
-	yield(get_tree().create_timer(0.25), "timeout")
+	await get_tree().create_timer(0.25).timeout
 	t.play(transition+"_out")
 	#emit_signal("warp_completed")
 	#emit_signal("LOADING_FINISHED")

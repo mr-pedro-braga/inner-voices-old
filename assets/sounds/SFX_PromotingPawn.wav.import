@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_PromotingPawn.wav-5d1068b673baf71ace5380686a8b151d.sample"
+uid="uid://bdyv6dbe061rq"
+path="res://.godot/imported/SFX_PromotingPawn.wav-5d1068b673baf71ace5380686a8b151d.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_PromotingPawn.wav"
-dest_files=[ "res://.import/SFX_PromotingPawn.wav-5d1068b673baf71ace5380686a8b151d.sample" ]
+dest_files=["res://.godot/imported/SFX_PromotingPawn.wav-5d1068b673baf71ace5380686a8b151d.sample"]
 
 [params]
 

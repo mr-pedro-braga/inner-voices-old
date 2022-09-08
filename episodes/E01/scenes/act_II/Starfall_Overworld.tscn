@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn1sr3iks7qgq"]
+
+[ext_resource type="PackedScene" path="res://assets/scene_components/DefaultScene.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://assets/characters/_character_scenes/Claire.res" id="2"]
+[ext_resource type="TileSet" uid="uid://cd0tibutnt3kq" path="res://assets/map_making/tilesets/General-Overworld.tres" id="3"]
+[ext_resource type="Environment" path="res://assets/shaders/env_dreamy.tres" id="4"]
+[ext_resource type="Script" path="res://assets/scripts/Construction/Event.gd" id="5"]
+[ext_resource type="Script" path="res://episodes/E01/scenes/act_II/Starfall_Overworld.gd" id="6"]
+
+[node name="Scene" instance=ExtResource( "1" )]
+script = ExtResource( "6" )
+scene_name = "Scene 1"
+scene_initial_zoom = 1.0
+
+[node name="Floor" type="TileMap" parent="Tilemaps" index="0"]
+tile_set = ExtResource( "3" )
+format = 2
+
+[node name="Buildings" type="TileMap" parent="Tilemaps" index="1"]
+tile_set = ExtResource( "3" )
+format = 2
+
+[node name="claire" parent="3DObjects" index="0" instance=ExtResource( "2" )]
+position = Vector2(626.365, -666.371)
+current = true
+
+[node name="Events" type="CanvasLayer" parent="." index="4"]
+follow_viewport_enable = true
+
+[node name="SceneEvent" type="Area2D" parent="Events" index="0"]
+position = Vector2(264, 48)
+script = ExtResource( "5" )
+trigger_area = Vector2(64, 8)
+trigger_once = true
+event_name = "starfall_enter"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="5"]
+color = Color(0.796078, 0.709804, 0.756863, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="6"]
+environment = ExtResource( "4" )

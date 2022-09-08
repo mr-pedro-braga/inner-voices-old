@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=15 format=2]
 
-[ext_resource path="res://assets/characters/monsters/leggo.png" type="Texture" id=1]
-[ext_resource path="res://assets/characters/monsters/leggo_flirt.png" type="Texture" id=2]
+[ext_resource path="res://assets/characters/monsters/leggo.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/characters/monsters/leggo_flirt.png" type="Texture2D" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )

@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_ClioLeave.wav-b9a77e07e8bb401d208da6b095667ae8.sample"
+uid="uid://cwdstviydnxvu"
+path="res://.godot/imported/SFX_ClioLeave.wav-b9a77e07e8bb401d208da6b095667ae8.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_ClioLeave.wav"
-dest_files=[ "res://.import/SFX_ClioLeave.wav-b9a77e07e8bb401d208da6b095667ae8.sample" ]
+dest_files=["res://.godot/imported/SFX_ClioLeave.wav-b9a77e07e8bb401d208da6b095667ae8.sample"]
 
 [params]
 

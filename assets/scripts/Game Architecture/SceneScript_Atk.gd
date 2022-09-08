@@ -15,19 +15,19 @@ static func parse_sson_atk(raw):
 	var _error = regex.compile("(?m)^ *--(?<key>[\\w|\\*]+) *((?<value>.*)(?<block>(?:\\n\\t.*)*)?)?")
 	if _error != OK:
 		print_debug(_error, raw)
-	
+
 	var results := {}
-	
+
 	for m in regex.search_all(raw):
 		var names = m.get_names()
-		
+
 		var attack = parse_atk(SceneScript.unindent(
 			m.get_string(names["block"])
 		))
-		
+
 		if not attack == []:
 			results[m.get_string(names["key"])] = attack
-	
+
 	return results
 
 #@ Parses an attack from scene script into JSON
@@ -35,14 +35,14 @@ static func parse_atk(raw):
 	var regex = RegEx.new()
 	regex.compile("(?m)^ *(?<command>[\\w|\\*]+) *((?<params>.*)(?<block>(?:\\n\\t.*)*)?)?")
 	var results := []
-	
+
 	for m in regex.search_all(raw):
 		var line = parse_atk_entry(m)
 		if not line == {}:
 			results.push_back(
 				line
 			)
-	
+
 	return results
 
 #@ Reads an attack from the parset JSON into another fucking dictionary
@@ -53,7 +53,7 @@ static func read_atk(par_array):
 			"type":
 				result.type = i.value
 			"battle_box":
-				Utils.battle_box_size = i.value
+				#Utils.battle_box_size = i.value
 				BattleCore.battle.update_size(i.value)
 				result.anim_in = i.anim_in
 				result.anim_out = i.anim_out
@@ -65,13 +65,13 @@ static func read_atk(par_array):
 #@ Parses a single entry of ATK
 static func parse_atk_entry(raw_match):
 	var names = raw_match.get_names()
-	
+
 	var r = {}
-	
+
 	var command:String = raw_match.get_string(names["command"])
 	var params = raw_match.get_string(names["params"])
 	var block = raw_match.get_string(names["block"])
-	
+
 	# Match Normal Commands
 	match command:
 		"base_damage":
@@ -79,7 +79,7 @@ static func parse_atk_entry(raw_match):
 			r = {
 				"type": "damage",
 				"damage": {
-					"amount": float(terms[0]),
+					"amount": terms[0].to_float(),
 					"damage_type": terms[1]
 				}
 			}
@@ -100,7 +100,7 @@ static func parse_atk_entry(raw_match):
 			var terms = SceneScript.get_terms(params)
 			r = {
 				"type": "battle_box",
-				"value": Vector2(int(terms[0]), int(terms[1])),
+				"value": Vector2(terms[0].to_int(), terms[1].to_int()),
 				"anim_in": terms[2],
 				"anim_out": terms[3]
 			}
@@ -158,25 +158,25 @@ static func parse_script(raw):
 	var regex = RegEx.new()
 	regex.compile("(?m)^ *(?<command>[\\w|\\*]+) *((?<params>.*)(?<block>(?:\\n\\t.*)*)?)?")
 	var results := []
-	
+
 	for m in regex.search_all(raw):
 		var line = parse_script_entry(m)
 		if not line == {}:
 			results.push_back(
 				line
 			)
-	
+
 	return results
 
 #@ Parses a single entry of bullet script
 static func parse_script_entry(raw_match):
 	var names = raw_match.get_names()
 	var r = {}
-	
+
 	var command:String = raw_match.get_string(names["command"])
 	var params = raw_match.get_string(names["params"])
 	var block = raw_match.get_string(names["block"])
-	
+
 	# Match Normal Commands
 	match command:
 		"process":
@@ -212,7 +212,7 @@ static func parse_script_entry(raw_match):
 			r = {
 				"type": "function",
 				"function": "offset_at_angle",
-				"param": Vector2(float(terms[0]), float(terms[1]))
+				"param": Vector2(terms[0].to_float(), terms[1].to_float())
 			}
 		"speed":
 			r = {
@@ -279,7 +279,7 @@ static func parse_script_entry(raw_match):
 			r = {
 				"type": "function",
 				"function": "look_at",
-				"param": Vector2(float(terms[0]), float(terms[1]))
+				"param": Vector2(terms[0].to_float(), terms[1].to_float())
 			}
 		"position":
 			r = {
@@ -314,21 +314,3 @@ static func parse_script_entry(raw_match):
 	if r == {}:
 		return
 	return r
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

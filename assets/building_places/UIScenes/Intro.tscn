@@ -1,13 +1,13 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://assets/scripts/Game Architecture/Camera.gd" type="Script" id=1]
-[ext_resource path="res://assets/images/IV-logo1.png" type="Texture" id=2]
-[ext_resource path="res://assets/images/IV-logo2.png" type="Texture" id=3]
+[ext_resource path="res://assets/scripts/Game Architecture/Camera3D.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/IV-logo1.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/images/IV-logo2.png" type="Texture2D" id=3]
 [ext_resource path="res://assets/battle/battle_screen_backgrounds/Alpha.res" type="PackedScene" id=4]
 [ext_resource path="res://assets/sounds/Ominous Opening.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sounds/SFX_Thud.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/images/sprites_user_interface/black_bar_slide.png" type="Texture" id=7]
-[ext_resource path="res://assets/images/sprites_dialogs/retro_bits_2_white.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/sprites_user_interface/black_bar_slide.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/images/sprites_dialogs/retro_bits_2_white.png" type="Texture2D" id=8]
 [ext_resource path="res://addons/SpriteText/SpriteText.gd" type="Script" id=9]
 
 [sub_resource type="GDScript" id=1]
@@ -36,17 +36,17 @@ void fragment() {
 shader = SubResource( 2 )
 
 [sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
+animations = [{
+"frames": [ExtResource( 2 )],
 "loop": true,
 "name": "en",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ExtResource( 3 )],
 "loop": true,
 "name": "ja",
 "speed": 5.0
-} ]
+}]
 
 [sub_resource type="Animation" id=5]
 resource_name = "Intro"
@@ -59,10 +59,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.5, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(1.5, 6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 0.1, 0.1 ), Vector2( 0.2, 0.2 ) ]
+"values": [Vector2(0.1, 0.1), Vector2(0.2, 0.2)]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Logo:modulate")
@@ -71,10 +71,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.5, 3, 5.9, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1.5, 3, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("IntroMusic:playing")
@@ -83,10 +83,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1.5, 6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ false, true, false ]
+"values": [false, true, false]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Thud:playing")
@@ -95,10 +95,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 5.95, 6, 7.95, 13.85 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 5.95, 6, 7.95, 13.85),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ false, false, true, true, false ]
+"values": [false, false, true, true, false]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("BattleBG2:modulate")
@@ -107,10 +107,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 1.5, 3, 5.9, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1.5, 3, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("White:visible")
@@ -119,10 +119,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 5.9, 6, 6.1, 6.2, 6.3, 8, 8.1, 8.2, 8.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 5.9, 6, 6.1, 6.2, 6.3, 8, 8.1, 8.2, 8.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ false, false, true, false, true, false, true, false, true, false ]
+"values": [false, false, true, false, true, false, true, false, true, false]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Author:visible")
@@ -131,10 +131,10 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 5.95, 6, 8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 5.95, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ false, false, true, false ]
+"values": [false, false, true, false]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Aberration:material:shader_param/separation_x")
@@ -143,10 +143,10 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 1.5, 2.3, 3.45, 4.65, 5.9, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(1.5, 2.3, 3.45, 4.65, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ 0.0, 0.0, 0.054, 0.216, 0.122, 0.0 ]
+"values": [0.0, 0.0, 0.054, 0.216, 0.122, 0.0]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("Aberration:material:shader_param/separation_y")
@@ -155,10 +155,10 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 1.5, 2.3, 3.45, 4.65, 5.9, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(1.5, 2.3, 3.45, 4.65, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ 0.0, 0.0, -0.081, 0.026, 0.121, 0.0 ]
+"values": [0.0, 0.0, -0.081, 0.026, 0.121, 0.0]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Logo:offset")
@@ -167,10 +167,10 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 1.5, 3.15, 3.95, 4.65, 5.1, 5.55, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(1.5, 3.15, 3.95, 4.65, 5.1, 5.55, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -8, -8 ), Vector2( 8, 10 ), Vector2( 1, 1 ), Vector2( 16, -16 ), Vector2( -4, 6 ), Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0), Vector2(-8, -8), Vector2(8, 10), Vector2(1, 1), Vector2(16, -16), Vector2(-4, 6), Vector2(0, 0)]
 }
 
 [sub_resource type="Shader" id=6]
@@ -203,20 +203,20 @@ __meta__ = {
 }
 
 [node name="BattleBG2" parent="." instance=ExtResource( 4 )]
-modulate = Color( 1, 1, 1, 0 )
-self_modulate = Color( 1, 1, 1, 0.207843 )
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.207843)
 
-[node name="Logo" type="AnimatedSprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+[node name="Logo" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 material = SubResource( 3 )
-position = Vector2( 120, 67 )
-scale = Vector2( 0.194326, 0.194326 )
+position = Vector2(120, 67)
+scale = Vector2(0.194326, 0.194326)
 frames = SubResource( 4 )
 animation = "en"
-offset = Vector2( -4.5393, 3.40447 )
+offset = Vector2(-4.5393, 3.40447)
 
 [node name="BetterCamera" type="Camera2D" parent="."]
-position = Vector2( 120, 67 )
+position = Vector2(120, 67)
 script = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -230,11 +230,11 @@ stream = ExtResource( 6 )
 
 [node name="Author" type="ReferenceRect" parent="."]
 visible = false
-margin_left = 70.0
-margin_top = 61.5
-margin_right = 170.0
-margin_bottom = 93.5
-border_color = Color( 1, 0.337255, 0.337255, 1 )
+offset_left = 70.0
+offset_top = 61.5
+offset_right = 170.0
+offset_bottom = 93.5
+border_color = Color(1, 0.337255, 0.337255, 1)
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -261,15 +261,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="top_black_bar" type="Sprite" parent="."]
-position = Vector2( 0, 10 )
+[node name="top_black_bar" type="Sprite2D" parent="."]
+position = Vector2(0, 10)
 texture = ExtResource( 7 )
-offset = Vector2( 120, 0 )
+offset = Vector2(120, 0)
 
-[node name="bottom_black_bar" type="Sprite" parent="."]
-position = Vector2( 0, 125 )
+[node name="bottom_black_bar" type="Sprite2D" parent="."]
+position = Vector2(0, 125)
 texture = ExtResource( 7 )
-offset = Vector2( 120, 0 )
+offset = Vector2(120, 0)
 
 [node name="Aberration" type="ColorRect" parent="."]
 material = SubResource( 7 )

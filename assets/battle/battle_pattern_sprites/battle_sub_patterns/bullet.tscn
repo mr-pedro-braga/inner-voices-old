@@ -4,16 +4,15 @@
 [ext_resource path="res://assets/battle/battle_pattern_sprites/battle_sub_patterns/bullet.gd" type="Script" id=2]
 [ext_resource path="res://assets/scripts/Utilities/Damage.gd" type="Script" id=5]
 
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.0
 
-[node name="Bullet" type="KinematicBody2D"]
+[node name="Bullet" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource( 2 )
 
-[node name="Animation" type="AnimatedSprite" parent="."]
+[node name="Animation" type="AnimatedSprite2D" parent="."]
 frames = ExtResource( 1 )
 animation = "bullet"
 playing = true
@@ -28,6 +27,7 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Damage" to="Damage" method="_on_Damage_body_entered"]
 [connection signal="body_exited" from="Damage" to="Damage" method="_on_Damage_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

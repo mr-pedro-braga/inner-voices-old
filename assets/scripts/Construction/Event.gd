@@ -1,4 +1,4 @@
-tool
+@tool
 extends EventReference
 class_name SceneEvent
 
@@ -7,9 +7,9 @@ class_name SceneEvent
 # Useful for general events here and there.
 #
 
-export var event_name = ""
-export var event_parameter = ""
-export var event_arguments = []
+@export var event_name = ""
+@export var event_parameter = ""
+@export var event_arguments = []
 
 
 func _process(_delta):
@@ -34,7 +34,7 @@ func _draw():
 		font,
 		Vector2.ZERO,
 		text,
-		Color.white
+		Color.WHITE
 	)
 
 # When this event gets activated
@@ -43,10 +43,9 @@ func _on_activated():
 	if event_name == "":
 		return
 	
-	var scene = get_node("/root/GameRoot/World/Scene")
+	var scene = get_node(^"/root/GameRoot/World3D/Scene")
 	if not scene.has_method("evt_" + event_name):
 		print("(!) There is no event named '"+event_name+"' in the scene "+scene.scene_name)
 		return
 	
-	scene.call(
-		"evt_" + event_name, self, event_parameter, event_arguments)
+	scene.call("evt_" + event_name, self, event_parameter, event_arguments)

@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bmujpe78kx6fc"
+path="res://.godot/imported/mus_clown.mp3-ddb2aa6ebcfde7e325dc8188cb99dc12.mp3str"
+
+[deps]
+
+source_file="res://assets/music/mus_clown.mp3"
+dest_files=["res://.godot/imported/mus_clown.mp3-ddb2aa6ebcfde7e325dc8188cb99dc12.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

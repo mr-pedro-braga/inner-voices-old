@@ -13,7 +13,7 @@
 # # a scene that exists in your project
 #
 #func _ready():
-#	SceneLoader.connect("on_scene_loaded", self, "do_scene_loaded")
+#	SceneLoader.connect(&"on_scene_loaded", self.do_scene_loaded)
 #	SceneLoader.load_scene("res://myscene.tscn", { hii = "cool" })
 #
 #func do_scene_loaded(scene):
@@ -41,7 +41,7 @@ signal on_scene_loaded
 
 func _ready():
 	thread = Thread.new()
-	thread.start(self, "_thread_runner", null)
+	thread.start(_thread_runner, null)
 
 func _thread_runner(_o):
 	while true:
@@ -54,7 +54,7 @@ func _thread_runner(_o):
 				
 				if err == ERR_FILE_EOF:
 					scene_queue[i].loader = scene_queue[i].loader.get_resource()
-					scene_queue[i].instance = scene_queue[i].loader.instance()
+					scene_queue[i].instance = scene_queue[i].loader.instantiate()
 					cache[scene_queue[i].path] = scene_queue[i]
 					call_deferred("emit_signal", "on_scene_loaded", scene_queue[i])
 					scene_queue.erase(scene_queue[i].path)
@@ -71,16 +71,16 @@ func _thread_runner(_o):
 					awaiters.remove(awaiters.find(awaiter))
 
 func load_scene(path, props = null):
-	if !file.file_exists(path):
+	if not file.file_exists(path):
 		print("File does not exist: " + path)
 		return
 	
 	if cache.has(path):
-		call_deferred("emit_signal", "on_scene_loaded", { path = path, loader = cache[path].loader, instance = cache[path].loader.instance(), props = props })
+		call_deferred("emit_signal", "on_scene_loaded", { path = path, loader = cache[path].loader, instance = cache[path].loader.instantiate(), props = props })
 		return
 	
-	if !scene_queue.has(path):
-		scene_queue[path] = { path = path, loader = ResourceLoader.load_interactive(path), instance = null, props = props }
+	if not scene_queue.has(path):
+		scene_queue[path] = { path = path, loader = ResourceLoader.load_threaded_request(path), instance = null, props = props }
 	else:
 		awaiters.push_back({ path = path, loader = null, instance = null, props = props })
 

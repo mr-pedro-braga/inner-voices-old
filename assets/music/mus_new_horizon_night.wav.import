@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_new_horizon_night.wav-3fde2070dd38f4a01febcbc3dd20feaf.sample"
+uid="uid://jupli1vmwj2j"
+path="res://.godot/imported/mus_new_horizon_night.wav-3fde2070dd38f4a01febcbc3dd20feaf.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_new_horizon_night.wav"
-dest_files=[ "res://.import/mus_new_horizon_night.wav-3fde2070dd38f4a01febcbc3dd20feaf.sample" ]
+dest_files=["res://.godot/imported/mus_new_horizon_night.wav-3fde2070dd38f4a01febcbc3dd20feaf.sample"]
 
 [params]
 

@@ -8,6 +8,6 @@ character_id = "bruno"
 alignment = "ALLY"
 char_stats_file = "bruno.attacks"
 
-[node name="AnimatedSprite" parent="." index="2"]
+[node name="AnimatedSprite2D" parent="." index="2"]
 frames = ExtResource( 2 )
 animation = "idle_2"

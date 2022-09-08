@@ -10,7 +10,7 @@ func _process(delta):
 		if life <= 0:
 			queue_free()
 
-export var damage = {
+@export var damage = {
 	"amount": 1.0,
 	"element": "magical",
 	"type": "normal"

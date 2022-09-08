@@ -2,12 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/mus_copyrighted3.mp3-ea5c138909efccc83ff8e65048c31e36.mp3str"
+uid="uid://dfqpdid13hepq"
+path="res://.godot/imported/mus_copyrighted3.mp3-ea5c138909efccc83ff8e65048c31e36.mp3str"
 
 [deps]
 
 source_file="res://assets/music/mus_copyrighted3.mp3"
-dest_files=[ "res://.import/mus_copyrighted3.mp3-ea5c138909efccc83ff8e65048c31e36.mp3str" ]
+dest_files=["res://.godot/imported/mus_copyrighted3.mp3-ea5c138909efccc83ff8e65048c31e36.mp3str"]
 
 [params]
 

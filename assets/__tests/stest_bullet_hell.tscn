@@ -4,7 +4,7 @@
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
-background_color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+background_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 background_energy = 0.0
 tonemap_mode = 1
 dof_blur_near_distance = 0.47

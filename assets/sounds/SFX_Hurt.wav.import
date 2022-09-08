@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Hurt.wav-090e756fa9f5dad126245aec0d59a699.sample"
+uid="uid://bv6ae5d4vuow6"
+path="res://.godot/imported/SFX_Hurt.wav-090e756fa9f5dad126245aec0d59a699.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Hurt.wav"
-dest_files=[ "res://.import/SFX_Hurt.wav-090e756fa9f5dad126245aec0d59a699.sample" ]
+dest_files=["res://.godot/imported/SFX_Hurt.wav-090e756fa9f5dad126245aec0d59a699.sample"]
 
 [params]
 

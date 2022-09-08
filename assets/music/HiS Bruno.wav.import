@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/HiS Bruno.wav-ee919e4e002d3cf643d56242a403741c.sample"
+uid="uid://ctb8wmlqanrmv"
+path="res://.godot/imported/HiS Bruno.wav-ee919e4e002d3cf643d56242a403741c.sample"
 
 [deps]
 
 source_file="res://assets/music/HiS Bruno.wav"
-dest_files=[ "res://.import/HiS Bruno.wav-ee919e4e002d3cf643d56242a403741c.sample" ]
+dest_files=["res://.godot/imported/HiS Bruno.wav-ee919e4e002d3cf643d56242a403741c.sample"]
 
 [params]
 

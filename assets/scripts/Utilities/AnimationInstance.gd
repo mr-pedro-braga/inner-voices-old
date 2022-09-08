@@ -26,7 +26,7 @@ func _ready():
 	timer.one_shot = true
 	timer.autostart = true
 	timer.wait_time = duration
-	timer.connect("timeout", self, "end")
+	timer.connect(&"timeout", self.end)
 	add_child(timer)
 
 func end():
@@ -54,4 +54,4 @@ func _process(_delta):
 			obj.position = property
 		1:
 			Gameplay.main_camera.offset_pan = property
-			
+

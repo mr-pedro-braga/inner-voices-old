@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_threshold.wav-648938678c7de562b1b1e36542304a47.sample"
+uid="uid://by1qdbeny6o7s"
+path="res://.godot/imported/mus_threshold.wav-648938678c7de562b1b1e36542304a47.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_threshold.wav"
-dest_files=[ "res://.import/mus_threshold.wav-648938678c7de562b1b1e36542304a47.sample" ]
+dest_files=["res://.godot/imported/mus_threshold.wav-648938678c7de562b1b1e36542304a47.sample"]
 
 [params]
 

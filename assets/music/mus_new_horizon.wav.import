@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_new_horizon.wav-c6a839bf7161f59e1fe59a9ecaf037e8.sample"
+uid="uid://pqf2l0syies1"
+path="res://.godot/imported/mus_new_horizon.wav-c6a839bf7161f59e1fe59a9ecaf037e8.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_new_horizon.wav"
-dest_files=[ "res://.import/mus_new_horizon.wav-c6a839bf7161f59e1fe59a9ecaf037e8.sample" ]
+dest_files=["res://.godot/imported/mus_new_horizon.wav-c6a839bf7161f59e1fe59a9ecaf037e8.sample"]
 
 [params]
 

@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_andy_theme.wav-118c86a842177dc9b0e864353f60080c.sample"
+uid="uid://bj2frwmw25kk2"
+path="res://.godot/imported/mus_andy_theme.wav-118c86a842177dc9b0e864353f60080c.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_andy_theme.wav"
-dest_files=[ "res://.import/mus_andy_theme.wav-118c86a842177dc9b0e864353f60080c.sample" ]
+dest_files=["res://.godot/imported/mus_andy_theme.wav-118c86a842177dc9b0e864353f60080c.sample"]
 
 [params]
 

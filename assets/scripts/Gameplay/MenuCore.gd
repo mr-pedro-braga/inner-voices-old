@@ -37,18 +37,18 @@ func _process(_delta):
 			Gameplay.in_ui = true
 			set_open("item", true)
 			Characters.playable_character_node.stop()
-			get_node("/root/GameRoot/HUD/UIs/InventoryAnim").play("hotbar_in")
-			get_node("/root/GameRoot/HUD/black_bars").play("dialog_slide_in")
-			get_node("/root/GameRoot/HUD/black_bars_top").play("menu2_in")
+			get_node(^"/root/GameRoot/HUD/UIs/InventoryAnim").play("hotbar_in")
+			get_node(^"/root/GameRoot/HUD/black_bars").play("dialog_slide_in")
+			get_node(^"/root/GameRoot/HUD/black_bars_top").play("menu2_in")
 			AudioServer.set_bus_volume_db(1, -10)
 			ScreenCore.zoom_offset = 0.1
 			AudioManager.play_sound("UI/SFX_Menu_Rotate", "ogg")
 		else:
 			Gameplay.in_ui = false
 			set_open("item", false)
-			get_node("/root/GameRoot/HUD/UIs/InventoryAnim").play("hotbar_out")
-			get_node("/root/GameRoot/HUD/black_bars").play("dialog_slide_out")
-			get_node("/root/GameRoot/HUD/black_bars_top").play("menu2_out")
+			get_node(^"/root/GameRoot/HUD/UIs/InventoryAnim").play("hotbar_out")
+			get_node(^"/root/GameRoot/HUD/black_bars").play("dialog_slide_out")
+			get_node(^"/root/GameRoot/HUD/black_bars_top").play("menu2_out")
 			AudioServer.set_bus_volume_db(1, 0)
 			ScreenCore.zoom_offset = 0.0
 			AudioManager.play_sound("UI/SFX_Menu_Rotate", "ogg")
@@ -60,17 +60,20 @@ func _process(_delta):
 ### All the inventories PER CHARACTER.
 var inventories:Dictionary = {
 	"claire": Inventory.new()
-} setget update_items
+}:
+	set(value):
+		# TODO: Manually copy the code from this method.
+		update_items(value)
 
 func show_hotbar():
-	get_node("/root/GameRoot/HUD/UIs/InventoryAnim").play("hotbar_in")
+	get_node(^"/root/GameRoot/HUD/UIs/InventoryAnim").play("hotbar_in")
 func hide_hotbar():
-	get_node("/root/GameRoot/HUD/UIs/InventoryAnim").play("hotbar_out")
+	get_node(^"/root/GameRoot/HUD/UIs/InventoryAnim").play("hotbar_out")
 
 ### Updates the items visualization for the current inspecting character
 func update_items(_value={}):
 	var v = true
-	var inventory_display = get_node("/root/GameRoot/HUD/UIs/Inventory")
+	var inventory_display = get_node(^"/root/GameRoot/HUD/UIs/Inventory")
 	var item 
 	var slot
 	for i in range(5):

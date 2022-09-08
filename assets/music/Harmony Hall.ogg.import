@@ -1,13 +1,14 @@
 [remap]
 
-importer="ogg_vorbis"
+importer="oggvorbisstr"
 type="AudioStreamOGGVorbis"
-path="res://.import/Harmony Hall.ogg-828222544bfaff92dfc86d65b65a89c3.oggstr"
+uid="uid://v3fane1fgkiq"
+path="res://.godot/imported/Harmony Hall.ogg-828222544bfaff92dfc86d65b65a89c3.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/music/Harmony Hall.ogg"
-dest_files=[ "res://.import/Harmony Hall.ogg-828222544bfaff92dfc86d65b65a89c3.oggstr" ]
+dest_files=["res://.godot/imported/Harmony Hall.ogg-828222544bfaff92dfc86d65b65a89c3.oggvorbisstr"]
 
 [params]
 

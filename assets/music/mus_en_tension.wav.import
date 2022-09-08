@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_en_tension.wav-3acc6c135f5b28235746b76f952eeb67.sample"
+uid="uid://c50c4uv4ic5et"
+path="res://.godot/imported/mus_en_tension.wav-3acc6c135f5b28235746b76f952eeb67.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_en_tension.wav"
-dest_files=[ "res://.import/mus_en_tension.wav-3acc6c135f5b28235746b76f952eeb67.sample" ]
+dest_files=["res://.godot/imported/mus_en_tension.wav-3acc6c135f5b28235746b76f952eeb67.sample"]
 
 [params]
 

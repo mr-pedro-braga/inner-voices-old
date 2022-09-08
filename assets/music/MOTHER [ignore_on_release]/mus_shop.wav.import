@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_shop.wav-526275ed6c700d2f6c72557f6ab31342.sample"
+uid="uid://bwg8qmxoo0k07"
+path="res://.godot/imported/mus_shop.wav-526275ed6c700d2f6c72557f6ab31342.sample"
 
 [deps]
 
 source_file="res://assets/music/MOTHER [ignore_on_release]/mus_shop.wav"
-dest_files=[ "res://.import/mus_shop.wav-526275ed6c700d2f6c72557f6ab31342.sample" ]
+dest_files=["res://.godot/imported/mus_shop.wav-526275ed6c700d2f6c72557f6ab31342.sample"]
 
 [params]
 

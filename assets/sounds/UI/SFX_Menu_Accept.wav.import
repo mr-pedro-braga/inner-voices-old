@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Menu_Accept.wav-eaabf0b945d0f0e20339ec7876714589.sample"
+uid="uid://c3evoxe8f78y1"
+path="res://.godot/imported/SFX_Menu_Accept.wav-eaabf0b945d0f0e20339ec7876714589.sample"
 
 [deps]
 
 source_file="res://assets/sounds/UI/SFX_Menu_Accept.wav"
-dest_files=[ "res://.import/SFX_Menu_Accept.wav-eaabf0b945d0f0e20339ec7876714589.sample" ]
+dest_files=["res://.godot/imported/SFX_Menu_Accept.wav-eaabf0b945d0f0e20339ec7876714589.sample"]
 
 [params]
 

@@ -32,14 +32,14 @@ func battle_turn_select(c, battle_round):
 	
 	var attacks = Utils.stats[c.character_id]["attacks"]
 	BattleCore.next_attack_name = attacks[(fposmod(battle_round, attacks.size()))]
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 	
 	# Battle actions
 	
 	match BattleCore.battle_round:
 		1:
 			DCCore.dialog("test_dialog", "andy_battle_1")
-			yield(get_node("/root/GameRoot/Dialog"), "dialog_section_finished")
+			await get_node(^"/root/GameRoot/Dialog").dialog_section_finished
 	
 	
 	BattleCore.end_turn_intro()
@@ -50,13 +50,13 @@ func act(_user, act_name):
 			Gameplay.map_characters[_user].fight_action = "act_yes"
 			if not spared:
 				DCCore.dialog("places/new_horizon/school_lines", "andy_battle_nospare")
-				yield(get_node("/root/GameRoot/Dialog"), "dialog_section_finished")
+				await get_node(^"/root/GameRoot/Dialog").dialog_section_finished
 				Gameplay.map_characters[_user].fight_action = "idle"
 			else:
 				DCCore.dialog("places/new_horizon/school_lines", "andy_battle_spare")
-				yield(get_node("/root/GameRoot/Dialog"), "dialog_section_finished")
+				await get_node(^"/root/GameRoot/Dialog").dialog_section_finished
 				end = true
 			Utils.emit_signal("act_finished")
 		_:
-			yield(get_tree().create_timer(1.0), "timeout")
+			await get_tree().create_timer(1.0).timeout
 			Utils.emit_signal("act_finished")

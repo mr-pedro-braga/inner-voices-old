@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://nmvdmdhoofx0"]
+
+[ext_resource type="PackedScene" path="res://assets/scene_components/DefaultScene.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://assets/characters/_character_scenes/Claire.res" id="2"]
+[ext_resource type="Texture2D" uid="uid://cgvkxlt3qxd6r" path="res://episodes/E01/scenes/act_0/school-outside.png" id="3"]
+[ext_resource type="Script" path="res://assets/scripts/Construction/Event.gd" id="4"]
+[ext_resource type="Script" path="res://assets/scripts/Game Architecture/Camera.gd" id="5"]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends DefaultScene
+
+var cbkp = ScreenCore.global_camera
+var cool_cutscene = 0
+
+func _ready():
+	ScreenCore.global_camera = $BetterCamera
+	$BetterCamera.position = Characters.map_characters[\"claire\"].position
+	ScreenCore.attach_camera()
+	$BetterCamera.make_current()
+
+func _process(delta):
+	$BetterCamera.position.x = 0
+	
+	if cool_cutscene > 0:
+		$BetterCamera.position.y -= 64 * delta
+	if $BetterCamera.position.y <= -128 and cool_cutscene == 1:
+		print(\"Thunder!\")
+		AudioManager.play(\"SFX_Hurt\")
+		cool_cutscene += 1
+	if $BetterCamera.position.y <= -200 and cool_cutscene == 2:
+		$Sprite.modulate.a -= 5 * delta
+	if cool_cutscene == 2 and $Sprite.modulate.a <= 0:
+		cool_cutscene = 3
+		ScreenCore.global_camera = cbkp
+		Gameplay.warp(\"act_I/clio_backstage_room\", Vector2(120, 97))
+
+func evt_enter(_id, _parameter, _arguments):
+	ScreenCore.release_camera()
+	cool_cutscene = 1
+"
+__meta__ = {
+"Scene_Path": "res://episodes/E01/scenes/act_0/FakeSchool.tscn"
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "drama"
+length = 3.0
+
+[node name="Scene" instance=ExtResource( "1" )]
+script = SubResource( "1" )
+scene_name = "Scene 1"
+scene_initial_zoom = 1.0
+
+[node name="Sprite" type="Sprite2D" parent="." index="1"]
+texture = ExtResource( "3" )
+
+[node name="claire" parent="3DObjects" index="0" instance=ExtResource( "2" )]
+position = Vector2(2.5, 277)
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+anims/drama = SubResource( "2" )
+
+[node name="Events" type="Node2D" parent="." index="6"]
+
+[node name="TouchGate" type="Area2D" parent="Events" index="0"]
+position = Vector2(0, 208)
+script = ExtResource( "4" )
+event_name = "enter"
+
+[node name="BetterCamera" type="Camera2D" parent="." index="7"]
+position = Vector2(0, 256)
+script = ExtResource( "5" )

@@ -9,9 +9,6 @@ var choices = ["act", "spell", "fight", "item"]
 var choice_icons = ["act", "psi", "fight", "item"]
 var text_pos = 0
 
-var choice_nametag = preload("res://assets/scene_components/SelectionNametag.tscn")
-var selected_choice_box = DCCore.dialog_box
-
 var f = preload("res://assets/user_interface/choices.tres")
 
 enum {
@@ -34,23 +31,23 @@ func init_icons():
 	choices_count = choices.size()
 	DCCore.in_choice = true
 	choice_index=int(floor(choices_count/2)) if display != RADIAL else 0
-	var selection_indicator = Sprite.new()
+	var selection_indicator = Sprite2D.new()
 	selection_indicator.texture = load("res://assets/images/sprites_user_interface/choice_selected.png")
 	
 	var offset = 0
 	
 	match display:
 		RADIAL:
-			var circle = Sprite.new()
+			var circle = Sprite2D.new()
 			circle.texture = load("res://assets/images/sprites_user_interface/choice_circle.png")
 			circle.scale.y = 0.9
 			circle.scale = circle.scale * 0.875
 			add_child(circle)
 			selection_indicator.position.y = -28*0.9
 			if text_pos == 2:
-				nametag = choice_nametag.instance()
-				nametagtxt = nametag.get_node("Text")
-				nametagtexture = nametag.get_node("Texture")
+				nametag = Utils.choice_nametag.instantiate()
+				nametagtxt = nametag.get_node(^"Text")
+				nametagtexture = nametag.get_node(^"Texture2D")
 				nametag.rect_position.x = 9
 				selection_indicator.add_child(nametag)
 		LIST_TOP:
@@ -58,22 +55,22 @@ func init_icons():
 		LIST_LEFT:
 			selection_indicator.position.x = -24
 			if text_pos == 2:
-				nametag = choice_nametag.instance()
-				nametagtxt = nametag.get_node("Text")
-				nametagtexture = nametag.get_node("Texture")
+				nametag = Utils.choice_nametag.instantiate()
+				nametagtxt = nametag.get_node(^"Text")
+				nametagtexture = nametag.get_node(^"Texture2D")
 				nametag.rect_position.x = 9
 				selection_indicator.add_child(nametag)
 				offset -= 24
 		LIST_RIGHT:
 			selection_indicator.position.x = 24
 			if text_pos == 2:
-				nametag = choice_nametag.instance()
-				nametagtxt = nametag.get_node("Text")
-				nametagtexture = nametag.get_node("Texture")
+				nametag = Utils.choice_nametag.instantiate()
+				nametagtxt = nametag.get_node(^"Text")
+				nametagtexture = nametag.get_node(^"Texture2D")
 				nametag.rect_position.x = -9
-				nametag.get_node("Texture").rect_scale.x = -1
-				var ntext = nametag.get_node("Text")
-				ntext.rect_position.x = 8 - nametag.get_node("Texture").rect_size.x
+				nametag.get_node(^"Texture2D").rect_scale.x = -1
+				var ntext = nametag.get_node(^"Text")
+				ntext.rect_position.x = 8 - nametag.get_node(^"Texture2D").rect_size.x
 				selection_indicator.add_child(nametag)
 				offset -= 24
 	update_nametag(choices[choice_index%choices_count])
@@ -94,7 +91,7 @@ func update_nametag(text:String):
 		return
 	if nametagtxt is RichTextLabel:
 		var v = text.length()*6
-		nametagtxt.bbcode_text = "[center]"+text+"[/center]"
+		nametagtxt.bbcode_text = text
 		nametagtexture.rect_size.x = max(48, v)
 		return
 	nametagtxt.text = text
@@ -103,14 +100,14 @@ func _process(_delta):
 	match text_pos:
 		0:
 			dialog_box.text = question
-			selected_choice_box.text = choices[choice_index%choices_count]
+			Utils.selected_choice_box.bbcode_text = choices[choice_index%choices_count]
 			dialog_box.visible_characters = -1
 		1:
-			selected_choice_box.text = question
-			selected_choice_box.visible_characters = -1
+			Utils.selected_choice_box.bbcode_text = "[center]"+question+"[/center]"
+			Utils.selected_choice_box.visible_characters = -1
 		2:
-			selected_choice_box.text = question
-			selected_choice_box.visible_characters = -1
+			Utils.selected_choice_box.bbcode_text = "[center]"+question+"[/center]"
+			Utils.selected_choice_box.visible_characters = -1
 	if Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_down"):
 		choice_index += 1
 		AudioManager.play_sound("SFX_Menu_Rotate")
@@ -119,7 +116,7 @@ func _process(_delta):
 			Utils.speak(choices[choice_index%choices_count])
 		update_nametag(choices[choice_index%choices_count])
 		if display == LIST_RIGHT:
-			nametag.get_node("Text").rect_position.x = 8 - nametag.get_node("Texture").rect_size.x
+			nametag.get_node(^"Text").rect_position.x = 8 - nametag.get_node(^"Texture2D").rect_size.x
 	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_up"):
 		choice_index -= 1
 		AudioManager.play_sound("SFX_Menu_Rotate")
@@ -128,9 +125,9 @@ func _process(_delta):
 			Utils.speak(choices[choice_index%choices_count])
 		update_nametag(choices[choice_index%choices_count])
 		if display == LIST_RIGHT:
-			nametag.get_node("Text").rect_position.x = 8 - nametag.get_node("Texture").rect_size.x
+			nametag.get_node(^"Text").rect_position.x = 8 - nametag.get_node(^"Texture2D").rect_size.x
 	if Input.is_action_just_pressed("ok"):
-		selected_choice_box.text = ""
+		Utils.selected_choice_box.bbcode_text = ""
 		dialog_box.text = ""
 		AudioManager.play_sound("SFX_Menu_Select")
 		DCCore.choice_result = choice_index % choices_count

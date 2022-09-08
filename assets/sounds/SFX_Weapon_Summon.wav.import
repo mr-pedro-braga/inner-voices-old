@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Weapon_Summon.wav-a2c1c5b96def68c0f91391dc0f0f3fdc.sample"
+uid="uid://d0q28fvyrr58u"
+path="res://.godot/imported/SFX_Weapon_Summon.wav-a2c1c5b96def68c0f91391dc0f0f3fdc.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Weapon_Summon.wav"
-dest_files=[ "res://.import/SFX_Weapon_Summon.wav-a2c1c5b96def68c0f91391dc0f0f3fdc.sample" ]
+dest_files=["res://.godot/imported/SFX_Weapon_Summon.wav-a2c1c5b96def68c0f91391dc0f0f3fdc.sample"]
 
 [params]
 

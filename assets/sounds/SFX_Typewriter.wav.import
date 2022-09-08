@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Typewriter.wav-52fcd5c40842c750dc169bec209c28e4.sample"
+uid="uid://cfwllv8lus7sf"
+path="res://.godot/imported/SFX_Typewriter.wav-52fcd5c40842c750dc169bec209c28e4.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Typewriter.wav"
-dest_files=[ "res://.import/SFX_Typewriter.wav-52fcd5c40842c750dc169bec209c28e4.sample" ]
+dest_files=["res://.godot/imported/SFX_Typewriter.wav-52fcd5c40842c750dc169bec209c28e4.sample"]
 
 [params]
 

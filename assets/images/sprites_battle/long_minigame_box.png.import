@@ -1,8 +1,9 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/long_minigame_box.png-08cebe7d391a132f21d805cc6b344090.stex"
+type="CompressedTexture2D"
+uid="uid://3vud15s8fbj2"
+path="res://.godot/imported/long_minigame_box.png-08cebe7d391a132f21d805cc6b344090.ctex"
 metadata={
 "vram_texture": false
 }
@@ -10,25 +11,24 @@ metadata={
 [deps]
 
 source_file="res://assets/images/sprites_battle/long_minigame_box.png"
-dest_files=[ "res://.import/long_minigame_box.png-08cebe7d391a132f21d805cc6b344090.stex" ]
+dest_files=["res://.godot/imported/long_minigame_box.png-08cebe7d391a132f21d805cc6b344090.ctex"]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
-compress/hdr_mode=0
+compress/hdr_compression=1
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+compress/streamed=false
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
-stream=false
-size_limit=0
-detect_3d=false
-svg/scale=1.0
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/size_limit=0
+detect_3d/compress_to=1

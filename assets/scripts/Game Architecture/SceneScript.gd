@@ -9,11 +9,6 @@
 
 class_name SceneScript
 
-
-
-
-
-
 #
 # @ Cutscene extraction and parsing from *.sc and *.sson files.
 #
@@ -215,6 +210,13 @@ static func parse_cutscene_entry(raw_match):
 				"character": terms[0],
 				"action": terms[1],
 				"angle": terms[2]
+			}
+		"party":
+			var terms = get_terms(params)
+			r = {
+				"type": "pose",
+				"action": terms[0],
+				"character": terms[1]
 			}
 		"move":
 			var route = parse_move_route(unindent(block))
@@ -429,11 +431,10 @@ static func parse_move_route_entry(raw_match):
 				}
 		"face":
 			var terms = get_terms(params)
-			if Characters.map_characters.has(terms[0]):
-				var target_position = Characters.map_characters[terms[0]].position
+			if terms.size() < 2:
 				r = {
-					"type": "face_position",
-					"position": target_position
+					"type": "face_character",
+					"character": terms[0]
 				}
 				return r
 			r = {
@@ -511,13 +512,13 @@ static func value_format(string:String):
 		return true
 	# Match Integers!
 	if quick_match(string, "\\s*\\d+\\s*"):
-		return int(string)
+		return string.to_int()
 	# Match Floats
 	if quick_match(string, "\\s*\\d+.\\d+f?\\s*"):
-		return float(string)
+		return string.to_float()
 	# Match Hexadecimal!
 	if quick_match(string, "\\s*0x[\\d\\w]+\\s*"):
-		return int(string)
+		return string.to_int()
 		
 	# When all else fails... then it must be a string anyways.
 	return string

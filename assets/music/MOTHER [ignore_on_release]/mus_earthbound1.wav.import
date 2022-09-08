@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_earthbound1.wav-6a34431b54a00f9fdf003c2b2be7f91d.sample"
+uid="uid://ds270ppaufurq"
+path="res://.godot/imported/mus_earthbound1.wav-6a34431b54a00f9fdf003c2b2be7f91d.sample"
 
 [deps]
 
 source_file="res://assets/music/MOTHER [ignore_on_release]/mus_earthbound1.wav"
-dest_files=[ "res://.import/mus_earthbound1.wav-6a34431b54a00f9fdf003c2b2be7f91d.sample" ]
+dest_files=["res://.godot/imported/mus_earthbound1.wav-6a34431b54a00f9fdf003c2b2be7f91d.sample"]
 
 [params]
 

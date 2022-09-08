@@ -1,8 +1,9 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/charlie-icon.png-ac4a8ffb91cd795d2acbbe4c0bb1d73c.stex"
+type="CompressedTexture2D"
+uid="uid://dikytxc6cv417"
+path="res://.godot/imported/charlie-icon.png-ac4a8ffb91cd795d2acbbe4c0bb1d73c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -10,25 +11,24 @@ metadata={
 [deps]
 
 source_file="res://assets/characters/the stars/charlie-icon.png"
-dest_files=[ "res://.import/charlie-icon.png-ac4a8ffb91cd795d2acbbe4c0bb1d73c.stex" ]
+dest_files=["res://.godot/imported/charlie-icon.png-ac4a8ffb91cd795d2acbbe4c0bb1d73c.ctex"]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
-compress/hdr_mode=0
+compress/hdr_compression=1
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+compress/streamed=false
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
-stream=false
-size_limit=0
-detect_3d=false
-svg/scale=1.0
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/size_limit=0
+detect_3d/compress_to=1

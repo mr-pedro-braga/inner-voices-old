@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/claire.wav-d6b9fefd1f228b6ad02ef2d4aa1d60de.sample"
+uid="uid://b3nnqwlo0bads"
+path="res://.godot/imported/claire.wav-d6b9fefd1f228b6ad02ef2d4aa1d60de.sample"
 
 [deps]
 
 source_file="res://assets/sounds/voices/claire.wav"
-dest_files=[ "res://.import/claire.wav-d6b9fefd1f228b6ad02ef2d4aa1d60de.sample" ]
+dest_files=["res://.godot/imported/claire.wav-d6b9fefd1f228b6ad02ef2d4aa1d60de.sample"]
 
 [params]
 

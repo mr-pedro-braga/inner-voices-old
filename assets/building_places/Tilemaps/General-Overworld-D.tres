@@ -1,49 +1,49 @@
 [gd_resource type="TileSet" load_steps=19 format=2]
 
-[ext_resource path="res://assets/building_places/Simple Objects/Corrupted Plant.png" type="Texture" id=1]
-[ext_resource path="res://assets/map_making/tilesets/tiles_newhorizon_B.png" type="Texture" id=2]
-[ext_resource path="res://assets/map_making/tilesets/tiles_newhorizon_C.png" type="Texture" id=3]
+[ext_resource path="res://assets/building_places/Simple Objects/Corrupted Plant.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/map_making/tilesets/tiles_newhorizon_B.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/map_making/tilesets/tiles_newhorizon_C.png" type="Texture2D" id=3]
 [ext_resource path="res://assets/materials/material_twisted_emission.tres" type="Material" id=4]
-[ext_resource path="res://assets/map_making/tilesets/tiles_school_B.png" type="Texture" id=5]
+[ext_resource path="res://assets/map_making/tilesets/tiles_school_B.png" type="Texture2D" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 6.87886, 25.2637, 12.1033, 21.245, 23.3558, 21.6469, 19.3371, 25.6656 )
+points = PackedVector2Array( 6.87886, 25.2637, 12.1033, 21.245, 23.3558, 21.6469, 19.3371, 25.6656 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 24.4976, 61.127, 7.63641, 61.127, 7.63641, 52.9872, 24.4976, 52.9872 )
+points = PackedVector2Array( 24.4976, 61.127, 7.63641, 61.127, 7.63641, 52.9872, 24.4976, 52.9872 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 8, 52, 8, 48, 28, 48, 28, 52 )
+points = PackedVector2Array( 8, 52, 8, 48, 28, 48, 28, 52 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 8, 52, 8, 48, 28, 48, 28, 52 )
+points = PackedVector2Array( 8, 52, 8, 48, 28, 48, 28, 52 )
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( 7.02397, 20.8184, 27.3969, 21.0975, 20.699, 26.4, 2.27959, 25.5628 )
+points = PackedVector2Array( 7.02397, 20.8184, 27.3969, 21.0975, 20.699, 26.4, 2.27959, 25.5628 )
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( 25.5377, 27.5163, 7.11836, 27.5163, 7.11836, 19.7021, 25.5377, 19.7021 )
+points = PackedVector2Array( 25.5377, 27.5163, 7.11836, 27.5163, 7.11836, 19.7021, 25.5377, 19.7021 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
-points = PoolVector2Array( 13.3089, 74.5445, 2.45821, 74.9464, 4.06572, 67.3107, 10.8976, 67.3107 )
+points = PackedVector2Array( 13.3089, 74.5445, 2.45821, 74.9464, 4.06572, 67.3107, 10.8976, 67.3107 )
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
-points = PoolVector2Array( 13.0714, 63.4872, 5.74832, 56.5351, 12.5133, 50.6495, 38.1888, 50.9286, 43.1229, 57.7407, 39.5842, 63.2082 )
+points = PackedVector2Array( 13.0714, 63.4872, 5.74832, 56.5351, 12.5133, 50.6495, 38.1888, 50.9286, 43.1229, 57.7407, 39.5842, 63.2082 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
-points = PoolVector2Array( 9.99242, 72.5351, 14.4131, 66.5069, 51.0285, 65.9061, 54.6008, 73.3389, 48.7959, 79.023, 15.3061, 77.9066 )
+points = PackedVector2Array( 9.99242, 72.5351, 14.4131, 66.5069, 51.0285, 65.9061, 54.6008, 73.3389, 48.7959, 79.023, 15.3061, 77.9066 )
 
 [sub_resource type="ConvexPolygonShape2D" id=10]
-points = PoolVector2Array( 10.2928, 73.7407, 17.1694, 65.9061, 51.4964, 65.9061, 54.9012, 74.9464, 49.2637, 79.302, 16.3321, 79.5811 )
+points = PackedVector2Array( 10.2928, 73.7407, 17.1694, 65.9061, 51.4964, 65.9061, 54.9012, 74.9464, 49.2637, 79.302, 16.3321, 79.5811 )
 
 [sub_resource type="ConvexPolygonShape2D" id=11]
-points = PoolVector2Array( 7.02905, 21.4966, 18.6835, 17.8798, 26.3192, 21.4966, 16.2722, 25.1136 )
+points = PackedVector2Array( 7.02905, 21.4966, 18.6835, 17.8798, 26.3192, 21.4966, 16.2722, 25.1136 )
 
 [sub_resource type="ConvexPolygonShape2D" id=12]
-points = PoolVector2Array( 9.59052, 22.3004, 18.4318, 18.2816, 24.8619, 21.8985, 16.8243, 24.7117 )
+points = PackedVector2Array( 9.59052, 22.3004, 18.4318, 18.2816, 24.8619, 21.8985, 16.8243, 24.7117 )
 
 [sub_resource type="ConvexPolygonShape2D" id=13]
-points = PoolVector2Array( 8.5351, 21.8985, 16.9745, 19.0854, 25.0121, 21.4966, 16.5726, 24.7117 )
+points = PackedVector2Array( 8.5351, 21.8985, 16.9745, 19.0854, 25.0121, 21.4966, 16.5726, 24.7117 )
 
 [resource]
 2/name = "Simple Objects A"
@@ -101,7 +101,7 @@ points = PoolVector2Array( 8.5351, 21.8985, 16.9745, 19.0854, 25.0121, 21.4966, 
 3/shape_one_way_margin = 0.0
 3/shapes = [  ]
 3/z_index = 0
-4/name = "Light Pole"
+4/name = "Light3D Pole"
 4/texture = ExtResource( 2 )
 4/tex_offset = Vector2( 0, -64 )
 4/modulate = Color( 1, 1, 1, 1 )

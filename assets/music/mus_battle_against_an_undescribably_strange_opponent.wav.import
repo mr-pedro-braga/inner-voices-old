@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_battle_against_an_undescribably_strange_opponent.wav-28cfee48424b58ebaad7c311a06b9fe3.sample"
+uid="uid://bvgvb5c1pcvl0"
+path="res://.godot/imported/mus_battle_against_an_undescribably_strange_opponent.wav-28cfee48424b58ebaad7c311a06b9fe3.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_battle_against_an_undescribably_strange_opponent.wav"
-dest_files=[ "res://.import/mus_battle_against_an_undescribably_strange_opponent.wav-28cfee48424b58ebaad7c311a06b9fe3.sample" ]
+dest_files=["res://.godot/imported/mus_battle_against_an_undescribably_strange_opponent.wav-28cfee48424b58ebaad7c311a06b9fe3.sample"]
 
 [params]
 

@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_UT_BattleStart.wav-beb7a708be674491f62909e0601dfd11.sample"
+uid="uid://boc8g6pcc1a4u"
+path="res://.godot/imported/SFX_UT_BattleStart.wav-beb7a708be674491f62909e0601dfd11.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_UT_BattleStart.wav"
-dest_files=[ "res://.import/SFX_UT_BattleStart.wav-beb7a708be674491f62909e0601dfd11.sample" ]
+dest_files=["res://.godot/imported/SFX_UT_BattleStart.wav-beb7a708be674491f62909e0601dfd11.sample"]
 
 [params]
 

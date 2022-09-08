@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_UT_Encounter.wav-3647cdfd198b9370c930d76c91f0ccec.sample"
+uid="uid://cbbykcv2p0m6x"
+path="res://.godot/imported/SFX_UT_Encounter.wav-3647cdfd198b9370c930d76c91f0ccec.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_UT_Encounter.wav"
-dest_files=[ "res://.import/SFX_UT_Encounter.wav-3647cdfd198b9370c930d76c91f0ccec.sample" ]
+dest_files=["res://.godot/imported/SFX_UT_Encounter.wav-3647cdfd198b9370c930d76c91f0ccec.sample"]
 
 [params]
 

@@ -13,11 +13,11 @@ func _process(_delta):
 	match text_pos:
 		0:
 			DCCore.dialog_box.text = question
-			Choice.selected_choice_box.text = selected_char.name
+			Utils.selected_choice_box.text = selected_char.name
 			DCCore.dialog_box.visible_characters = -1
 		1:
-			Choice.selected_choice_box.text = question
-			Choice.selected_choice_box.visible_characters = -1
+			Utils.selected_choice_box.bbcode_text = "[center]"+question+"[/center]"
+			Utils.selected_choice_box.visible_characters = -1
 	
 	selected_char.set_highlited(true)
 	
@@ -34,7 +34,7 @@ func _process(_delta):
 		if Utils.is_narrating:
 			Utils.speak(choice_index%choices_chars)
 	if Input.is_action_just_pressed("ok"):
-		Choice.selected_choice_box.text = ""
+		Utils.selected_choice_box.text = ""
 		DCCore.dialog_box.text = ""
 		AudioManager.play_sound("SFX_Menu_Select")
 		selected_char.set_highlited(false)

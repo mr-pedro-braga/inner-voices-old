@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/voice_typewriter.wav-6006334886ff6b2c3ac2c7e3030f0b98.sample"
+uid="uid://blqcmgsrgicbw"
+path="res://.godot/imported/voice_typewriter.wav-6006334886ff6b2c3ac2c7e3030f0b98.sample"
 
 [deps]
 
 source_file="res://assets/sounds/voices/voice_typewriter.wav"
-dest_files=[ "res://.import/voice_typewriter.wav-6006334886ff6b2c3ac2c7e3030f0b98.sample" ]
+dest_files=["res://.godot/imported/voice_typewriter.wav-6006334886ff6b2c3ac2c7e3030f0b98.sample"]
 
 [params]
 

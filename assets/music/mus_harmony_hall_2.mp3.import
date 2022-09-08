@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d3mh5aesrwsws"
+path="res://.godot/imported/mus_harmony_hall_2.mp3-09379f8f0da43d9840379bd3a8536390.mp3str"
+
+[deps]
+
+source_file="res://assets/music/mus_harmony_hall_2.mp3"
+dest_files=["res://.godot/imported/mus_harmony_hall_2.mp3-09379f8f0da43d9840379bd3a8536390.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

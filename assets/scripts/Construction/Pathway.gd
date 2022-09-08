@@ -1,4 +1,4 @@
-tool
+@tool
 extends EventReference
 class_name PathwayEvent
 
@@ -9,10 +9,13 @@ class_name PathwayEvent
 # Useful for general events here and there.
 #
 
-export(String, FILE, "*.tscn") var target_scene = null
-export(Vector2) var target_position = Vector2(0, 0) setget set_target_position
-export(EventReference.CharacterDirection) var target_facing_direction = CharacterDirection.KEEP
-export(String, "slide_black", "diamonds_black", "set_black", "fade_black") var transition = "slide_black"
+@export_file("*.tscn") var target_scene: String
+@export var target_position: Vector2 = Vector2(0, 0):
+	set(value):
+		# TODO: Manually copy the code from this method.
+		set_target_position(value)
+@export var target_facing_direction: EventReference.CharacterDirection = CharacterDirection.KEEP
+@export_enum("slide_black", "diamonds_black", "set_black", "fade_black") var transition: int = 0
 
 func _process(_delta):
 	if not texture:
@@ -36,19 +39,19 @@ func _draw():
 				font,
 				Vector2.ZERO,
 				target_scene.split("/")[-1].replace(".tscn", ""),
-				Color.white
+				Color.WHITE
 			)
 			
 		var world_target_position = target_position - position
 		var wtg = world_target_position.normalized()
 		
-		draw_circle(world_target_position, 0.525, Color.aqua)
+		draw_circle(world_target_position, 0.525, Color.AQUA)
 		var arrow_origin := Vector2.ZERO
 		
 		arrow_origin = arrow_origin.move_toward(world_target_position, 8)
-		draw_line(arrow_origin, world_target_position, Color.aqua, 1.05)
-		draw_line(world_target_position, world_target_position-wtg.rotated(-TAU/8)*4, Color.aqua, 1.05)
-		draw_line(world_target_position, world_target_position-wtg.rotated(+TAU/8)*4, Color.aqua, 1.05)
+		draw_line(arrow_origin, world_target_position, Color.AQUA, 1.05)
+		draw_line(world_target_position, world_target_position-wtg.rotated(-TAU/8)*4, Color.AQUA, 1.05)
+		draw_line(world_target_position, world_target_position-wtg.rotated(+TAU/8)*4, Color.AQUA, 1.05)
 
 # When this event gets activated
 func _on_activated():

@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_introduction.wav-3d97a47b984b0ad60969e3022fed9524.sample"
+uid="uid://dqc7ak5ywxfeu"
+path="res://.godot/imported/mus_introduction.wav-3d97a47b984b0ad60969e3022fed9524.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_introduction.wav"
-dest_files=[ "res://.import/mus_introduction.wav-3d97a47b984b0ad60969e3022fed9524.sample" ]
+dest_files=["res://.godot/imported/mus_introduction.wav-3d97a47b984b0ad60969e3022fed9524.sample"]
 
 [params]
 

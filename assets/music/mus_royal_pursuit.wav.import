@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_royal_pursuit.wav-d299065ad975d972bcfad69756954046.sample"
+uid="uid://djk8o5jmsfnc1"
+path="res://.godot/imported/mus_royal_pursuit.wav-d299065ad975d972bcfad69756954046.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_royal_pursuit.wav"
-dest_files=[ "res://.import/mus_royal_pursuit.wav-d299065ad975d972bcfad69756954046.sample" ]
+dest_files=["res://.godot/imported/mus_royal_pursuit.wav-d299065ad975d972bcfad69756954046.sample"]
 
 [params]
 

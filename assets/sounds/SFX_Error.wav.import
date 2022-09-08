@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SFX_Error.wav-2b1942c02b3de2db508f3563753639a3.sample"
+uid="uid://cxw6f5fsvk7cn"
+path="res://.godot/imported/SFX_Error.wav-2b1942c02b3de2db508f3563753639a3.sample"
 
 [deps]
 
 source_file="res://assets/sounds/SFX_Error.wav"
-dest_files=[ "res://.import/SFX_Error.wav-2b1942c02b3de2db508f3563753639a3.sample" ]
+dest_files=["res://.godot/imported/SFX_Error.wav-2b1942c02b3de2db508f3563753639a3.sample"]
 
 [params]
 

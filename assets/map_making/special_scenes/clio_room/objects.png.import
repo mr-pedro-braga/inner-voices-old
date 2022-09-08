@@ -1,8 +1,9 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/objects.png-4b8c23aa7352958b647ee94e567556b8.stex"
+type="CompressedTexture2D"
+uid="uid://dedstvibt252n"
+path="res://.godot/imported/objects.png-4b8c23aa7352958b647ee94e567556b8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -10,26 +11,24 @@ metadata={
 [deps]
 
 source_file="res://assets/map_making/special_scenes/clio_room/objects.png"
-dest_files=[ "res://.import/objects.png-4b8c23aa7352958b647ee94e567556b8.stex" ]
+dest_files=["res://.godot/imported/objects.png-4b8c23aa7352958b647ee94e567556b8.ctex"]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
-compress/hdr_mode=0
+compress/hdr_compression=1
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+compress/streamed=false
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
 process/normal_map_invert_y=false
-stream=false
-size_limit=0
-detect_3d=false
-svg/scale=1.0
+process/hdr_as_srgb=false
+process/size_limit=0
+detect_3d/compress_to=1

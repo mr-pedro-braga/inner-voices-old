@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bvaoojbaaudc"
+path="res://.godot/imported/mus_too_cool_for_you.mp3-0258f22c26ae01b9b43468d943f35d67.mp3str"
+
+[deps]
+
+source_file="res://assets/music/mus_too_cool_for_you.mp3"
+dest_files=["res://.godot/imported/mus_too_cool_for_you.mp3-0258f22c26ae01b9b43468d943f35d67.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

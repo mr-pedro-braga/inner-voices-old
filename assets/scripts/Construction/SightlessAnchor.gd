@@ -1,6 +1,6 @@
 extends AudioStreamPlayer2D
 
-export(float, 0.5, 2.0) var unique_pitch = 1.0
+@export var unique_pitch: float, 0.5, 2.0 = 1.0
 
 func _ready():
 	modulate.a = 0.0

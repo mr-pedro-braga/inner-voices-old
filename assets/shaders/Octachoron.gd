@@ -1,4 +1,4 @@
-extends MeshInstance
+extends MeshInstance3D
 
 func _process(delta):
 	rotate(
@@ -16,5 +16,5 @@ func _process(delta):
 	var b = 0.6 + 0.3 * sin(Utils.time*5 + 2 * TAU/3)
 	
 	var col = Color(r, g, b)
-	get_parent().get_node("WorldEnvironment").environment.ambient_light_color = col
+	get_parent().get_node(^"WorldEnvironment").environment.ambient_light_color = col
 

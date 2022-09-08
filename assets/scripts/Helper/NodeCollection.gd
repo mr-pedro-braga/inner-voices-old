@@ -1,10 +1,10 @@
-extends YSort
+extends Node2D
 class_name NodeCollection
 
-export(String) var switch_name
-export(String, "boolean", "cutscene", "exactly", "interval", "greater than min", "less than max") var type = "boolean"
-export(int) var switch_min
-export(int) var switch_max
+@export var switch_name: String
+@export var type: String, "boolean", "cutscene", "exactly", "interval", "greater than min", "less than max" = "boolean"
+@export var switch_min: int
+@export var switch_max: int
 
 func _ready():
 	match type:

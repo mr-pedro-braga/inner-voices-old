@@ -1,13 +1,14 @@
 [remap]
 
-importer="ogg_vorbis"
+importer="oggvorbisstr"
 type="AudioStreamOGGVorbis"
-path="res://.import/SFX_Menu_Pan.ogg-25d65df4b6ccb59a459650df5d59b796.oggstr"
+uid="uid://dnw612d3q4yk4"
+path="res://.godot/imported/SFX_Menu_Pan.ogg-25d65df4b6ccb59a459650df5d59b796.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sounds/UI/SFX_Menu_Pan.ogg"
-dest_files=[ "res://.import/SFX_Menu_Pan.ogg-25d65df4b6ccb59a459650df5d59b796.oggstr" ]
+dest_files=["res://.godot/imported/SFX_Menu_Pan.ogg-25d65df4b6ccb59a459650df5d59b796.oggvorbisstr"]
 
 [params]
 

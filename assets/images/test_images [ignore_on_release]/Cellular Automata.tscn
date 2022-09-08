@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/images/test_images [ignore_on_release]/cellular_automata.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/test_images [ignore_on_release]/cellular_automata.png" type="Texture2D" id=1]
 
 
 [sub_resource type="GDScript" id=1]
@@ -15,8 +15,8 @@ func _process(delta):
 	if t > 0.5:
 		t = 0.0
 		print(\"Swapping\")
-		var tex:Texture = $ViewportContainer/Viewport.get_texture()
-		var s:ShaderMaterial = $ViewportContainer/Viewport/Texture.material
+		var tex:Texture2D = $SubViewportContainer/SubViewport.get_texture()
+		var s:ShaderMaterial = $SubViewportContainer/SubViewport/Texture2D.material
 		s.set_shader_param(\"previous\", tex)
 		$Texture2.texture = tex
 "
@@ -71,31 +71,31 @@ __meta__ = {
 
 [node name="Texture2" type="TextureRect" parent="."]
 material = SubResource( 3 )
-margin_left = 10.9602
-margin_top = 21.5668
-margin_right = 74.9602
-margin_bottom = 85.5668
+offset_left = 10.9602
+offset_top = 21.5668
+offset_right = 74.9602
+offset_bottom = 85.5668
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ViewportContainer" type="ViewportContainer" parent="."]
-margin_left = -20.8116
-margin_top = -20.3943
-margin_right = 19.1884
-margin_bottom = 19.6057
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -20.8116
+offset_top = -20.3943
+offset_right = 19.1884
+offset_bottom = 19.6057
 stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 64, 64 )
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+size = Vector2(64, 64)
 own_world = true
 
-[node name="Texture" type="TextureRect" parent="ViewportContainer/Viewport"]
+[node name="Texture2D" type="TextureRect" parent="SubViewportContainer/SubViewport"]
 material = SubResource( 3 )
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource( 1 )

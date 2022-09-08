@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_crazy_boss.wav-110adfbe793724f9ad5db9d23594153f.sample"
+uid="uid://cdvai4ny5374i"
+path="res://.godot/imported/mus_crazy_boss.wav-110adfbe793724f9ad5db9d23594153f.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_crazy_boss.wav"
-dest_files=[ "res://.import/mus_crazy_boss.wav-110adfbe793724f9ad5db9d23594153f.sample" ]
+dest_files=["res://.godot/imported/mus_crazy_boss.wav-110adfbe793724f9ad5db9d23594153f.sample"]
 
 [params]
 

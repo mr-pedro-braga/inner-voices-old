@@ -23,12 +23,12 @@
 --papers
 	* It's several pages of paper written with glitter pens.
 	* In it, alternate scripts for this very encounter.
-	* ...and a bunch of scribbles of various people in glitter suits.
+	* ...and a bunch of doodles of several hot people in gorgeous glittery suits.
 --papers2
 	* One of them has a marking in red saying
 	* "Rude! Stop looking at other people's stuff."
 --papers3
-	* You feel bad by doing this.
+	* You feel a tremendous sense of guilt.
 
 --conversation
 	bgm load mus_introduction.wav Introduction
@@ -61,66 +61,67 @@
 	
 	Pierre(none): Meow!\n- (You were right, boss!)
 	Pierre(none): (That was priceless!)
-	Clio(): Well,¢¢ it was rather obvious...\n¢¢¢* But it WAS quite funny!
-	Pierre(none): It was cheesy, but.¢.¢.¢ look at her,\nshaking in her boots!
+	Clio(laugh): Well,¢¢ it was rather obvious...\n¢¢¢* But it WAS quite funny!
+	Pierre(none): It was cheesy, but.¢.¢.¢ look at her, shaking in her boots!
 	Claire(): aaaaaaaaaaaaa
-	Clio(): Chillax mate¢¢¢, it ain't us who's\n gonna kill ya.
-	Clio(): In fact,¢¢ we're here to help ya, darling.
-	Claire(none): Oh¢¢.¢¢.¢¢.¢¢ that's nice,¢¢ I guess!\n¢¢¢- Please don't do\nthat ever again.
-	Claire(up): You started saying all\nthose things and...
+	Clio(druggy): Chillax mate¢¢¢¢, it ain't us who's gonna kill ya.
+	Clio(smile): In fact,¢¢ we're here to help ya, darling.
+	Claire(down): Oh¢¢.¢¢.¢¢.¢¢ that's nice,¢¢ I guess!\n¢¢¢- Please don't do\nthat ever again.
+	Claire(up): You started saying all those things and...
 	Clio(): Oh,¢¢ it IS all true, in a way.
-	Clio(): You must've noticed that\neverything outside is kinda...\ndifferent.
-	Clio(): It's all a horrendous shade of navy blue.
-	Clio(): Oh, and the people with their minds Twisted,¢¢ too,\npretty nasty if you ask me.
+	Clio(): You must've noticed that everything outside is kinda... different.
+	Clio(ooo): It's all a horrendous shade of navy blue.
+	Clio(ooo_also): Oh, and the people with their minds Twisted,¢¢ too, pretty nasty if you ask me.
 	Claire(down): Oh... I¹
 	bgm pause
-	Clio(): That's cause of \n[color=yellow]yesterday[/color].
-	Clio(): [color=yellow]Something happened and broke the world, basically.[/color]
-	Clio(): [color=yellow]Corrupted everyone's memories.\n¢¢  * It left the world...[/color]
+	Clio(serious): That's cause of \n[color=yellow]yesterday[/color].
+	Clio(serious): [color=yellow]Something happened and broke the world, basically.[/color]
+	Clio(serious_closed): [color=yellow]Corrupted everyone's memories.\n¢¢  * It left the world...[/color]
 	bgm resume
-	speech_delay 0.08
+	speech_delay 0.1
 	function zoom
-	Clio(): [wave]Fragmented[/wave].
-	speech_delay 0.05
+	Clio(laugh): [wave]Fragmented[/wave].
+	speech_delay 0.03
 	function unzoom
-	Clio(): And [color=yellow]you[/color] are gonna fix it, of course.
+	Clio(smile): And [color=yellow]you[/color] are gonna fix it,¢¢ of course.
 	Claire(question): Wh-... I...
 	Claire(question): I am confused...
-	Clio(): Don't worry,\nit's okay to worry.
-	Clio(): But think like that...\n* You did quite good\nup to here, didn't ya?
-	Clio(): Didn't even die once!
-	Clio(): If you fix this issue with the fabric of reality now...
-	Clio(): You're gonna be home\nquite soon,¢¢ eh?
-	Clio(): So what do you say?
+	Clio(druggy): Don't worry,\nit's okay to worry.
+	Clio(smile): But think like that...\n* You did quite good\nup to here, didn't ya?
+	Clio(smile): Didn't even die once!
+	Clio(smile): If you fix this issue with the fabric of reality now...
+	Clio(smile): You're gonna be home\nquite soon,¢¢ eh?
+	Clio(smile): So what do you say?
 		"I can try" (spare):
-			Clio(): You can try?
-			Clio(): There is absolutely no room for failure here.
-			Clio(): We're talking big stakes, Claire.
+			Clio(smile): You can try?
+			Clio(laugh): There is absolutely no room for failure here.
+			Clio(smile): We're talking BIG stakes, Claire.
 		"what do I even have to fix" (talk_eerie):
 			Clio(): There's no time to explain it now.
 			Clio(): We're in a hurry.
-			Clio(): I am a busy person, Claire.
+			Clio(sad_serious): I am a busy person, Claire.
+			Clio(): But I explain it in my podcast.
 		"I'm not gonna do this" (talk_bad):
-			Clio(): You do realize you have no choice whatsoever,¢¢ right?
-			Clio(): It's not like you have somewhere to go.
+			Clio(laugh): You do realize you have no choice whatsoever,¢¢ right?
+			Clio(smile): It's not like you have anywhere else to go.
 			Claire(down): I don't even know you!
-			Claire(): What if you're are a bad person.
-			Claire(): For all I know you could be a zombie.
-			Clio(): ...¢¢¢what
+			Claire(): I shouldn't talk to strangers.
+			Claire(up): For all I know you could be a zombie.
+			Clio(druggy): what are you talking about
 	Claire(): Okay, I'm gonna do it.¢¢ I guess.
-	Clio(): Brilliant!
+	Clio(smile): Brilliant!
 	function zoom
-	Clio(): That's the [color=yellow]SPIRIT[/color],\ngirl!
+	Clio(laugh): That's the [color=yellow]SPIRIT[/color],\ngirl!
 	function unzoom
 	pose claire idle 2
-	Claire(none): (Where's that laughter even coming from...)
+	Claire(up): (Where's that laughter even coming from...)
 	pose claire idle 2
 	pose claire idle 6
 	Clio(): Worry not, Claire.
-	Clio(): You're the perfect person\nfor this job.
-	Clio(): Saving the world,¢¢ that's what teenagers do best, right?
+	Clio(smile): You're the perfect person for this job.
+	Clio(smile): Saving the world,¢¢ that's what teenagers do best, right?
 	Clio(): And Pierre, the cat, will help you with incidental support.
-	Clio(): He'll be the perfect companion in these trying times.
+	Clio(smile): He'll be the perfect companion in these trying times.
 	Pierre(none): Meow!\n- (Wait,¢¢ did you not mean...\n¢¢¢- [wave]Purr[/wave]fect?)
 	function menace
 	bgm pause
@@ -130,12 +131,12 @@
 	Clio(): ¢¢n¢o¢.
 	bgm resume
 	function unmenace
-	Clio(): Where were we, luv?\n¢¢* Oh, yeah!
-	Clio(): So, while we were talking I rode the lift up to here...
-	Clio(): It's time for you to visit the other side.
+	Clio(smile): Where were we, luv?\n¢¢* Oh, yeah!
+	Clio(smile): So, while we were talking I brought the room up to Alaska...
+	Clio(smile): It's time for you to visit the other side.
 	Clio(): Might be dangerous, and a bit... chilly, but...¢¢ eh...
-	Clio(): You're a tremendous fighter, sweetie, just keep up the good work,
-	Clio(): and you'll end up alright.
-	Clio(): Remember, we're all counting on ya.
+	Clio(smile): You're a tremendous fighter, sweetie, if you keep up the good work,
+	Clio(): there's an 100% chance that maybe you'll survive.
+	Clio(smile): Remember, we're all counting on ya.
 	Clio(): Cheerios!
 	bgm pause

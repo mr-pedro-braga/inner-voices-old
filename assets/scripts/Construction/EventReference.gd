@@ -1,26 +1,29 @@
-tool
+@tool
 extends Area2D
 class_name EventReference
 
-var texture:Texture
+var texture:Texture2D
 var color:Color
 var draw_debug:bool = true
-var font:DynamicFont = preload("res://assets/fonts/8BitOperator.tres")
+var font:Font = preload("res://assets/fonts/8BitOperator.tres")
 
-enum TriggerMode {ON_TOUCH, ON_INTERACT, ON_INTERACT_FACING, ON_CONTINUOUS_TOUCH, EXISTS}
+enum TriggerMode {NEVER=-1, ON_TOUCH=0, ON_INTERACT=1, ON_INTERACT_FACING=2, ON_CONTINUOUS_TOUCH=3, EXISTS=4}
 enum CharacterDirection {KEEP = -1, EAST = 0, SOUTHEAST = 1, SOUTH = 2, SOUTHWEST = 3, WEST = 4, NORTHWEST = 5, NORTH = 6, NORTHEAST = 7}
 
-export(TriggerMode) var trigger_mode
-export(Vector2) var trigger_area = Vector2(64, 16) setget set_trigger_area
-export var trigger_once: bool = false
+@export var trigger_mode: TriggerMode
+@export var trigger_area: Vector2 = Vector2(64, 16):
+	set(value):
+		# TODO: Manually copy the code from this method.
+		set_trigger_area(value)
+@export var trigger_once: bool = false
 
 var overlapping: bool = false
 var activated: bool = false
 
 func _ready():
-	if not is_connected("body_entered", self, "_event_body_entered"):
-		connect("body_entered", self, "_event_body_entered")
-		connect("body_exited", self, "_event_body_exited")
+	if not is_connected("body_entered", _event_body_entered):
+		connect(&"body_entered", self._event_body_entered)
+		connect(&"body_exited", self._event_body_exited)
 	if not Engine.editor_hint:
 		var shape := CollisionShape2D.new()
 		var rectangle := RectangleShape2D.new()
@@ -41,13 +44,13 @@ func _draw():
 	var area = Vector2(float(trigger_area.x), float(trigger_area.y))
 	var top_left = - area / 2
 	color.a = 0.3
-	draw_rect(Rect2(top_left, area), color, true, 1.0, false)
+	draw_rect(Rect2(top_left, area), color, true, 1.0)
 	color.a = 1.0
-	draw_rect(Rect2(top_left, area), color, false, 1.05, false)
+	draw_rect(Rect2(top_left, area), color, false, 1.05)
 	draw_set_transform(Vector2.ZERO, -rotation, Vector2.ONE)
 	if not texture:
 		return
-	draw_texture(texture, Vector2(-4, -4), Color.white)
+	draw_texture(texture, Vector2(-4, -4), Color.WHITE)
 
 # Process the activation of the event.
 func _process(_delta):

@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_synchronize.wav-5d31a217b379a8688528bbaa54ce4284.sample"
+uid="uid://deksu7ddknfi7"
+path="res://.godot/imported/mus_synchronize.wav-5d31a217b379a8688528bbaa54ce4284.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_synchronize.wav"
-dest_files=[ "res://.import/mus_synchronize.wav-5d31a217b379a8688528bbaa54ce4284.sample" ]
+dest_files=["res://.godot/imported/mus_synchronize.wav-5d31a217b379a8688528bbaa54ce4284.sample"]
 
 [params]
 

@@ -1,14 +1,14 @@
-tool
+@tool
 class_name DefaultScene
 extends EventEssentials
 
-export var scene_name = "Scene 1"
-export var scene_initial_zoom = 1.0
+@export var scene_name = "Scene 1"
+@export var scene_initial_zoom = 1.0
 var initial_zoom = 0.0
 
 func scene_ready():
-	if not Engine.editor_hint:
-		ScreenCore.update_zoom(scene_initial_zoom)
+	if not Engine.is_editor_hint():
+		ScreenCore.zoom = (scene_initial_zoom)
 
 func _get_property_list():
 	var properties = []

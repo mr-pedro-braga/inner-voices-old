@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_confrontation_anticipation.wav-17e57b016e399c351da1c71fddaf6b55.sample"
+uid="uid://h4ojs4kwhixk"
+path="res://.godot/imported/mus_confrontation_anticipation.wav-17e57b016e399c351da1c71fddaf6b55.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_confrontation_anticipation.wav"
-dest_files=[ "res://.import/mus_confrontation_anticipation.wav-17e57b016e399c351da1c71fddaf6b55.sample" ]
+dest_files=["res://.godot/imported/mus_confrontation_anticipation.wav-17e57b016e399c351da1c71fddaf6b55.sample"]
 
 [params]
 

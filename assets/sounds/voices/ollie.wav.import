@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/ollie.wav-4272b66dbae6f244a4b153a49a7be0cd.sample"
+uid="uid://dl5dwai8dc2nx"
+path="res://.godot/imported/ollie.wav-4272b66dbae6f244a4b153a49a7be0cd.sample"
 
 [deps]
 
 source_file="res://assets/sounds/voices/ollie.wav"
-dest_files=[ "res://.import/ollie.wav-4272b66dbae6f244a4b153a49a7be0cd.sample" ]
+dest_files=["res://.godot/imported/ollie.wav-4272b66dbae6f244a4b153a49a7be0cd.sample"]
 
 [params]
 

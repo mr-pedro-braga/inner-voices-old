@@ -13,7 +13,7 @@ func _process(_delta):
 			],
 			["edit", "question", "question", "question"],
 				-16, 0)
-		yield(DCCore, "choice_selected")
+		await DCCore.choice_selected
 		match DCCore.choice_result:
 			0:
 				display_events = not display_events

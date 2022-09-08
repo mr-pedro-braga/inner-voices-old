@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_vn_tension.wav-b14950faddc9ad964757b69308cdb480.sample"
+uid="uid://dpltli8ivq1qo"
+path="res://.godot/imported/mus_vn_tension.wav-b14950faddc9ad964757b69308cdb480.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_vn_tension.wav"
-dest_files=[ "res://.import/mus_vn_tension.wav-b14950faddc9ad964757b69308cdb480.sample" ]
+dest_files=["res://.godot/imported/mus_vn_tension.wav-b14950faddc9ad964757b69308cdb480.sample"]
 
 [params]
 

@@ -4,6 +4,18 @@
 	portrait: none
 	voice: narrator
 
+--pierre:
+	portrait: none
+	voice: misc_silent_deep
+
+--charlie:
+	portrait: charlie
+	voice: charlie
+
+--clio:
+	portrait: clio
+	voice: narrator
+
 --claire:
 	portrait: claire
 	voice: voice_mediumhigh

@@ -1,21 +1,19 @@
-tool
-extends KinematicBody2D
+@tool
+extends CharacterBody2D
 class_name Kuro
 
 enum KuroMode {
 	FLOAT=0, FALL=1, DISCRETE=2, SNEK=3
 }
 
-export var character = "claire"
-export(KuroMode) var mode
-
-export(PackedScene) var andy_zquirk_scene
-export(PackedScene) var bruno_zquirk_scene
+@export var character = "claire"
+@export var mode: KuroMode
+@export var andy_zquirk_scene: PackedScene
+@export var bruno_zquirk_scene: PackedScene
 
 var input_vector:Vector2
 var cardinal_facing_direction:float
 var cardinal_facing_direction_drag:float
-var velocity:Vector2 = Vector2.ZERO
 var ACCELERATION = 1280
 var FRICTION = 2400
 var store = {
@@ -42,21 +40,21 @@ var jump_max_cooldown = 0.2
 signal on_hit
 
 func _process(_delta):
-	if !Engine.editor_hint and (Gameplay.GAMEMODE == Gameplay.GM.BATTLE or kuro_debug) and not cooling_down:
+	if not Engine.editor_hint and (Gameplay.GAMEMODE == Gameplay.GM.BATTLE or kuro_debug) and not cooling_down:
 		process_z_quirk(_delta)
-	if !Engine.editor_hint:
+	if not Engine.editor_hint:
 		if character is Character:
 			character = character.character_id
 		if Utils.character_stats.has(character):
 			$Dust.self_modulate = "#" + Utils.character_stats[character].attributes["hp-background"]
 
 func _physics_process(delta):
-	if !Engine.editor_hint and (Gameplay.GAMEMODE == Gameplay.GM.BATTLE or DCCore.kuro_select or kuro_debug):
+	if not Engine.editor_hint and (Gameplay.GAMEMODE == Gameplay.GM.BATTLE or DCCore.kuro_select or kuro_debug):
 		match mode:
 			KuroMode.FLOAT:
 				input_vector = Vector2(
-					Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-					Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+					Input.get_axis(&"move_left", &"move_right"),
+					Input.get_axis(&"move_up", &"move_down")
 				)
 				input_vector = input_vector.normalized()
 				if input_vector != Vector2.ZERO:
@@ -90,7 +88,7 @@ func _physics_process(delta):
 					cardinal_facing_direction = TAU/4
 			KuroMode.FALL:
 				input_vector = Vector2(
-					Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+					Input.get_axis(&"move_left", &"move_right"),
 					0.0
 				)
 				
@@ -215,10 +213,12 @@ func _physics_process(delta):
 				position = chess_position*10-Utils.battle_box_size*5 + Vector2(5, 5)
 		$Dust.emitting=velocity.length()>0
 		if velocity.length() > MAX_SPEED and not mode == KuroMode.FALL:
-			get_node("Anim/SpriteTrail").active = true
+			get_node(^"Anim/SpriteTrail").active = true
 		else:
-			get_node("Anim/SpriteTrail").active = false
-		velocity = move_and_slide(velocity)
+			get_node(^"Anim/SpriteTrail").active = false
+		# TODO: This information should be set to the CharacterBody properties instead of arguments: 
+		# TODO: Rename velocity to linear_velocity in the rest of the script.
+		move_and_slide()
 
 func process_z_quirk(_delta):
 	if mode == KuroMode.SNEK:
@@ -231,20 +231,20 @@ func process_z_quirk(_delta):
 				velocity = input_vector.normalized() * MAX_SPEED * 5
 				cooling_down = true
 				AudioManager.play("SFX_Kuro_Dash")
-				var v = Utils.vfx_once.instance()
+				var v = Utils.vfx_once.instantiate()
 				v.animation="splash"
 				v.position=position
 				get_parent().add_child(v)
-				yield(get_tree().create_timer(0.5), "timeout")
+				await get_tree().create_timer(0.5).timeout
 				cooling_down = false
 		"andy":
 			if Input.is_action_pressed("ok"):
 				cooling_down = true
 				AudioManager.play("SFX_Kuro_Shoot")
-				var bullet = andy_zquirk_scene.instance()
+				var bullet = andy_zquirk_scene.instantiate()
 				bullet.position = position
 				get_parent().add_child(bullet)
-				yield(get_tree().create_timer(0.1), "timeout")
+				await get_tree().create_timer(0.1).timeout
 				cooling_down = false
 		"bruno":
 			if Input.is_action_just_pressed("ok"):
@@ -260,7 +260,7 @@ func process_z_quirk(_delta):
 				$Shield/Anim.play("shield_hide")
 				MAX_SPEED *= 20
 
-export(Texture) var snek_texture
+@export var snek_texture: Texture2D
 
 var snek_body_parts = [
 	Vector2.ZERO, Vector2.LEFT, Vector2.UP + Vector2.LEFT

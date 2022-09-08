@@ -19,8 +19,8 @@ func load_music_from_stream(stream):
 	bgm_player.stream = stream
 
 func setup_stream_players():
-	bgm_player = get_node("/root/GameRoot/BGM")
-	battle_m_player = get_node("/root/GameRoot/BattleTheme")
+	bgm_player = get_node(^"/root/GameRoot/BGM")
+	battle_m_player = get_node(^"/root/GameRoot/BattleTheme")
 
 func clear_cache():
 	music_cache.clear()

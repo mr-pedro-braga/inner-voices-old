@@ -31,10 +31,11 @@ func _process(delta: float) -> void:
 		Engine.time_scale = 5.0
 	else:
 		Engine.time_scale = 1.0
+	if Input.is_action_just_pressed("screenshot"):
+		Screenshot._capture()
 
 #@ Returns the current FPS.
 func fps() -> float:
-
 	return 1.0/dt
 
 #@ Returns the current playtime.
@@ -58,9 +59,10 @@ var is_narrating = false
 #@ Loads a scene asynchronously using SceneLoader.
 signal scene_loaded
 func async_load(resource, data={}):
-	SceneLoader.load_scene(resource, data)
-	var i = yield(SceneLoader, "on_scene_loaded")
-	emit_signal("scene_loaded", i)
+	emit_signal("scene_loaded", {instance = load(resource)})
+	#SceneLoader.load_scene(resource, data)
+	#var i = await SceneLoader.on_scene_loaded
+	#emit_signal("scene_loaded", i)
 
 #@ Loads a file as text
 func load_as_text(path):
@@ -72,6 +74,9 @@ func load_as_text(path):
 
 #@ Attack Pool Cache
 var attack_pool_cache := {}
+
+var SceneScript = load("res://assets/scripts/Game Architecture/SceneScript.gd")
+var SSEX_Attack = load("res://assets/scripts/Game Architecture/SceneScript_Atk.gd")
 
 # Loads an attack pool from a SSON file
 func load_attack_pool(pool):
@@ -114,9 +119,12 @@ var character_specs: Dictionary = {
 }
 
 #@ The characters' statuses for the characters in battles.
-var character_stats: Dictionary = {}
+var character_stats: Dictionary = {
+
+}
+
 func set_character_acts(character, acts):
-	character_stats["acts"] = acts
+	character_stats[character].acts = acts
 
 #@ Sets up all the character specifications
 func character_system_init():
@@ -130,19 +138,11 @@ func get_specs(character):
 
 #@ Load the stats for a character from SSON
 func load_stats(character_id, char_stats_file, alignment):
-	match alignment:
-		"ALLY":
-			if not character_stats.has(character_id):
-				var file = File.new()
-				file.open("res://assets/battle/character_battle_stats/" + char_stats_file, File.READ)
-				var text = file.get_as_text()
-				Utils.character_stats[character_id] = parse_json(text)
-		"OPPONENT":
-			if not character_stats.has(character_id):
-				var file = File.new()
-				file.open("res://assets/battle/battle_scripts/" + char_stats_file, File.READ)
-				var text = file.get_as_text()
-				Utils.character_stats[character_id] = parse_json(text)
+	if not character_stats.has(character_id):
+		var file = File.new()
+		file.open(char_stats_file, File.READ)
+		var text = file.get_as_text()
+		#character_stats[character_id] = JSON.parse(text)
 
 #@ Creates a character on the world given specifications
 func create_character(id):
@@ -192,10 +192,10 @@ var arena_status := {
 
 #@ Changes the battle background to a certain BBG ID
 func change_battle_bg(bbg):
-	var b = get_node("/root/GameRoot/HUD2/BattleBG")
+	var b = get_node(^"/root/GameRoot/HUD2/BattleBG")
 	for i in b.get_children():
 		b.visible = false
-	b.get_node(bbg).visible = true
+	b.get_node(^"V/" + bbg).visible = true
 
 #@ When executing an action, call the ACT function in the target
 signal act_finished
@@ -207,66 +207,63 @@ func act(actor, subject, action):
 #@ Attack a character using a loaded attack from a known pool!
 #@ Make sure to load these pools somewhere before the fight!
 
-var kuro_scene = preload("res://assets/battle/Kuro.tscn")
+var kuro_scene = load("res://assets/battle/Kuro.tscn")
 
 signal attack_finished
 signal minigame_finished
-func attack(user, target, attack_pool, attack_id, infinite=false):
+func attack(user, target, attack_pool, attack_id, duration_multiplier=1):
 	if not target is String:
 		target = target.character_id
-	
+
 	if not attack_pool_cache.has(attack_pool):
 		var file = load_as_text("res://assets/battle/attacks/" + attack_pool + ".sson")
-		
+
 		attack_pool_cache[attack_pool] = SSEX_Attack.parse_sson_atk(file)
-	
+
 	#@ Parse the attack from SSON into a Dictionary.
 	if not attack_pool_cache[attack_pool].has(attack_id):
 		print_debug("(ERROR !): The given attack id, ", attack_id, ", does not exist in the provided file \"", attack_pool,"\"")
-	
+
 	var attack_info = SSEX_Attack.read_atk( attack_pool_cache[attack_pool][attack_id] )
 	match attack_info.type:
 		-1:
 			# Wait!
-			yield(get_tree().create_timer(0.2), "timeout")
+			await get_tree().create_timer(0.2).timeout
 		0:
 			# Minigames!
-			var minigame = load("res://assets/battle/minigames/" + attack_info.minigame_source + ".scn").instance()
+			var minigame = load("res://assets/battle/minigames/" + attack_info.minigame_source + ".scn").instantiate()
 			minigame.target = target
-			BattleCore.battle.add_child(minigame)
-			yield(self, "minigame_finished")
+			#####BattleCore.battle.add_child(minigame)
+			await self.minigame_finished
 		1:
 			# Bullets!
 			var emitter = ScriptableEmitter.new()
 			# Parse the attack and get the information.
 			emitter.escript = attack_info.content
 			emitter.name = "AttackEmitter"
-			emitter.battle_box = BattleCore.battle
-			
-			var k = kuro_scene.instance()
+			#####emitter.battle_box = BattleCore.battle
+
+			var k = kuro_scene.instantiate()
 			k.name = "Kuro"
 			current_kuro = k
 			k.character = target
-			#k.get_node("Anim").play("ollie")
-			k.get_node("Anim").play(target)
-			k.get_node("Dust").modulate = Utils.character_stats[target].attributes.trait
-			
-			BattleCore.battle.visible = true
-			BattleCore.battle.get_node("Anim").play(attack_info.anim_in)
-			yield(get_tree().create_timer(0.25), "timeout")
-			
-			BattleCore.battle.add_child(k)
-			BattleCore.battle.add_child(emitter)
+			#k.get_node(^"Anim").play("ollie")
+			k.get_node(^"Anim").play(target)
+			k.get_node(^"Dust").modulate = character_stats[target]["attributes"]["trait"]
+
+			#####BattleCore.battle.visible = true
+			#####BattleCore.battle.get_node(^"Anim").play(attack_info.anim_in)
+			await get_tree().create_timer(0.25).timeout
+
+			#####BattleCore.battle.add_child(k)
+			#####BattleCore.battle.add_child(emitter)
 			emitter.setup()
-			
-			if infinite:
-				yield(get_tree().create_timer(100000.0), "timeout")
-			
-			yield(get_tree().create_timer(6.0), "timeout")
-			
+
+			await get_tree().create_timer(6.0 * duration_multiplier).timeout
+
 			k.queue_free()
 			emitter.queue_free()
-			BattleCore.battle.get_node("Anim").play(attack_info.anim_out)
+			#####BattleCore.battle.get_node(^"Anim").play(attack_info.anim_out)
 		2:
 			#Animation!
 			pass
@@ -283,7 +280,9 @@ func damage(target, damage):
 	character_stats[target].attributes.HP -= damage.amount
 	Characters.map_characters[target].animation_state.battle_action = "hurt"
 	update_soul_meter(target)
-	yield(get_tree().create_timer(0.3), "timeout")
+	if target in Characters.party:
+		soul_infos_node.get_node(target.to_lower()).shake()
+	await get_tree().create_timer(0.3).timeout
 	Characters.map_characters[target].animation_state.battle_action = "idle"
 
 # Heal a certain character (by name)
@@ -296,25 +295,29 @@ func heal(character, healing):
 	update_soul_meter(character)
 	#TODO: Add healing VFX!
 
-onready var soul_infos_node = get_node("/root/GameRoot/HUD/SoulInfos")
-var soul_info_scene = preload("res://assets/scene_components/SoulInfo.tscn")
+@onready var soul_infos_node = get_node(^"/root/GameRoot/HUD/SoulInfos")
+var soul_info_scene = load("res://assets/scene_components/SoulInfo.tscn")
 
 func update_soul_meter(character):
 	if character in Characters.party:
 		soul_infos_node.get_node(character.to_lower()).self_update(character.to_lower())
 func update_soul_meters():
-	for index in range(Characters.party.size()):
+	var add_separation := false
+	var party_size = Characters.party.size()
+	for index in range(party_size):
 		var i = Characters.party[index]
-		var si = soul_info_scene.instance()
+		var si = soul_info_scene.instantiate()
 		var st = character_stats[i].attributes
 		si.setup(i.to_lower(), st.MHP, st.HP, st.MSP, st.SP, st["hp-foreground"], st["hp-background"])
 		soul_infos_node.add_child(si)
-		si.rect_position.x = (index - Characters.party.size() * 0.25) * 44
+		si.reveal_battle()
+		si.rect_position.x = (index * 44 - (party_size - 1) * 22)
 		si.self_update(i)
+		add_separation = true
 	pass
 
 #
-# @ Camera Management and Special Effects
+# @ Camera3D Management and Special Effects
 #
 
 var battle_box_size = Vector2(6, 6)
@@ -324,16 +327,16 @@ func make_current_camera(camera):
 	camera.make_current()
 
 func play_transition(transition):
-	if not get_node("/root/GameRoot/Transition/TransitionPlayer").has_animation(transition):
+	if not get_node(^"/root/GameRoot/Transition/TransitionPlayer").has_animation(transition):
 		throw_error("The " + transition + " animation doesn't actually exist.")
-	get_node("/root/GameRoot/Transition/TransitionPlayer").play(transition)
+	get_node(^"/root/GameRoot/Transition/TransitionPlayer").play(transition)
 
 
 # Visual Effects for the deaf! Also adds some cartoon value.
-onready var vfx_once = load("res://assets/scene_components/OnceVFX.tscn")
+@onready var vfx_once = load("res://assets/scene_components/OnceVFX.tscn")
 
 func vfx(container, position, vfx):
-	var c = vfx_once.instance()
+	var c = vfx_once.instantiate()
 	container.add_child(c)
 	c.position = position
 	c.animation = vfx
@@ -347,9 +350,9 @@ func speak(text, interrupt=true):
 	#print("<UTILS.gd::speak> ", text)
 
 func format_special(text):
-	
-	text = text.replace("[KEY_OK]", DCCore.strings["KEY_OK"])
-	
+
+	#####text = text.replace("[KEY_OK]", DCCore.strings["KEY_OK"])
+
 	return text
 
 func slide_to(object, target_position, speed, mode):
@@ -357,3 +360,10 @@ func slide_to(object, target_position, speed, mode):
 
 func async_animate(object, property, target_property, duration, tween_mode):
 	pass
+
+#
+# @ Orphan Assets
+#
+
+var choice_nametag = load("res://assets/scene_components/SelectionNametag.tscn")
+@onready var selected_choice_box = get_node(^"/root/GameRoot/HUD/ChoiceDisplay")

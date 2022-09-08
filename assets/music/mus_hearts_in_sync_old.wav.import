@@ -2,12 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mus_hearts_in_sync_old.wav-06c32d518677234d3c76300a4b74e1d1.sample"
+uid="uid://cle4mnhp2xf2o"
+path="res://.godot/imported/mus_hearts_in_sync_old.wav-06c32d518677234d3c76300a4b74e1d1.sample"
 
 [deps]
 
 source_file="res://assets/music/mus_hearts_in_sync_old.wav"
-dest_files=[ "res://.import/mus_hearts_in_sync_old.wav-06c32d518677234d3c76300a4b74e1d1.sample" ]
+dest_files=["res://.godot/imported/mus_hearts_in_sync_old.wav-06c32d518677234d3c76300a4b74e1d1.sample"]
 
 [params]
 
